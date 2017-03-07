@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+.character {
+	border: 1px solid red;
+	text-align: center;
+	margin: 5px;
+}
+
+.character .wr {
+	font-size: 50px;
+}
+.character .r {
+	font-size: 100%;
+	display: block;
+}
