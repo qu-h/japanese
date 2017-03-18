@@ -1,6 +1,12 @@
 
 $(function () {
-	$("#draw").dmak('電車',{'uri':'//'+window.location.hostname+'/svg/kanji/'});
+	//$("#draw").dmak('電車',{'uri':'//'+window.location.hostname+'/svg/kanji/'});
+	//$("#draw").dmak('な',{'uri':'//'+window.location.hostname+'/svg/hiragana/'});
+	$( ".writing" ).each(function( index ) {
+		console.log('//'+window.location.hostname+'/svg/'+$(this).attr('group')+'/');
+		$(this).dmak($(this).attr('char'),{'uri':'//'+window.location.hostname+'/svg/'+$(this).attr('group')+'/'});
+  
+	});
 
 			//$("#draw").dmak('é›»è»�');
 

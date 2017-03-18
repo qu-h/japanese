@@ -20,8 +20,8 @@ class school_ui
 
             return $group[$char];
         }
-        
-        
+
+
 
     }
 
@@ -41,9 +41,6 @@ class school_ui
             $html.= '</div>';
             return $html;
         }
-        
-        
-
     }
 
     static function notification($params = null)
@@ -72,5 +69,5 @@ class school_ui
         return $html;
     }
 
-   
+
 }

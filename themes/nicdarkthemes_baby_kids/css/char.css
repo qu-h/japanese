@@ -1,0 +1,53 @@
+.character {
+  position: relative;
+  color: #ffffff;
+  display: inline-block;
+  text-align: center;
+  border-radius: 5px 5px 5px 5px;
+  margin: 5px;
+  background-color: #6fc191;
+  box-shadow: 0px 4px 0px 0px #6ab78a; }
+  .character.blue {
+    background-color: #74cee4;
+    box-shadow: 0px 4px 0px 0px #6fc4d9; }
+  .character.red {
+    background-color: #e16c6c;
+    box-shadow: 0px 4px 0px 0px #c86969; }
+  .character.green {
+    background-color: #6fc191;
+    box-shadow: 0px 4px 0px 0px #6ab78a; }
+  .character.yellow {
+    background-color: #edbf47;
+    box-shadow: 0px 4px 0px 0px #e0b84e; }
+  .character.violet {
+    background-color: #c389ce;
+    box-shadow: 0px 4px 0px 0px #ac7ab5; }
+  .character.orange {
+    background-color: #ec774b;
+    box-shadow: 0px 4px 0px 0px #df764e; }
+  .character .wr {
+    font-size: 50px; }
+  .character .r {
+    bottom: 0;
+    font-size: 15px;
+    position: absolute;
+    right: 5px; }
+  .character .write,
+  .character .listen {
+    position: absolute;
+    left: 2px;
+    cursor: pointer; }
+    .character .write:HOVER,
+    .character .listen:HOVER {
+      border: 1px solid #fff;
+      left: 1px; }
+  .character .write {
+    bottom: 2px; }
+    .character .write:HOVER {
+      bottom: 1px; }
+  .character .listen {
+    top: 2px; }
+    .character .listen:HOVER {
+      top: 1px; }
+
+/*# sourceMappingURL=char.css.map */

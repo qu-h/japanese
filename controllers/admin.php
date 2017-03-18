@@ -4,6 +4,8 @@ class Admin extends MX_Controller {
     function __construct(){
         parent::__construct();
 
+        $this->load->module('layouts');
+        $this->template->set_theme('smartadmin')->set_layout('main');
     }
 
     function index(){
@@ -16,7 +18,7 @@ class Admin extends MX_Controller {
     }
 
     function article($action=NULL,$id=0){
-        $this->load->module('backend/article');
+
         if( strlen($action) > 0 ){
             if( method_exists($this->article, $action) ){
                 return $this->article->$action();
@@ -32,8 +34,36 @@ class Admin extends MX_Controller {
         }
     }
 
-    function course(){
+    function course($action,$id=0){
+        $this->load->module('Course');
+        if( strlen($action) > 0 ){
+            if( method_exists($this->course, $action) ){
+                $this->course->$action();
+            } elseif( $action=='add' ){
+                $this->course->form();
+            } elseif( $action=='edit' ){
+                $this->course->form($id);
+            } else {
+                show_404();
+            }
+        }
+    }
 
+    function grammar($action=NULL,$id=0){
+        $this->load->module('grammar');
+        if( strlen($action) > 0 ){
+            if( method_exists($this->grammar, $action) ){
+                $this->grammar->$action();
+            } elseif( $action=='add' ){
+                $this->grammar->form();
+            } elseif( $action=='edit' ){
+                $this->grammar->form($id);
+            } else {
+                show_404();
+            }
+        } else {
+            $this->grammar->items();
+        }
     }
 
     function category($action=NULL){
@@ -50,19 +80,6 @@ class Admin extends MX_Controller {
         }
     }
 
-    function product($action=NULL){
-        $this->load->module('backend/product');
-        if( strlen($action) > 0 ){
-            switch ($action){
-                case 'add':
-                    $this->product->form();
-                    break;
-                default: show_404();
-            }
-        } else {
-            $this->product->items();
-        }
-    }
 
 
 }
