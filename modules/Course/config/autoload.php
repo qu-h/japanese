@@ -1,3 +1,3 @@
 <?php
 
-$autoload['model'] = array('Course_Model');
+$autoload['model'] = array('Course_Model','Conversation_Model');

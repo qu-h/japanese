@@ -6,6 +6,8 @@ class Course extends MX_Controller {
     {
         parent::__construct();
         $this->fields = $this->Course_Model->fields();
+        $this->load->module('Vocabulary');
+        add_js('vocabulary.js');
     }
 
     public function form($id=0){
@@ -19,7 +21,9 @@ class Course extends MX_Controller {
             $add = $this->Course_Model->update($formdata);
             if( $add ){
                 set_error(lang('Success.'));
+                redirect("admin/course/edit/$add");
             }
+
 
         } else {
             $item = $this->Course_Model->get_item_by_id($id);
@@ -28,9 +32,15 @@ class Course extends MX_Controller {
                     $this->fields[$field]['value']=$item->$field;
                 }
             }
-            if( !empty($item) AND isset($this->fields['conversation']) ){
-                $this->fields['conversation']['course']=$id;
+            if( !empty($item) ){
+                if( isset($this->fields['conversation']) ){
+                    $this->fields['conversation']['course']=$id;
+                }
+                if( isset($this->fields['vocabulary']) ){
+                    $this->fields['vocabulary']['course']=$id;
+                }
             }
+
         }
 
         $data = array(

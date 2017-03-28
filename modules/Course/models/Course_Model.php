@@ -28,10 +28,16 @@ class Course_Model extends CI_Model {
 	    'content' => array(
 	        'type' => 'textarea'
 	    ),
+	    'vocabulary' => array(
+	        'type' => 'vocabulary',
+	        'icon' => 'send',
+	        'course'=>0
+	    ),
 	    'conversation' => array(
 	        'type' => 'conversation',
 	        'course'=>0
-	    )
+	    ),
+
 	);
 
 	function __construct(){
@@ -75,10 +81,21 @@ class Course_Model extends CI_Model {
 	    if( is_null($data['category']) ){
 	        $data['category'] = 0;
 	    }
-	    $conversations = $data['conversation'];
-	    bug($conversations);
-	    bug($data);
-	    die;
+	    $conversations = array();
+	    if( isset($data['conversation']) ){
+	        $conversations = $data['conversation'];
+	        if( is_array($conversations) AND isset($conversations['content_jp']) ){
+
+	        }
+	        unset($data['conversation']);
+	    }
+	    $vocabulary = array();
+	    if( isset($data['vocabulary']) ){
+	        $vocabulary = $data['vocabulary'];
+	        unset($data['vocabulary']);
+	    }
+
+
 	    if( $this->check_exist($data['alias'],$data['id'],$data['category']) ){
 	        set_error('Dupplicate Course');
 	        return false;
@@ -86,11 +103,20 @@ class Course_Model extends CI_Model {
 	        $data['modified'] = date("Y-m-d H:i:s");
 	        $id = $data['id']; unset($data['id']);
 	        $this->db->where('id',$id)->update($this->table,$data);
-	        return $id;
 	    } else {
 	        $this->db->insert($this->table,$data);
-	        return $this->db->insert_id();
+	        $id = $this->db->insert_id();
 	    }
+
+	    $this->Conversation_Model->update_course($conversations,$id);
+
+	    $vocabularys = $this->Vocabulary_Model->update_course($vocabulary);
+	    mb_internal_encoding('utf-8');
+        $vocabularys = serialize($vocabularys);
+
+	    $this->db->where('id',$id)->update($this->table,array('vocabulary'=>$vocabularys) );
+
+	    return $id;
 	}
 
 
