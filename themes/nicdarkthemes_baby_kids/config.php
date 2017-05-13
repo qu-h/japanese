@@ -2,6 +2,7 @@
 
 // $config['assets_url'] = "//".$_SERVER['HTTP_HOST']."/themes";
 // $config['assets_dir'] = APPPATH."/themes/nicdarkthemes_baby_kids/";
+
 $config['theme_url'] = "//".$_SERVER['HTTP_HOST']."/themes/nicdarkthemes_baby_kids/";
 
 $config['css'] = array(
