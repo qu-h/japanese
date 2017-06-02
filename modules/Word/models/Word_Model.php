@@ -17,6 +17,7 @@ class Word_Model extends CI_Model {
 	        'desc' => null,
 	        'icon' => 'link'
 	    ),
+        'type'=>array('type'=>'select'),
         'kanji' => array(
                 'icon' => 'send'
         ),
@@ -39,8 +40,21 @@ class Word_Model extends CI_Model {
 	}
 
     function fields(){
+        
+        $query = "SHOW COLUMNS FROM ".$this->table." LIKE 'type'";
+        $row = $this->db->query("SHOW COLUMNS FROM ".$this->table." LIKE 'type'")->row()->Type;
+        $regex = "/'(.*?)'/";
+        preg_match_all( $regex , $row, $enum_array );
+        $enum_fields = $enum_array[1];
+        foreach ($enum_fields as $key=>$value)
+        {
+            $this->word_fields["type"]['options'][$value] = lang($value);
+        }
+
         return $this->word_fields;
     }
+    
+
 
 	function get_item_by_id($id=0){
 	    return $this->db->where('id',$id)->get($this->table)->row();

@@ -8,6 +8,15 @@ class Grammar extends MX_Controller {
         $this->fields = $this->Grammar_Model->fields();
     }
 
+    /*
+     * Frontend
+     */
+    function index(){
+        die('show index grammar');
+    }
+    /*
+     * Backend
+     */
     var $table_fields = array(
         'id'=>array("#"),
         'title'=>array("Title"),

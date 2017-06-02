@@ -8,6 +8,13 @@ class Vocabulary extends MX_Controller {
         $this->fields = $this->Vocabulary_Model->fields();
     }
 
+    function index(){
+        
+    }
+    
+    /*
+     * Backend
+     */
     public function form($id=0){
 
         if ($this->input->post()) {
