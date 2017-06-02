@@ -11,13 +11,13 @@ class Grammar extends MX_Controller {
     var $table_fields = array(
         'id'=>array("#"),
         'title'=>array("Title"),
-        'category'=>array("Category"),
+        'grammar'=>array("Cấu Trúc"),
+        'category'=>array("Danh Mục"),
         'actions'=>array(NULL,5,false),
     );
 
 
     function items(){
-        $js = add_js('test.js');
         if( $this->uri->extension =='json' ){
             return $this->items_json_data(array_keys($this->table_fields));
         }
@@ -68,6 +68,7 @@ class Grammar extends MX_Controller {
             $add = $this->Grammar_Model->update($formdata);
             if( $add ){
                 set_error(lang('Success.'));
+                redirect('admin/grammar');
             }
 
         } else {
@@ -78,7 +79,6 @@ class Grammar extends MX_Controller {
                 }
             }
         }
-
         $data = array(
             'fields' => $this->fields
         );

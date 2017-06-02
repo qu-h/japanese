@@ -3,7 +3,7 @@ class Admin extends MX_Controller {
 
     function __construct(){
         parent::__construct();
-
+        
         $this->load->module('layouts');
         $this->template->set_theme('smartadmin')->set_layout('main');
     }
@@ -18,7 +18,7 @@ class Admin extends MX_Controller {
     }
 
     function article($action=NULL,$id=0){
-
+        $this->load->module('Backend/article');
         if( strlen($action) > 0 ){
             if( method_exists($this->article, $action) ){
                 return $this->article->$action();
@@ -63,6 +63,22 @@ class Admin extends MX_Controller {
             }
         } else {
             $this->grammar->items();
+        }
+    }
+    function word($action=NULL,$id=0){
+        $this->load->module('word');
+        if( strlen($action) > 0 ){
+            if( method_exists($this->word, $action) ){
+                $this->word->$action();
+            } elseif( $action=='add' ){
+                $this->word->form();
+            } elseif( $action=='edit' ){
+                $this->word->form($id);
+            } else {
+                show_404();
+            }
+        } else {
+            $this->word->items();
         }
     }
 

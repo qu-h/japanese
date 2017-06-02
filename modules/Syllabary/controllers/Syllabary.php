@@ -10,11 +10,12 @@ class Syllabary extends MX_Controller
         $this->load->module('layouts');
 
         $this->template->set_theme('nicdarkthemes_baby_kids')->set_layout('course');
+        
         add_asset('raphael-2.2.1.min.js','raphael');
         add_asset('dmak.js','dmak');
-        add_asset('jquery.dmak.js','dmak');
+//         add_asset('jquery.dmak.js','dmak');
         add_asset('dmakLoader.js','dmak');
-        add_asset('jquery.dmak.js','dmak');
+//         add_asset('jquery.dmak.js','dmak');
 
     }
     function index(){
@@ -23,21 +24,57 @@ class Syllabary extends MX_Controller
     /*
      * https://www.nhk.or.jp/lesson/vietnamese/syllabary/index.html#tab
      * http://www.studyjapanese.net/p/kinh-nghiem.html
+     * http://akira.edu.vn/bang-chu-cai-hiragana/
      */
-    function hiragana()
+    function hiragana($char=NULL)
     {
+//         $hiragana = $this->config->item('hiragana');
+//         foreach ($hiragana AS $ro=>$char){
+//             $this->db->insert('characters',array("character"=>$char,'type'=>"hiragana",'romaji'=>$ro));
+//         }
+
+        if( $char ){
+            
+            return $this->draw_char($char,"hiragana");
+        }
         $data = array('tips'=>$this->tip->items('chu-cai-nhat,hiragana-text'));
         temp_view('hiragana',$data);
     }
 
-    function katakana()
+    function katakana($char=NULL)
     {
+        if( $char ){
+            
+            return $this->draw_char($char,"katakana");
+        }
+        
         $data = array('tips'=>$this->tip->items('chu-cai-nhat,katakana-text'));
         $data = array();
         temp_view('katakana',$data);
 
     }
 
+    private function draw_char($romaji,$group="hiragana"){
+        switch ($romaji){
+            case 'aa':
+                $romaji = 'a';break;
+            case 'ii':
+                $romaji = 'i';break;
+            case 'uu':
+                $romaji = 'u';break;
+        
+            case 'ee':
+                $romaji = 'e';break;
+            case 'oo':
+                $romaji = 'o';break;
+        }
+        
+        $data['group'] = $group;
+        $data['romaji'] = $romaji;
+        $data['tips'] = $this->tip->items("$group-text");
+        temp_view('draw_json',$data);
+    }
+    
     function draw($char = NULL){
         $hiragana = $this->config->item('hiragana');
         $katakana = $this->config->item('katakana');

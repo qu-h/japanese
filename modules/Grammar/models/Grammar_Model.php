@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script core allowed');
 
 class Grammar_Model extends CI_Model {
-	var $table = 'article';
+	var $table = 'grammar';
 
 	var $grammar_fields = array(
 	    'id' => array(
@@ -21,11 +21,19 @@ class Grammar_Model extends CI_Model {
 	        'type' => 'select',
 	        'icon' => 'list'
 	    ),
-
-	    'content' => array(
+        'grammar'=>array(
 	        'type' => 'textarea'
 	    ),
-	    'type'=>array('type' => 'hidden','value'=>'grammar')
+        'description'=>array(
+	        'type' => 'textarea'
+	    ),
+        'example'=>array(
+	        'type' => 'textarea'
+	    ),
+// 	    'content' => array(
+// 	        'type' => 'textarea'
+// 	    ),
+	    //'type'=>array('type' => 'hidden','value'=>'grammar')
 	);
 
 	function __construct(){
@@ -52,7 +60,6 @@ class Grammar_Model extends CI_Model {
 	            set_error('Please enter alias');
 	            return false;
 	        }
-
 	    }
 	    if( !isset($data['id']) ){
 	        $data['id'] = 0;
@@ -65,10 +72,14 @@ class Grammar_Model extends CI_Model {
 	        return false;
 	    } elseif( intval($data['id']) > 0 ) {
 	        $data['modified'] = date("Y-m-d H:i:s");
-	        $id = $data['id']; unset($data['id']);
+	        $id = $data['id'];
+	        unset($data['id']);
+	        
 	        $this->db->where('id',$id)->update($this->table,$data);
+
 	        return $id;
 	    } else {
+	        
 	        $this->db->insert($this->table,$data);
 	        return $this->db->insert_id();
 	    }
@@ -86,7 +97,6 @@ class Grammar_Model extends CI_Model {
 	    ->where("category = $category")
 	    ->where('id <>',$id);
 	    $result = $this->db->get($this->table);
-	    //bug($this->db->last_query());
 	    return ( $result->num_rows() > 0) ? true : false;
 	}
 
@@ -94,8 +104,8 @@ class Grammar_Model extends CI_Model {
 	 * Json return for Datatable
 	 */
 	function items_json($actions_allow=NULL){
-	    $this->db->select('id,title,category');
-	    $this->db->where('type','grammar');
+	    $this->db->select('id,title,grammar,category');
+// 	    $this->db->where('type','grammar');
 	    $this->db->order_by('id ASC');
 	    $query = $this->db->get($this->table);
 	    $items = array();

@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * http://www.nicdarkthemes.com/themes/baby-kids/wp/demo/
+ */
 // $config['assets_url'] = "//".$_SERVER['HTTP_HOST']."/themes";
 // $config['assets_dir'] = APPPATH."/themes/nicdarkthemes_baby_kids/";
 
@@ -49,7 +51,6 @@ $config['js'] = array(
 $config['js'][] = assets('jquery.countdown.js','jquery/countdown');
 $config['js'][] = assets('jquery.parallax-1.1.3.js','jquery/parallax');
 $config['js'][] = assets('isotope.pkgd.min.js','isotope');
-
 
 $config['js'][] = 'script.js';
 $config['js'][] = assets('tether.min.js','tether');
