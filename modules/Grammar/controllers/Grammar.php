@@ -5,6 +5,8 @@ class Grammar extends MX_Controller {
     function __construct()
     {
         parent::__construct();
+        $this->load->module('layouts');
+        $this->template->set_theme('nicdarkthemes_baby_kids')->set_layout('course');
         $this->fields = $this->Grammar_Model->fields();
     }
 
@@ -13,6 +15,17 @@ class Grammar extends MX_Controller {
      */
     function index(){
         die('show index grammar');
+    }
+    function item($alias=NULL){
+        
+        if( is_null($alias) ){
+            $alias = $this->uri->segment(2);
+        }
+        $data['row'] = $this->Grammar_Model->get_item_by_alias($alias);
+        
+//         bug($data);
+//         die('show gramar item');
+        temp_view('item',$data);
     }
     /*
      * Backend

@@ -48,8 +48,10 @@ class Grammar_Model extends CI_Model {
 	function get_item_by_id($id=0){
 	    return $this->db->where('id',$id)->get($this->table)->row();
 	}
-	function get_item_by_alias($id=0){
-	    return $this->db->where('alias',$id)->get($this->table)->row();
+
+	function get_item_by_alias($alias=0){
+	    $row = $this->db->where('alias',$alias)->get($this->table)->row();
+	    return $row;
 	}
 
 	function update($data=NULL){
