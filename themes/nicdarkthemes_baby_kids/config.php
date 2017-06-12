@@ -13,7 +13,7 @@ $config['css'] = array(
 
 
 );
-$config['css'][] = assets('bootstrap.css','bootstrap');
+$config['css'][] = "{root_assets}/bootstrap/css/bootstrap.css";
 
 $config['css'][] = 'nicdark_style.css';
 $config['css'][] = 'js_composer.css';

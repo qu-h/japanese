@@ -5,44 +5,20 @@ class Vocabulary extends MX_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->fields = $this->Vocabulary_Model->fields();
+        $this->load->module('layouts');
+        $this->template->set_theme('nicdarkthemes_baby_kids')->set_layout('course');
+        $this->load->model('Word/Word_Model');
     }
 
     function index(){
         
     }
-    
-    /*
-     * Backend
-     */
-    public function form($id=0){
+    function word($romaji=NULL) {
+        $data['word'] = $this->Word_Model->get_item_by_alias($romaji);
+//         bug($data); die($romaji);
 
-        if ($this->input->post()) {
-            $formdata = array();
-            foreach ($this->fields as $name => $field) {
-                $this->fields[$name]['value'] = $formdata[$name] = $this->input->post($name);
-            }
-
-            $add = $this->Course_Model->update($formdata);
-            if( $add ){
-                set_error(lang('Success.'));
-            }
-
-        } else {
-            $item = $this->Course_Model->get_item_by_id($id);
-            foreach ($this->fields AS $field=>$val){
-                if( isset($item->$field) ){
-                    $this->fields[$field]['value']=$item->$field;
-                }
-            }
-        }
-
-        $data = array(
-            'fields' => $this->fields
-        );
-
-        $this->template
-        ->title( lang('welcome_to'))
-        ->build('backend/form',$data);
+        add_module_asset("vocabulary.css","vocabulary");
+        temp_view('word',$data);
     }
+    
 }

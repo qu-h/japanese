@@ -18,7 +18,6 @@ class Lesson extends MX_Controller {
 
     function item($alias=NULL){
     	$course = $this->Course_Model->get_item_by_alias($alias);
-    	// bug($course); die;
     	$data = array('lesson'=>$course);
 		temp_view('course/lesson_conversation',$data);
     }

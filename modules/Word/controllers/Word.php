@@ -8,7 +8,6 @@ class Word extends MX_Controller {
         $this->fields = $this->Word_Model->fields();
         $this->config->set_item('word_img_dir', APPPATH."/images/");
         $this->config->set_item('word_img_url', base_url()."images");
-
         $this->load->helper('Backend/datatables');
     }
 
@@ -64,6 +63,10 @@ class Word extends MX_Controller {
         $data = array(
             'fields' => $this->fields
         );
+        
+        //add_js('{root_assets}wanakana/wanakana.min.js');
+        add_root_asset("wanakana/wanakana.min.js");
+        add_module_asset("inputs.js");
         temp_view('backend/form',$data);
 
     }

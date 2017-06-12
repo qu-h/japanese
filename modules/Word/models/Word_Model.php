@@ -21,7 +21,7 @@ class Word_Model extends CI_Model {
         'kanji' => array(
                 'icon' => 'send'
         ),
-        'hiragana'=>'',
+        'hiragana'=>array("id"=>'input_hira'),
         'katakana'=>'',
 	        'vietnamese'=>'',
 	        'english'=>'',
@@ -54,18 +54,24 @@ class Word_Model extends CI_Model {
         return $this->word_fields;
     }
     
-
-
 	function get_item_by_id($id=0){
 	    return $this->db->where('id',$id)->get($this->table)->row();
 	}
 	function get_item_by_alias($id=0){
 	    return $this->db->where('alias',$id)->get($this->table)->row();
 	}
+	
+	function get_item_by_romaji($romaji_str=null){
+	    $romaji_str = strtolower($romaji_str);
+	    $this->db->from($this->table);
+        $this->db->where("LOWER(romaji)",$romaji_str);
+        return $this->db->get()->row();
+	}
 
 	function update($data=NULL){
 
 	    $data['romaji'] = trim($data['romaji']);
+	    $data['romaji'] = strtolower($data['romaji']);
 	    if( strlen($data['romaji']) < 1 ){
 	        set_error('Please enter romaji');
 	        return false;
@@ -103,6 +109,29 @@ class Word_Model extends CI_Model {
 	    }
 	}
 
+	function update_by_romaji($data){
+	    if( strlen($data['romaji']) < 1 ){
+	        set_error('Please enter romaji');
+	        return false;
+	    }
+	    $data['romaji'] = strtolower($data['romaji']);
+	    foreach ($data AS $k=>$val){
+	        if( !in_array($k, array("romaji","hiragana","katakana","kanji")) ){
+	            unset($data[$k]);
+	        }
+	    }
+	    $row = $this->db->where('romaji',trim($data['romaji']))->get($this->table);
+	    if( $row->num_rows() > 0 ){
+	        $old_data = $row->row();
+	        $data['modified'] = date("Y-m-d H:i:s");
+	        $this->db->where('id',$row->row()->id)->update($this->table,$data);
+	    } else {
+	        $data['id'] = 0;
+	        $data['created'] = date("Y-m-d H:i:s");
+	        $this->db->insert($this->table,$data);
+	    }
+	    return $data['romaji'];
+	}
 
 	function check_exist($romaji,$id){
 
@@ -116,6 +145,27 @@ class Word_Model extends CI_Model {
 	    return ( $result->num_rows() > 0) ? $result->row()->id : false;
 	}
 
+	/*
+	 * using other module
+	 */
+	function romaji_check($romaji_str=NULL){
+	    $romaji_str = strtolower($romaji_str);
+	    $this->db->from($this->table);
+        $this->db->where("LOWER(romaji)",$romaji_str);
+        $word_check = $this->db->get();
+        if( $word_check->num_rows() > 0 ){
+            $id = $word_check->row()->id;
+        } else {
+            $data['romaji'] = $romaji_str;
+            $data['alias'] = url_title($romaji_str,'-',true);
+            $data['created'] = date("Y-m-d H:i:s");
+            $this->db->insert($this->table,$data);
+            
+            $id = $this->db->insert_id();
+        }
+        return $id;
+	}
+	
 	/*
 	 * Json return for Datatable
 	 */

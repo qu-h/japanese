@@ -57,10 +57,10 @@ class Course_Model extends CI_Model {
 	    $item = $this->db->get()->row();
 
 	    if( !empty($item) ){
-	    	$this->db->where('c.course',$item->id)->from('course_conversation AS c')->select('c.id, c.content_jp, c.content_vn, c.content_read, c.mp3');
-	    	$this->db->join('course_conversation_character AS ch','ch.id= c.character','LEFT')->select('ch.name AS char_name, ch.id AS char_id, ch.avatar');
-    		$this->db->order_by('c.order ASC, c.id ASC');
-	    	$item->conversation = $this->db->get()->result();
+// 	    	$this->db->where('c.course',$item->id)->from('course_conversation AS c')->select('c.id, c.content_jp, c.content_vn, c.content_read, c.mp3');
+// 	    	$this->db->join('course_conversation_character AS ch','ch.id= c.character','LEFT')->select('ch.name AS char_name, ch.id AS char_id, ch.avatar');
+//     		$this->db->order_by('c.order ASC, c.id ASC');
+// 	    	$item->conversation = $this->db->get()->result();
 	    }
 	    return $item;
 	}
@@ -81,6 +81,7 @@ class Course_Model extends CI_Model {
 	    if( is_null($data['category']) ){
 	        $data['category'] = 0;
 	    }
+	    
 	    $conversations = array();
 	    if( isset($data['conversation']) ){
 	        $conversations = $data['conversation'];
@@ -110,15 +111,10 @@ class Course_Model extends CI_Model {
 
 	    $this->Conversation_Model->update_course($conversations,$id);
 
-	    $vocabularys = $this->Vocabulary_Model->update_course($vocabulary);
-	    mb_internal_encoding('utf-8');
-        $vocabularys = serialize($vocabularys);
-
-	    $this->db->where('id',$id)->update($this->table,array('vocabulary'=>$vocabularys) );
+	    $this->CourseVocabulary_Model->update_from_course($id,$vocabulary);
 
 	    return $id;
 	}
-
 
 	function check_exist($alias,$id,$category=0){
 	    if( !is_numeric($category) ){
@@ -131,7 +127,23 @@ class Course_Model extends CI_Model {
 	    ->where("category = $category")
 	    ->where('id <>',$id);
 	    $result = $this->db->get($this->table);
-	    //bug($this->db->last_query());
 	    return ( $result->num_rows() > 0) ? true : false;
+	}
+	
+	/*
+	 * Json return for Datatable
+	 */
+	function items_json($actions_allow=NULL){
+	    $this->db->select('*');
+	    $this->db->order_by('id DESC');
+	    $query = $this->db->get($this->table);
+	    $items = array();
+	    foreach ($query->result() AS $ite){
+	        $ite->actions = "";
+	        $vocabulary_count = $this->CourseVocabulary_Model->count_for_course($ite->id);
+	        $ite->vocabulary_count = anchor("admin/course/vocabulary/".$ite->alias,$vocabulary_count);
+	        $items[] = $ite;
+	    }
+	    return jsonData(array('data'=>$items));
 	}
 }

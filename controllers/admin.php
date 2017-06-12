@@ -6,6 +6,8 @@ class Admin extends MX_Controller {
         
         $this->load->module('layouts');
         $this->template->set_theme('smartadmin')->set_layout('main');
+        $this->load->helper('Backend/datatables');
+        //add_js(array('japanese.js','nicdarkthemes_baby_kids'));
     }
 
     function index(){
@@ -34,8 +36,11 @@ class Admin extends MX_Controller {
         }
     }
 
-    function course($action,$id=0){
+    function course($action=NULL,$id=0){
         $this->load->module('Course');
+        if( strlen($action) < 1 ){
+            $action = "items";
+        }
         if( strlen($action) > 0 ){
             if( method_exists($this->course, $action) ){
                 $this->course->$action();
