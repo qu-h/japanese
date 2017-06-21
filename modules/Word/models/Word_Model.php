@@ -206,4 +206,16 @@ class Word_Model extends CI_Model {
 	    }
 	    return jsonData(array('data'=>$items));
 	}
+	
+	
+	
+	function items_search($key=""){
+	    $this->db->from($this->table)->select("id, hiragana AS name");
+	    $this->db->where("hiragana  LIKE '$key%' ESCAPE '!'");
+	    $items = $this->db->get();
+	    if( $items->num_rows() > 0 ){
+	        return $items->result();
+	    }
+	    return array();
+	}
 }

@@ -1,35 +1,36 @@
 <section class="nicdark_section nicdark_bg_greydark nicdark_dark_widgets">
-
 	<!--start nicdark_container-->
 	<div class="nicdark_container nicdark_clearfix">
-
 		<div class="nicdark_space30"></div>
-
 		<div class="grid grid_3 nomargin percentage">
-
 			<div class="nicdark_space20"></div>
-
 			<div class="nicdark_margin10">
 				<div id="text-2" class="widget widget_text">
-					<h2>OUR PRIMARY SCHOOL</h2>
+					<h2>{lang text="SiteName"}</h2>
 					<div class="textwidget">
-						<p class="white">Lorem ipsum dolor sit amet, ipsum dolor sit
-							amet, ipsum dolor sit amet, ipsum dolor sit amet. Lorem ipsum
-							dolor sit amet consecteur.</p>
+						<p class="white">{lang text="Site Short Description"}</p>
 						<div class="nicdark_space20"></div>
 						<div class="nicdark_divider left small">
 							<span class="nicdark_bg_white nicdark_radius"></span>
 						</div>
 						<div class="nicdark_space20"></div>
-						<a href="#"
-							class="nicdark_btn_icon nicdark_bg_orange small nicdark_shadow nicdark_radius white"><i
-							class="icon-mail-1 nicdark_rotate"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-							href="#"
-							class="nicdark_btn_icon nicdark_bg_yellow small nicdark_shadow nicdark_radius white"><i
-							class="icon-home nicdark_rotate"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-							href="#"
-							class="nicdark_btn_icon nicdark_bg_red small nicdark_shadow nicdark_radius white"><i
-							class="icon-phone-outline nicdark_rotate"></i></a>
+						{if isset($config.facebook_id)}
+						<a href="//facebook.com/{$config.facebook_id}" target="_blank" class="nicdark_btn_icon nicdark_facebook small nicdark_shadow nicdark_radius white">
+							<i class="icon-facebook nicdark_rotate"></i>
+						</a>
+						{/if}
+						
+						{if isset($config.email)}
+						<a href="mailto:{$config.email}" class="nicdark_btn_icon nicdark_bg_yellow small nicdark_shadow nicdark_radius white">
+							<i class="icon-mail nicdark_rotate"></i>
+						</a>
+						{/if}
+						
+						{if isset($config.phone)}
+						<a href="tel:{$config.phone}" class="nicdark_btn_icon nicdark_bg_red small nicdark_shadow nicdark_radius white">
+							<i class="icon-phone-outline nicdark_rotate"></i>
+						</a>
+						{/if}
 					</div>
 				</div>
 			</div>
@@ -176,34 +177,38 @@
 			<div class="nicdark_space20"></div>
 
 			<p class="white">
-				&copy; Copyright 2014 by <span class="grey">NicDark</span>Themes.com -
-				Made With <i class="icon-heart-filled red nicdark_zoom"></i> In
-				Venice
+				&copy; {lang txt="SiteCopyright"} - {lang txt="Hay cung toi"} <i class="icon-heart-filled red nicdark_zoom"></i> {lang txt="Japanese"}
 			</p>
 		</div>
 
 
 		<div class="grid grid_6">
-			<div
-				class="nicdark_focus right nicdark_aligncenter_iphoneland nicdark_aligncenter_iphonepotr">
+			<div class="nicdark_focus right nicdark_aligncenter_iphoneland nicdark_aligncenter_iphonepotr">
 
+				{if isset($config.sitetwitter)}
 				<div class="nicdark_margin10">
 					<a href="#"
 						class="nicdark_press right nicdark_btn_icon nicdark_bg_blue nicdark_shadow small nicdark_radius white"><i
 						class="icon-twitter-1"></i></a>
 				</div>
+				{/if}
 
+				{if isset($config.sitegoogleplus)}
 				<div class="nicdark_margin10">
 					<a href="#"
 						class="nicdark_press right nicdark_btn_icon nicdark_bg_red nicdark_shadow small nicdark_radius white"><i
 						class="icon-gplus"></i></a>
 				</div>
+				{/if}
 
+				{if isset($config.sitefacebook)}
 				<div class="nicdark_margin10">
-					<a href="#"
-						class="nicdark_press right nicdark_btn_icon nicdark_facebook nicdark_shadow small nicdark_radius white"><i
-						class="icon-facebook-1"></i></a>
+					<a href="//facebook.com/{$config.sitefacebook}"
+						class="nicdark_press right nicdark_btn_icon nicdark_facebook nicdark_shadow small nicdark_radius white">
+						<i class="icon-facebook-1"></i></a>
 				</div>
+				{/if}
+				
 				<!--back to top-->
 
 				<div class="nicdark_margin10">

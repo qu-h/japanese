@@ -24,8 +24,8 @@ $config['css'][] = 'custom.css';
 // $config['js'][] = assets('jquery-3.1.1.min.js','jquery');
 
 $config['js'] = array(
+        "{root_assets}/jquery/js/jquery-1.1.1.min.js",
 //     'http://www.nicdarkthemes.com/themes/baby-kids/wp/demo/wp-includes/js/jquery/jquery.js?ver=1.11.1',
-	array('jquery-1.1.1.min.js','jquery'),
     'jquery.themepunch.tools.min.js',
     'jquery.themepunch.revolution.js',
     // 'jquery.parallax-1.1.3.js',

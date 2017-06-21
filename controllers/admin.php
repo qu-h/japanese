@@ -86,6 +86,23 @@ class Admin extends MX_Controller {
             $this->word->items();
         }
     }
+    function learning($action=NULL,$id=0){
+        $this->load->module('Learning');
+        if( strlen($action) < 1 ){
+            $action = "items";
+        }
+        if( strlen($action) > 0 ){
+            if( method_exists($this->learning, $action) ){
+                $this->learning->$action();
+            } elseif( $action=='add' ){
+                $this->learning->form();
+            } elseif( $action=='edit' ){
+                $this->learning->form($id);
+            } else {
+                show_404();
+            }
+        }
+    }
 
     function category($action=NULL){
         $this->load->module('backend/category');

@@ -15,7 +15,6 @@ class Vocabulary extends MX_Controller {
     }
     function word($romaji=NULL) {
         $data['word'] = $this->Word_Model->get_item_by_alias($romaji);
-//         bug($data); die($romaji);
 
         add_module_asset("vocabulary.css","vocabulary");
         temp_view('word',$data);

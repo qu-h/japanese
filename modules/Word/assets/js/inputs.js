@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+jQuery( document ).ready(function() {
 	/*
 	 * https://github.com/WaniKani/WanaKana
 	 */
@@ -13,7 +13,7 @@ $( document ).ready(function() {
 
     japaninput.hiragana_bin();
     
-    $("a.add-answer").off('click').on('click',function(){
+    jQuery("a.add-answer").off('click').on('click',function(){
     	var this_row = $(this).parents(".col-md-12");
     	var input_row = this_row.prev("section.col-md-12").clone();
     	input_row.find('input').val('');
@@ -25,9 +25,9 @@ $( document ).ready(function() {
 });
 
 japaninput = {
-		hiragana_bin:function(){
-			$( "input[name^='answer[hiragana]'], input[name='word[hiragana]'], input[name=hiragana], input.hirainput" ).each(function() {
-		    	wanakana.bind($(this).get(0));
-		    });
-		}
+	hiragana_bin:function(){
+		jQuery( "input[name^='answer[hiragana]'], input[name='word[hiragana]'], input[name=hiragana], input[type=text].hirainput" ).each(function() {
+	    	wanakana.bind(jQuery(this).get(0));
+	    });
+	}
 }

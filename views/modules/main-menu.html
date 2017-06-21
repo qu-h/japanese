@@ -1,6 +1,4 @@
-<div
-	class="nicdark_section nicdark_navigation nicdark_upper_level2 slowdown">
-
+<div class="nicdark_section nicdark_navigation nicdark_upper_level2 slowdown">
 	<!--decide fullwidth or boxed header-->
 	<div class="nicdark_menu_boxed nicdark_menu_fullwidth_boxed">
 		<!--start top header-->
@@ -13,28 +11,29 @@
 					<div class="nicdark_focus">
 						<h6 class="white">
 							<i class="icon-calendar-outlilne"></i>&nbsp;&nbsp;
-							<a class="white title" href="#">OUR EVENTS</a>
+							<a class="white title" href="javascript:void(0)">{lang text="Our Events"}</a>
 							<span class="grey nicdark_marginright10 nicdark_marginleft10">&middot;</span>
 							
-							<i class="icon-pencil-1"></i>&nbsp;&nbsp;
-							<a class="white title" href="#">NEWS</a>
+							<i class="icon-pencil-1"></i>&nbsp;&nbsp; <a class="white title" href="#">{lang text="News"}</a>
+							
+							{if isset($config.phone)}
 							<span class="grey nicdark_marginright10 nicdark_marginleft10">&middot;</span>
-							<i class="icon-phone-outline"></i>&nbsp;&nbsp;(00) +51278934
+							<a href="tel:{$config.phone}" class="white" ><i class="icon-phone-outline"></i>&nbsp;&nbsp;{$config.phone}</a>
+							{/if}
 						</h6>
 					</div>
 				</div>
 				<div class="grid grid_6 right">
 					<div class="nicdark_focus right">
 						<h6 class="white">
-							<i class="icon-contacts"></i>&nbsp;&nbsp;<a class="white title"
-								href="#">CONTACTS</a>
+							<i class="icon-contacts"></i>&nbsp;&nbsp;
+							<a class="white title" href="/contact">{lang txt="Contacts"}</a>
 							<span class="grey nicdark_marginright10 nicdark_marginleft10">&middot;</span>
-							<i class="icon-plus-outline"></i>&nbsp;&nbsp;<a
-								class="white title"
-								href="#">REGISTER</a>
+							<i class="icon-plus-outline"></i>&nbsp;&nbsp;
+							<a class="white title" href="javascript:void(0)">{lang txt="Register"}</a>
 							<span class="grey nicdark_marginright10 nicdark_marginleft10">&middot;</span>
 							<i class="icon-lock-1"></i>&nbsp;&nbsp;
-							<a class="white title" href="#">LOG IN</a>
+							<a class="white title" href="/login">{lang txt="Login"}</a>
 						</h6>
 					</div>
 				</div>
@@ -64,9 +63,7 @@
 
 					<!--logo-->
 					<div class="nicdark_logo nicdark_marginleft10">
-						<a href=""><img
-							alt=""
-							src="http://www.nicdarkthemes.com/themes/baby-kids/html/demo/img/logo.png"></a>
+						<a href=""><img alt="{lang text="SiteName"}" src="http://www.nicdarkthemes.com/themes/baby-kids/html/demo/img/logo.png"></a>
 					</div>
 					<!--end logo-->
 

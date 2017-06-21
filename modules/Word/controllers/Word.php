@@ -10,6 +10,17 @@ class Word extends MX_Controller {
         $this->config->set_item('word_img_url', base_url()."images");
         $this->load->helper('Backend/datatables');
     }
+    
+    function index(){
+        if( $this->uri->extension =='json' ){
+            $key = input_get("query");
+            $items = $this->Word_Model->items_search($key);
+            if( !empty($items) ){
+                return jsonData($items);
+            }
+            die('aa');
+        }
+    }
 
     var $table_fields = array(
         'id'=>array("#",5,false,'text-center'),
