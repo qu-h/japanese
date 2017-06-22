@@ -5,7 +5,9 @@ class Learning extends MX_Controller {
     function __construct()
     {
         parent::__construct();
-        if( !property_exists($this, 'template') ){
+        if( !class_exists("Template") ){
+            $this->load->module('layouts');
+            $this->template->set_theme('nicdarkthemes_baby_kids')->set_layout('course');
         }
 
         
@@ -15,7 +17,8 @@ class Learning extends MX_Controller {
      * Frontend
      */
     function index(){
-        die('show index grammar');
+        $data['words'] = $this->Learning_Vocabulary_Model->get_all_by_user(1);
+        temp_view('vocabularies',$data);
     }
     function item($alias=NULL){
         
@@ -45,6 +48,8 @@ class Learning extends MX_Controller {
         switch ($action){
             case 'add':
                 return $this->vocabulary_form();
+            default:
+                return $this->vocalbulary_items();
         }
     }
 

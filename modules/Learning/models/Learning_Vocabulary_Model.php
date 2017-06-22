@@ -21,6 +21,12 @@ class Learning_Vocabulary_Model extends CI_Model {
 	    return $this->db->where('id',$id)->get($this->table)->row();
 	}
 	
+	function get_all_by_user($uid=1) {
+	    $this->db->from($this->table." AS voc")->select("voc.word")->where('voc.uid',$uid);
+	    $this->db->join("word AS w","w.id=voc.word_id")->select("w.romaji");
+	    return $this->db->get()->result();
+	}
+	
 	function update($data=NULL){
      
 	    if( !isset($data['id']) ){
