@@ -33,7 +33,7 @@ class Grammar extends MX_Controller {
      * Backend
      */
     var $table_fields = array(
-        'id'=>array("#"),
+        'id'=>array("#",2,true,'center'),
         'title'=>array("Title"),
         'grammar'=>array("Cấu Trúc"),
         'category'=>array("Danh Mục"),

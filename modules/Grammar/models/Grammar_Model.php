@@ -42,6 +42,8 @@ class Grammar_Model extends CI_Model {
 	}
 
     function fields(){
+
+    	$this->grammar_fields["category"]['options'] = $this->Category_Model->load_options("grammar");
         return $this->grammar_fields;
     }
 
@@ -106,10 +108,11 @@ class Grammar_Model extends CI_Model {
 	 * Json return for Datatable
 	 */
 	function items_json($actions_allow=NULL){
-	    $this->db->select('id,title,grammar,category');
+	    $this->db->from($this->table." AS gra")->select('gra.id,gra.title,gra.grammar');
+	    $this->db->join("category AS c","c.id=gra.category","LEFT")->select("c.name AS category");
 // 	    $this->db->where('type','grammar');
 	    $this->db->order_by('id ASC');
-	    $query = $this->db->get($this->table);
+	    $query = $this->db->get();
 	    $items = array();
 	    foreach ($query->result() AS $ite){
 

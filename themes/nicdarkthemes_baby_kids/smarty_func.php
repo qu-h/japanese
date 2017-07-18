@@ -33,20 +33,26 @@ class nicdarkthemes_baby_kids_ui
         $boxcolor = isset($params['boxcolor']) ? $params['boxcolor'] : NULL;
 
         if( strlen($char) > 0 ){
-            $group =  config_item($type);
 
-            if( !isset($group[$char]) )
+            $ci = get_instance();
+            if( !method_exists($ci, 'db') ){
+                $ci->load->database();
+            }
+
+            $character = $ci->db->where(array("type"=>$type,'romaji'=>$char))->get("characters")->row();
+
+            if( empty($character) )
                 return NULL;
 
-            if( strlen($char) < 2 ){
-                $char_code = $char.$char;
+            if( strlen($character->code) > 0 ){
+                $char_code = $character->code;
             } else {
-                $char_code = $char;
+                $char_code = $character->romaji;
             }
 
             $html = '<div class="col character '.$boxcolor.'">';
 
-            $html.= '<span class="wr">'.$group[$char].'</span>';
+            $html.= '<span class="wr">'.$character->character.'</span>';
             $html.= '<i class="write icon-brush"></i>';
             $html.= '<i class="listen icon-volume-up" code="'.$char_code.'" ></i>';
 

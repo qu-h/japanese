@@ -50,7 +50,7 @@ class Word_Model extends CI_Model {
         {
             $this->word_fields["type"]['options'][$value] = lang($value);
         }
-
+		
         return $this->word_fields;
     }
     

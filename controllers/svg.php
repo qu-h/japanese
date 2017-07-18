@@ -15,8 +15,6 @@ class Svg extends MX_Controller
             $fh = fopen(APPPATH."svg/kanji/$file", "w") or die("Can't open file");
             fwrite($fh, $svg_data);
             fclose($fh);
-            //header("Refresh:0");
-
             header('Content-type: image/svg+xml');
             echo $svg_data;
         }
@@ -48,5 +46,15 @@ class Svg extends MX_Controller
             exit();
             //header("Refresh:0");
         }
+    }
+    
+    function image($filename=""){
+        $this->load->module('SvgFile/Image');
+        
+
+        $filename = str_replace(array(".svg"), NULL, strtolower($filename));
+        $img_size = explode("x", $filename);
+        $this->image->thumb($img_size[0],$img_size[1]);
+        header('Content-type: image/svg+xml');
     }
 }

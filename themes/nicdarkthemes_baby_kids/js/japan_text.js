@@ -19,6 +19,7 @@ jQuery(document).ready(function() {
 		}
 		
 		audio.src = '//'+window.location.hostname+'/sound/syllabary/'+$code+'.mp3';
+		console.log(audio.src);
 		audio.play();
 	});
 
