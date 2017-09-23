@@ -63,7 +63,7 @@ class Course extends MX_Controller {
             }
         }
         $data = array(
-                'fields' => $this->fields
+            'fields' => $this->fields
         );
     
         
