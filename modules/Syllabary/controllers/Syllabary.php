@@ -94,7 +94,7 @@ class Syllabary extends MX_Controller
                 $char = 'o';break;
         }
         
-
+//bug($hiragana);die;
         if( array_key_exists($char, $hiragana) ){
             $data['char'] = $hiragana[$char];
             $data['group'] = 'hiragana';

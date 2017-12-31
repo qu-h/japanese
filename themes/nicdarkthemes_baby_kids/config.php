@@ -13,7 +13,8 @@ $config['css'] = array(
 
 
 );
-$config['css'][] = "{root_assets}/bootstrap/css/bootstrap.css";
+$config['css'][] = git_assets("bootstrap.css",'bootstrap','4.0.0-beta');
+//"{root_assets}/bootstrap/css/bootstrap.css";
 
 $config['css'][] = 'nicdark_style.css';
 $config['css'][] = 'js_composer.css';
@@ -24,8 +25,18 @@ $config['css'][] = 'custom.css';
 // $config['js'][] = assets('jquery-3.1.1.min.js','jquery');
 
 $config['js'] = array(
-        "{root_assets}/jquery/js/jquery-1.1.1.min.js",
+    //git_assets("jquery-3.2.1.min.js",'jquery','3.2.1'),
+    //'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js',
+    //"{root_assets}/jquery/js/jquery-1.1.1.min.js",
+    //git_assets("bootstrap.js",'bootstrap','4.0.0'),
+
 //     'http://www.nicdarkthemes.com/themes/baby-kids/wp/demo/wp-includes/js/jquery/jquery.js?ver=1.11.1',
+
+    'https://code.jquery.com/jquery-3.1.1.slim.min.js',
+    '//cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js',
+    '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js',
+
+
     'jquery.themepunch.tools.min.js',
     'jquery.themepunch.revolution.js',
     // 'jquery.parallax-1.1.3.js',
@@ -48,13 +59,14 @@ $config['js'] = array(
     'japan_text.js'
 );
 
-$config['js'][] = assets('jquery.countdown.js','jquery/countdown');
-$config['js'][] = assets('jquery.parallax-1.1.3.js','jquery/parallax');
-$config['js'][] = assets('isotope.pkgd.min.js','isotope');
+$config['js'][] = git_assets('jquery.countdown.js','jquery/countdown','1.0.1');
+$config['js'][] = git_assets('jquery.parallax-1.1.3.js','jquery/parallax','1.1.3');
+$config['js'][] = git_assets('isotope.pkgd.min.js','jquery/isotope','2.0.0');
 
 $config['js'][] = 'script.js';
-$config['js'][] = assets('tether.min.js','tether');
-$config['js'][] = assets('bootstrap.min.js','bootstrap');
+// $config['js'][] = git_assets('tether.min.js','tether','1.3.3');
+$config['js'][] = 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js';
+// $config['js'][] = git_assets('bootstrap.min.js','bootstrap','4.0.0-beta');
 
 
 // $config['css'][] = assets('font-awesome.min.css','font-awesome');

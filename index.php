@@ -34,7 +34,7 @@ switch (ENVIRONMENT)
 if (defined('STDIN')){
 	chdir(dirname(__FILE__));
 }
-$system_path = 'D:\WWW\QuanNH\CodeIgniter/system';
+$system_path = '/var/www/CodeIgniter/system';
 $application_folder = getcwd();
 $view_folder = 'views';
 
