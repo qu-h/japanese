@@ -66,7 +66,8 @@ function nicdark_bgcolor_site(nicdark_rgba_color,nicdark_bg_color,nicdark_switch
 
 
 	//isotope
-	$( window ).load(function() {
+	//$( window ).load(function() {
+	$(window).on('load', function() {
 		
 		//create btns filter
 		$('.nicdark_masonry_btns div a').click( function() {

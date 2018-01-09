@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config['url_suffix'] = '.html';
+$config['index_page'] = '';
 // $config['theme_url'] = "//".$_SERVER['HTTP_HOST']."/themes/";
 $config['language']	= 'vietnamese';
 $config['enable_hooks'] = true;

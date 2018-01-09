@@ -1,4 +1,4 @@
 .buildpath
-compile/
+compile/*.php
 .settings/
 .project
