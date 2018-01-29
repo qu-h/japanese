@@ -6,9 +6,6 @@ class Grammar extends MX_Controller {
     {
         parent::__construct();
         if( !property_exists($this, 'template') ){
-//             bug($this->template);die;
-//             $this->load->module('layouts');
-//             $this->template->set_theme('nicdarkthemes_baby_kids')->set_layout('course');
         }
 
         $this->fields = $this->Grammar_Model->fields();

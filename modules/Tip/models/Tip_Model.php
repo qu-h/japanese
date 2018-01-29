@@ -3,7 +3,7 @@
 class Tip_Model extends CI_Model {
 	var $table = 'tip';
 
-	var $course_fields = array(
+	var $tip_fields = array(
 	    'id' => array(
 	        'type' => 'hidden'
 	    ),
@@ -24,7 +24,9 @@ class Tip_Model extends CI_Model {
 
 	    'content' => array(
 	        'type' => 'textarea'
-	    )
+	    ),
+        'status' => ['type' => 'publish', 'value'=>1],
+        'ordering'=>['type'=>'number','icon'=>'sort-numeric-desc']
 	);
 
 	function __construct(){
@@ -33,7 +35,7 @@ class Tip_Model extends CI_Model {
 	}
 
     function fields(){
-        return $this->course_fields;
+        return $this->tip_fields;
     }
 	function get_item_by_id($id=0){
 	    return $this->db->where('id',$id)->get($this->table)->row();
@@ -55,9 +57,16 @@ class Tip_Model extends CI_Model {
 	        }
 
 	    }
-	    if( !isset($data['id']) ){
+	    if( !isset($data['id']) || strlen($data['id']) < 1 ){
 	        $data['id'] = 0;
 	    }
+
+        $data['status'] = $data['status']=='on' ? true:false;
+
+        if( !isset($data['ordering']) || strlen($data['ordering']) < 1 ){
+            $data['ordering'] = 0;
+        }
+
 	    if( is_null($data['category']) ){
 	        $data['category'] = 0;
 	    }
@@ -73,9 +82,26 @@ class Tip_Model extends CI_Model {
 	        $this->db->insert($this->table,$data);
 	        return $this->db->insert_id();
 	    }
-
-
 	}
+
+    function items_json($fields=[], $actions_allow=NULL){
+        $this->db->select('a.id,a.name,a.content, a.category,a.status, a.ordering');
+//        if( $category_id !== null ){
+//            $this->db->where("a.category",$category_id);
+//        }
+        $this->db->where("(a.status <> -1 OR a.status IS NULL)");
+//	    $this->db->order_by('a.ordering DESC');
+        $query = $this->db->get($this->table." AS a");
+        $items = array();
+        if( !$query ){
+            bug($this->db->last_query());die("error");
+        }
+        foreach ($query->result() AS $ite){
+            $ite->content = word_limiter($ite->content,20);
+            $items[] = $ite;
+        }
+        return jsonData(array('data'=>$items));
+    }
 
 
 	function check_exist($alias,$id,$category=0){

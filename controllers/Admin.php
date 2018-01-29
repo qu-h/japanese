@@ -6,12 +6,20 @@ class Admin extends MX_Controller {
         
         $this->load->module('layouts');
         $this->template->set_theme('smartadmin')->set_layout('main');
-        $this->load->helper('Backend/datatables');
-        //add_js(array('japanese.js','nicdarkthemes_baby_kids'));
+        add_site_structure('admin',lang("Admin area") );
     }
 
     function index(){
-        $this->load->module('backend/user');
+
+        if ( $this->session->userdata('user_id') ) {
+            redirect('admin/article', 'location');
+        }
+        $this->login();
+    }
+
+    function login()
+    {
+        $this->load->module('user');
         $this->user->login();
     }
 
@@ -56,6 +64,7 @@ class Admin extends MX_Controller {
 
     function grammar($action=NULL,$id=0){
         $this->load->module('grammar');
+
         if( strlen($action) > 0 ){
             if( method_exists($this->grammar, $action) ){
                 $this->grammar->$action();
@@ -70,6 +79,7 @@ class Admin extends MX_Controller {
             $this->grammar->items();
         }
     }
+
     function word($action=NULL,$id=0){
         $this->load->module('word');
         if( strlen($action) > 0 ){
@@ -86,6 +96,7 @@ class Admin extends MX_Controller {
             $this->word->items();
         }
     }
+
     function learning($action=NULL,$id=0){
         $this->load->module('Learning');
         if( strlen($action) < 1 ){
@@ -118,6 +129,39 @@ class Admin extends MX_Controller {
         }
     }
 
+    function tip($action=NULL){
+        add_site_structure('tip',lang("Admin Tip") );
+        set_temp_val('uri_add',('admin/tip/add'));
+        $this->load->module('Tip');
+        if( strlen($action) > 0 ){
+            switch ($action){
+                case 'add':
+                    $this->tip->form();
+                    break;
+                default: show_404();
+            }
+        } else {
+            $this->tip->items();
+        }
+    }
 
+    function kanji($action=NULL,$id=0){
+        add_site_structure('kanji',lang("Admin Kanji") );
+        set_temp_val('uri_add',('admin/kanji/add'));
+        $this->load->module('Kanji/KanjiAdmin');
+        if( strlen($action) > 0 ){
+            switch ($action){
+                case 'add':
+                    $this->kanjiadmin->form();
+                    break;
+                case 'edit':
+                    $this->kanjiadmin->form($id);
+                    break;
+                default: show_404();
+            }
+        } else {
+            $this->kanjiadmin->items();
+        }
+    }
 
 }

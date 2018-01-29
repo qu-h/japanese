@@ -1,4 +1,6 @@
 <?php (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-require BASEPATH."third_party/MX/Router.php";
+/* load the MX_Router class */
+require BASEPATH."../application/third_party/MX/Router.php";
+
 class MY_Router extends MX_Router {}
