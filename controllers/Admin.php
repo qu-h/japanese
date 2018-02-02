@@ -3,7 +3,9 @@ class Admin extends MX_Controller {
 
     function __construct(){
         parent::__construct();
-        
+        modules::run('user/checkLogin',["admin/"]);
+        set_temp_val("SignOutLink","/admin/logout");
+
         $this->load->module('layouts');
         $this->template->set_theme('smartadmin')->set_layout('main');
         add_site_structure('admin',lang("Admin area") );

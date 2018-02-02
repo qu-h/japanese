@@ -86,7 +86,7 @@ class Word_Model extends CI_Model {
 	        }
 	    }
 	    
-	    if( !isset($data['id']) ){
+	    if( !isset($data['id']) || strlen($data['id']) < 1 ){
 	        $data['id'] = 0;
 	    }
 

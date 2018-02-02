@@ -8,7 +8,7 @@ class Word extends MX_Controller {
         $this->fields = $this->Word_Model->fields();
         $this->config->set_item('word_img_dir', APPPATH."/images/");
         $this->config->set_item('word_img_url', base_url()."images");
-        $this->load->helper('Backend/datatables');
+        $this->load->helper('backend/datatables');
     }
     
     function index(){
@@ -18,7 +18,7 @@ class Word extends MX_Controller {
             if( !empty($items) ){
                 return jsonData($items);
             }
-            die('aa');
+
         }
     }
 
@@ -39,9 +39,9 @@ class Word extends MX_Controller {
 
         $data = array('fields'=>$this->table_fields,'columns_filter'=>true);
 
-        $data['data_json_url'] = base_url($this->uri->uri_string().'.json',NULL);
-        $data['columns_fields'] = columns_fields($this->table_fields);
-        
+//        $data['data_json_url'] = base_url($this->uri->uri_string().'.json',NULL);
+//        $data['columns_fields'] = columns_fields($this->table_fields);
+        $data = columns_fields($this->table_fields);
         temp_view('backend/datatables',$data);
     }
 
