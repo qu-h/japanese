@@ -9,6 +9,10 @@ class Word extends MX_Controller {
         $this->config->set_item('word_img_dir', APPPATH."/images/");
         $this->config->set_item('word_img_url', base_url()."images");
         $this->load->helper('backend/datatables');
+        //add_js("http://www.google.com/jsapi");
+        //add_module_asset("google-transliteration.js");
+        add_git_assets("wanakana.min.js","input-method/wanakana");
+        add_git_assets("vime.js","input-method/vime");
     }
     
     function index(){
@@ -76,9 +80,9 @@ class Word extends MX_Controller {
         );
         
         //add_js('{root_assets}wanakana/wanakana.min.js');
-        add_root_asset("wanakana/wanakana.min.js");
+        //add_root_asset("wanakana/wanakana.min.js");
         add_module_asset("inputs.js");
-        temp_view('backend/form',$data);
+        temp_view('word-form',$data);
 
     }
 }

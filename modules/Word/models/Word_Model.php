@@ -19,12 +19,13 @@ class Word_Model extends CI_Model {
 	    ),
         'type'=>array('type'=>'select'),
         'kanji' => array(
-                'icon' => 'send'
+            'icon' => 'send',
+            'id'=>'input-kanji'
         ),
-        'hiragana'=>array("id"=>'input_hira'),
-        'katakana'=>'',
-	        'vietnamese'=>'',
-	        'english'=>'',
+        'hiragana'=>array("id"=>'input_hira','class'=>'hiragana-input'),
+        'katakana'=>['class'=>'katakana-input'],
+        'vietnamese'=>['class'=>'vietnamese-input'],
+        'english'=>'',
         'example'=>array(
 	        'type' => 'textarea'
 	    ),

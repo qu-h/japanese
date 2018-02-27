@@ -95,6 +95,7 @@ class Admin extends MX_Controller {
 
     function word($action=NULL,$id=0){
         $this->load->module('word');
+        set_temp_val('uri_add',('admin/word/add'));
         if( strlen($action) > 0 ){
             if( method_exists($this->word, $action) ){
                 $this->word->$action();
