@@ -13,6 +13,11 @@ class Word extends MX_Controller {
         //add_module_asset("google-transliteration.js");
         add_git_assets("wanakana.min.js","input-method/wanakana");
         add_git_assets("vime.js","input-method/vime");
+        /*
+         * using nodejs
+         * https://www.npmjs.com/package/wanakana
+         * https://www.npmjs.com/package/jp-conversion
+         */
     }
     
     function index(){

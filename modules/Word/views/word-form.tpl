@@ -31,12 +31,39 @@
                     <div class="jarviswidget-editbox"></div>
                     <div class="widget-body {*no-padding*}">
                         <form action="" method="post" class="smart-form" >
+                            {inputs name="id"}
                             <fieldset>
-                                {if isset($fields) && $fields|@count > 0}
-                                    {foreach $fields AS $name=>$field }
-                                        {inputs name=$name}
-                                    {/foreach}
-                                {/if}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        {inputs name="romaji"}
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        {inputs name="type"}
+                                    </div>
+                                    <div class="col-md-4">
+                                        {inputs name="alias"}
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        {inputs name="kanji"}
+                                    </div>
+                                    <div class="col-md-4">
+                                        {inputs name="hiragana"}
+                                    </div>
+                                    <div class="col-md-4">
+                                        {inputs name="katakana"}
+                                    </div>
+                                    <div class="col-md-4">
+                                        {inputs name="vietnamese"}
+                                    </div>
+                                    <div class="col-md-4">
+                                        {inputs name="english"}
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                {inputs name="example"}
                             </fieldset>
                             <footer class="smart-form" >
                                 <button class="btn btn-primary" type="submit">{lang txt="Submit Form"}</button>

@@ -17,6 +17,9 @@ class Admin extends MX_Controller {
 
     private function checkLogin(){
         if ( !$this->session->userdata('user_id') ) {
+            /*
+             * check url for json/request
+             */
             if ($this->uri->segment(2) != 'login') {
                 redirect('admin/login/' . base64url_encode($this->uri->uri_string()), 'location');
             }
