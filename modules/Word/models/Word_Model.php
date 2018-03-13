@@ -69,7 +69,7 @@ class Word_Model extends CI_Model {
         return $this->db->get()->row();
 	}
 
-	function update($data=NULL){
+	function update($data=NULL,$returnIdExist=false){
 
 	    $data['romaji'] = trim($data['romaji']);
 	    $data['romaji'] = strtolower($data['romaji']);
@@ -92,6 +92,9 @@ class Word_Model extends CI_Model {
 	    }
 
 	    if( $id_exist = $this->check_exist($data['romaji'],$data['id']) ){
+	        if( $returnIdExist ){
+	            return $id_exist;
+            }
 	        set_error('Dupplicate Word, are you want '.anchor("admin/word/edit/$id_exist","edit")." ?");
 	        return false;
 	    } elseif( intval($data['id']) > 0 ) {
@@ -101,13 +104,15 @@ class Word_Model extends CI_Model {
 	        
 	        $this->db->where('id',$id)->update($this->table,$data);
 
-	        return $id;
+
 	    } else {
 	        $data['created'] = date("Y-m-d H:i:s");
 	        $this->db->insert($this->table,$data);
 
-	        return $this->db->insert_id();
+	        $id = $this->db->insert_id();
 	    }
+
+        return $id;
 	}
 
 	function update_by_romaji($data){

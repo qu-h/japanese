@@ -12,7 +12,7 @@ jQuery( document ).ready(function() {
     
 
     japaninput.hiragana_bin();
-
+    kanjiWord.ini();
     jQuery("a.add-answer").off('click').on('click',function(){
     	var this_row = $(this).parents(".col-md-12");
     	var input_row = this_row.prev("section.col-md-12").clone();
@@ -31,4 +31,57 @@ japaninput = {
             wanakana.bind(jQuery(this).get(0),{IMEMode:'toKatakana'});
         });
 	}
+};
+
+kanjiWord = {
+	ini:function () {
+		jQuery("a.add-word").unbind('click').click(function (e) {
+			console.log("on lcick",e);
+			var lastRow = jQuery(this).closest("label.input").find('.row');
+			if( lastRow.length > 1 ){
+                lastRow = lastRow.last();
+			}
+			console.log("bug",lastRow.find('input.words-romaji'));
+			if( lastRow.find('input.words-romaji').length > 0 &&
+				lastRow.find('input.words-romaji').val().length > 0 ){
+                var row = lastRow.clone();
+                jQuery('input',row).val("");
+                row.after(jQuery(this).closest(''));
+                jQuery(row).insertAfter( lastRow );
+
+                jQuery("input.words-romaji",lastRow).on('change',function(){
+                    kanjiWord.getByRomaji($(this).val(),kanjiWord.bindData,$(this).closest(".row"));
+                });
+			}
+
+
+        });
+		jQuery("input.words-romaji").on('change',function(){
+            kanjiWord.getByRomaji($(this).val(),kanjiWord.bindData,$(this).closest(".row"));
+		});
+    },
+    getByRomaji:function(romaji,callback,area){
+        jQuery.ajax({
+            url: "/api/word",
+            data: {'r':romaji},
+            dataType: "JSON"
+        }).done(function(result) {
+        	if( typeof result.status && typeof callback ==='function'){
+                callback(result.data,area);
+			}
+        })
+		.fail(function() {
+			console.log( "error" );
+		});
+	},
+    bindData:function (data,area) {
+		area.find(".words-kanji")
+			.val(data.kanji)
+            .on('change',function(){
+                kanjiWord.getByRomaji($(this).val(),kanjiWord.bindData,$(this).closest(".row"));
+            });
+        area.find(".words-vn").val(data.vietnamese);
+        area.find(".words-en").val(data.english);
+        area.find(".words-id").val(data.id);
+    }
 };

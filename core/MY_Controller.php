@@ -20,7 +20,6 @@ class MY_Controller extends MX_Controller{
 
      public function __construct(){
          parent::__construct();
-
          //check the session data and assign a user to the user var
 
          $this->user = ($this->session->userdata('user_id'))

@@ -90,4 +90,8 @@ class Word extends MX_Controller {
         temp_view('word-form',$data);
 
     }
+
+    public function findByRomaji($data){
+        bug($data);die("findByRomaji");
+    }
 }

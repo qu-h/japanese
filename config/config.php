@@ -14,3 +14,8 @@ $config['site'] = array(
         "facebook_id"=>"hongquan2712"
 );
 
+if( substr($_SERVER["REQUEST_URI"],0,5) === "/api/" ){
+    $config['subclass_prefix'] = 'REST_';
+}
+
+

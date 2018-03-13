@@ -1,4 +1,5 @@
-<?php
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Admin extends MX_Controller {
 
     function __construct(){
@@ -96,22 +97,54 @@ class Admin extends MX_Controller {
         }
     }
 
+    /*
+     * run Module Word
+     */
     function word($action=NULL,$id=0){
-        $this->load->module('word');
-        set_temp_val('uri_add',('admin/word/add'));
-        if( strlen($action) > 0 ){
-            if( method_exists($this->word, $action) ){
-                $this->word->$action();
-            } elseif( $action=='add' ){
-                $this->word->form();
-            } elseif( $action=='edit' ){
-                $this->word->form($id);
-            } else {
-                show_404();
-            }
+        if ( $action =='topic' ){
+            $action = $this->uri->segment(4);
+            $id = $this->uri->segment(5);
+            $this->wordTopic($action,$id);
         } else {
-            $this->word->items();
+            $this->wordMain($action,$id);
         }
+    }
+    private function wordMain($action=NULL,$id=0){
+        set_temp_val('uri_add',('admin/word/add'));
+
+        switch ($action){
+            case 'add':
+            case 'edit':
+                Modules::run("word/form",$id);
+                break;
+            default:
+                Modules::run("word/items");
+                break;
+        }
+    }
+    private function wordTopic($action=NULL,$id=0){
+        $this->load->module('word/topic');
+        set_temp_val('uri_add',('admin/word/topic/add'));
+        switch ($action){
+            case 'add':
+            case 'edit':
+                Modules::run("word/topic/form",$id);
+                break;
+            default:
+                Module::run("word/topic/items");
+                break;
+        }
+//        if( strlen($action) > 0 ){
+//            if( method_exists($this->topic, $action) ){
+//                $this->topic->$action();
+//            } elseif( $action=='add' || $action =='edit' ){
+//                $this->topic->form($id);
+//            } else {
+//                show_404();
+//            }
+//        } else {
+//            $this->topic->items();
+//        }
     }
 
     function learning($action=NULL,$id=0){
