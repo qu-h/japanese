@@ -7,6 +7,8 @@ class Topic extends MX_Controller {
         parent::__construct();
         $this->load->model('Topic_Model');
         $this->load->smarty("Word/smartadmin");
+        add_git_assets("wanakana.min.js","input-method/wanakana");
+        add_git_assets("vime.js","input-method/vime");
     }
 
     public function form($id=0){
@@ -19,8 +21,12 @@ class Topic extends MX_Controller {
 
             $add = $this->Topic_Model->update($formdata);
             if( $add ){
-                set_error(lang('Success.'));
-                redirect('admin/word');
+                set_success('Success.');
+                $newUri = url_to_edit(null,$add);
+                if( input_post('back') ){
+                    $newUri = url_to_list();
+                }
+                return redirect($newUri, 'refresh');
             }
 
         } else {
@@ -38,5 +44,23 @@ class Topic extends MX_Controller {
         add_module_asset("inputs.js");
         temp_view('topic-form',$data);
 
+    }
+
+
+    var $table_fields = array(
+        'id'=>array("#",5,false,'text-center'),
+        'name'=>array("Name"),
+        'total'=>array("Words"),
+        'actions'=>array(NULL,5,false,'text-center'),
+    );
+    public function items(){
+        if( $this->uri->extension =='json' ){
+            return $this->Topic_Model->items_json();
+        }
+
+        //$data = array('fields'=>$this->table_fields,'columns_filter'=>true);
+
+        $data = columns_fields($this->table_fields);
+        temp_view('backend/datatables',$data);
     }
 }

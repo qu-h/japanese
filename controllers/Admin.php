@@ -131,7 +131,7 @@ class Admin extends MX_Controller {
                 Modules::run("word/topic/form",$id);
                 break;
             default:
-                Module::run("word/topic/items");
+                Modules::run("word/topic/items");
                 break;
         }
 //        if( strlen($action) > 0 ){

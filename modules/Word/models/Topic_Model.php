@@ -16,6 +16,7 @@ class Topic_Model extends CI_Model
             'icon' => 'link'
         ),
         'words' => ['type'=>'words'],
+        'source' => '',
 
     );
 
@@ -45,6 +46,7 @@ class Topic_Model extends CI_Model
         }
 
         $words = $data["words"]; unset($data['words']);
+
         $data['words'] = serialize($this->updateWords($words));
 
         if( !isset($data['id']) || strlen($data['id']) < 1 ){
@@ -83,7 +85,8 @@ class Topic_Model extends CI_Model
 
     private function updateWords($words=[]){
         $ids = [];
-        if( array_key_exists('romaji',$words) ) foreach ($words['romaji'] AS $k=>$txt){
+        asort($words['order']);
+        if( array_key_exists('order',$words) ) foreach ($words['order'] AS $k=>$txt){
             $wordData = [
                 'id' => $words['id'][$k],
                 'romaji' => $words['romaji'][$k],
@@ -97,5 +100,20 @@ class Topic_Model extends CI_Model
         }
 
         return $ids;
+    }
+
+
+    function items_json(){
+        $this->db->select('*');
+        $this->db->order_by('id DESC');
+        $query = $this->db->get($this->table);
+        $items = array();
+        foreach ($query->result() AS $ite){
+            $words = unserialize($ite->words);
+            $ite->total = count($words);
+            $ite->actions = "";
+            $items[] = $ite;
+        }
+        return jsonData(array('data'=>$items));
     }
 }

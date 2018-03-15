@@ -35,22 +35,30 @@ japaninput = {
 
 kanjiWord = {
 	ini:function () {
+        var g_vietTyper = new VietIME();
+        g_vietTyper.setTelexMode();
+
+
 		jQuery("a.add-word").unbind('click').click(function (e) {
-			console.log("on lcick",e);
 			var lastRow = jQuery(this).closest("label.input").find('.row');
+			var ordering = lastRow.length;
 			if( lastRow.length > 1 ){
                 lastRow = lastRow.last();
 			}
-			console.log("bug",lastRow.find('input.words-romaji'));
 			if( lastRow.find('input.words-romaji').length > 0 &&
 				lastRow.find('input.words-romaji').val().length > 0 ){
                 var row = lastRow.clone();
                 jQuery('input',row).val("");
                 row.after(jQuery(this).closest(''));
+                jQuery('input.ordering',row).val(ordering+1);
                 jQuery(row).insertAfter( lastRow );
 
                 jQuery("input.words-romaji",lastRow).on('change',function(){
                     kanjiWord.getByRomaji($(this).val(),kanjiWord.bindData,$(this).closest(".row"));
+                });
+
+                jQuery(".vietnamese-input",row).on('keypress',function (evt) {
+                    g_vietTyper.targetOnKeyPress( evt, this );
                 });
 			}
 
@@ -76,12 +84,16 @@ kanjiWord = {
 	},
     bindData:function (data,area) {
 		area.find(".words-kanji")
-			.val(data.kanji)
             .on('change',function(){
                 kanjiWord.getByRomaji($(this).val(),kanjiWord.bindData,$(this).closest(".row"));
             });
-        area.find(".words-vn").val(data.vietnamese);
-        area.find(".words-en").val(data.english);
-        area.find(".words-id").val(data.id);
+
+        if( data !== null){
+            area.find(".words-kanji").val(data.kanji);
+            area.find(".words-vn").val(data.vietnamese);
+            area.find(".words-en").val(data.english);
+            area.find(".words-id").val(data.id);
+        }
+
     }
 };

@@ -17,21 +17,23 @@ class word_smartadmin_ui extends SmartadminInputs {
 
         $html = "";
 
+        $ordering = 1;
         if( !empty($values) && strlen($values) > 2 ){
             $values = unserialize($values);
             if( count($values) >0 ) foreach ($values AS $word){
-                $html.= '<div class="row clearfix">'.self::input_word_row($name,$word).'</div>';
+                $html.= '<div class="row clearfix">'.self::input_word_row($name,$word,$ordering).'</div>';
+                $ordering++;
             }
         }
 
-        $html.= '<div class="row clearfix">'.self::input_word_row($name).'</div>';
+        $html.= '<div class="row clearfix">'.self::input_word_row($name,0,$ordering).'</div>';
 
         $html.= '<section class="col-12"><a href="javascript:void(0);" class="btn btn-primary add-word" id="'.$name.'_add_line" ><i class="fa fa-gear"></i> Add Word</a></section>';
         $params['html'] = $html;
         return self::row_input($params);
     }
 
-    private static function input_word_row($name,$id=0){
+    private static function input_word_row($name,$id=0,$order=0){
         $html = "";
         if( $id > 0 ){
             $word = get_instance()->Word_Model->get_item_by_id($id);
@@ -47,6 +49,14 @@ class word_smartadmin_ui extends SmartadminInputs {
                 'id'=>0
             );
         }
+
+        $orderParams = array(
+            'name'=>$name."[order][]",
+            'icon'=>'fa-arrows-alt',
+            'class'=>"ordering",
+            'value'=>$order
+        );
+        $html.= '<section class="col col-2">'.parent::text_addon($orderParams).'</section>';
 
         $romaji_params = array(
             'name'=>$name."[romaji][]",
@@ -82,7 +92,7 @@ class word_smartadmin_ui extends SmartadminInputs {
             'class'=>"$name-en",
             'value'=>$word->english
         );
-        $html.= '<section class="col col-3">'.parent::text_addon($english_params).'</section>';
+        $html.= '<section class="col col-2">'.parent::text_addon($english_params).'</section>';
         $html .= parent::input_hidden(['class'=>'words-id','name'=>$name."[id][]",'value'=>$word->id]);
         return $html;
     }

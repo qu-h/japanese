@@ -36,7 +36,7 @@
                                 {inputs name="name"}
                                 {inputs name="alias"}
                                 {inputs name="words"}
-
+                                {inputs name="source"}
                             </fieldset>
 
                             <footer class="smart-form" >
