@@ -8,4 +8,10 @@ class Api_Model extends CI_Model {
         $this->db->where("LOWER(romaji)",$romaji_str);
         return $this->db->get()->row();
     }
+
+    function updateKanji($data,$setNull=true){
+
+        //$kanji_id = $this->
+
+    }
 }

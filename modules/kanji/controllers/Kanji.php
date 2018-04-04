@@ -10,6 +10,6 @@ class Kanji extends MX_Controller
     }
 
     function index(){
-
+        die("call me");
     }
 }
