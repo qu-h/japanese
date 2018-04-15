@@ -1,4 +1,5 @@
 .buildpath
+.idea
 compile/*.php
 .settings/
 .project
