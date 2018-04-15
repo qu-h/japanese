@@ -1,6 +1,4 @@
-<?php
-
-define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+<?php define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
 switch (ENVIRONMENT)
 {
@@ -34,7 +32,8 @@ switch (ENVIRONMENT)
 if (defined('STDIN')){
 	chdir(dirname(__FILE__));
 }
-$system_path = '/var/www/CodeIgniter/system';
+
+$system_path = '/media/quanict/WWW/QuanNH/CI_3.0.6/system/';
 $application_folder = getcwd();
 $view_folder = 'views';
 

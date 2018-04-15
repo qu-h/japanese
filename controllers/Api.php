@@ -20,10 +20,17 @@ class Api extends REST_Controller {
         if( !empty($data) ){
 
         }
-
         $this->response([
             'status' => !empty($data),
             'data' => $data
+        ], REST_Controller::HTTP_OK);
+    }
+
+    public function kanjiword_get(){
+        $char = input_get("txt");
+        $id = $this->Kanji_Model->check_exist($char);
+        $this->response([
+            'status' => $id > 0,
         ], REST_Controller::HTTP_OK);
     }
     public function kanjiword_post(){
@@ -42,6 +49,7 @@ class Api extends REST_Controller {
             'parts'=>[],
             'onyomi' => [],
             'kunyomi' => [],
+            'remembering'=>[]
         ];
         foreach ($data AS $k=>$v){
             $data[$k] = input_post($k);
@@ -49,11 +57,10 @@ class Api extends REST_Controller {
 
         $data["explanation"] = strip_tags($data["explanation"]);
         $data["vietnamese"] = strip_tags($data["vietnamese"]);
-
+        
         $id = $this->Kanji_Model->update($data);
         $this->response([
             'status' => $id > 0,
-
         ], REST_Controller::HTTP_OK);
     }
 }

@@ -13,7 +13,7 @@ $config['css'] = array(
 
 
 );
-$config['css'][] = git_assets("bootstrap.css",'bootstrap','4.0.0-beta');
+$config['css'][] = git_assets("bootstrap.css",'bootstrap','4.0.0-beta',null,true);
 //"{root_assets}/bootstrap/css/bootstrap.css";
 
 $config['css'][] = 'nicdark_style.css';
@@ -32,7 +32,7 @@ $config['js'] = array(
 
 //     'http://www.nicdarkthemes.com/themes/baby-kids/wp/demo/wp-includes/js/jquery/jquery.js?ver=1.11.1',
 
-    'https://code.jquery.com/jquery-3.1.1.slim.min.js',
+    'https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js',
     '//cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js',
     '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js',
 
@@ -53,15 +53,13 @@ $config['js'] = array(
     'superfish.min.js',
     'jquery.magnific-popup.min.js',
     'settings.js',
-
     'jquery.cookie.min.js',
-
     'japan_text.js'
 );
 
-$config['js'][] = git_assets('jquery.countdown.js','jquery/countdown','1.0.1');
-$config['js'][] = git_assets('jquery.parallax-1.1.3.js','jquery/parallax','1.1.3');
-$config['js'][] = git_assets('isotope.pkgd.min.js','jquery/isotope','2.0.0');
+$config['js'][] = git_assets('jquery.countdown.js','jquery/countdown','1.0.1',null,false);
+$config['js'][] = git_assets('jquery.parallax-1.1.3.js','jquery/parallax','1.1.3',null,false);
+$config['js'][] = git_assets('isotope.pkgd.min.js','jquery/isotope','2.0.0',null,false);
 
 $config['js'][] = 'script.js';
 // $config['js'][] = git_assets('tether.min.js','tether','1.3.3');
