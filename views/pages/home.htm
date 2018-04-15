@@ -1,0 +1,9 @@
+{include file="../modules/slide-revslider.html"}
+{include file="../modules/home-forcus.html"}
+{include file="../modules/home-courses.html"}
+{include file="../modules/home-advanced-search.html"}
+{include file="../modules/home-events.html"}
+{include file="../modules/home-count.html"}
+{include file="../modules/teams.html"}
+{include file="../modules/home-team-count.html"}
+{include file="../modules/home-news.html"}

@@ -1,0 +1,18 @@
+<p class="text-center">Là các âm tiết được ghép lại từ 2 âm đơn nên còn được gọi là “âm đôi”. Đặc điểm của nó là các chữ や　ゆ　よ sẽ được viết nhỏ lại thành　ゃ　ゅ　ょ
+</p>
+
+{assign 'array' ['ky', 'sh', 'ch','ny','hy','my','ry','gy','j','by','py']}
+{foreach $array AS $g }
+<div class="row" >
+	{char_col c=$g|cat:'a'}
+	{char_col c=$g|cat:'u' boxcolor='blue'}
+	{char_col c=$g|cat:'o' boxcolor='violet'}
+</div>
+{if $g=='j'}
+<div class="row" >
+	{char_col c=$g|cat:'a2' c_view="(ja)"}
+	{char_col c=$g|cat:'u2' boxcolor='blue' c_view="(ju)"}
+	{char_col c=$g|cat:'o2' boxcolor='violet' c_view="(jo)"}
+</div>
+{/if}
+{/foreach}
