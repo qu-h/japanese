@@ -13,7 +13,9 @@ http://www.nicdarkthemes.com/themes/baby-kids/wp/demo/color-section/
 <title>Insert title here</title>
 <meta name="author" content="Baby Kids">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="WordPress 4.1.1" />
+<!--[if lt IE 9]>
+<script type="application/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 
 <!--FAVICONS-->
 <link rel="shortcut icon" href="/images/logo-icon.png">
@@ -33,7 +35,7 @@ http://www.nicdarkthemes.com/themes/baby-kids/wp/demo/color-section/
 			<div class="post-801 page type-page status-publish hentry">
 				{$_body}
 
-
+				<div class="nicdark_space20"></div>
 				<section class="nicdark_section">
 					<div class="nicdark_container nicdark_clearfix">
 						<div class="grid grid_12 percentage">

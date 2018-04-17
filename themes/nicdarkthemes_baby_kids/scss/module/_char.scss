@@ -1,12 +1,12 @@
-@import "variables";
-
 .character  {
+
 	position: relative;
 	color: #ffffff;
 	display: inline-block;
 	text-align: center;
 	border-radius: 5px 5px 5px 5px;
 	margin: 5px;
+
 	background-color: $bg_green;
 	box-shadow: 0px 4px 0px 0px $bg_green_shadow;
 
@@ -67,4 +67,13 @@
 			top: 1px;
 		}
 	}
+
+    ruby {
+      color: white;
+      top: 10px;
+      position: relative;
+      rt {
+        font-size: 15px;
+      }
+    }
 }

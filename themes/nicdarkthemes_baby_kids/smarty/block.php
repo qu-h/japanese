@@ -12,7 +12,7 @@ class Nicdarkthemes_baby_kidsBlock extends CI_Smarty
         if( is_array($params['content']) && !empty($params['content']) ){
             $buttons = "";
             foreach ($params['content'] AS $val){
-                $buttons .= Nicdarkthemes_baby_kidsButton::btn_text(['text'=>$val]);
+                $buttons .= Nicdarkthemes_baby_kidsButton::btn_text(['text'=>$val,'class'=>'border-1-w btn-shadow']);
             }
             $params['content'] = $buttons;
         }
@@ -23,5 +23,12 @@ class Nicdarkthemes_baby_kidsBlock extends CI_Smarty
         $ci = get_instance();
         return $ci->smarty->view(APPPATH."views/block/archive-list.tpl",$params);
     }
+
+    static function block_archive_group_items($params = []){
+        $ci = get_instance();
+        return $ci->smarty->view(APPPATH."views/block/archive-group-item.tpl",$params);
+    }
+
+
 
 }

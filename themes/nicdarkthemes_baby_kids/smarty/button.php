@@ -9,8 +9,11 @@ class Nicdarkthemes_baby_kidsButton extends CI_Smarty
             $color = "";
         }
         $attribute = [
-            'class'=>"nicdark_btn_icon nicdark_bg_$background small nicdark_shadow nicdark_radius $color"
+            'class'=>"btn-icon small btn-zoom radius5 nicdark_bg_$background $color"
         ];
+        if( isset($params['class']) ){
+            $attribute['class'] .= " ".$params['class'];
+        }
         return anchor(null,$text,$attribute);
     }
 
@@ -22,11 +25,19 @@ class Nicdarkthemes_baby_kidsButton extends CI_Smarty
         $icon = isset($params['icon']) ? $params['icon'] : "";
 
         $attribute = [
-            'class'=>"nicdark_btn_icon nicdark_bg_$background small nicdark_shadow nicdark_radius $color",
+            'class'=>"btn-icon nicdark_bg_$background small nicdark_shadow nicdark_radius $color",
             'rel'=>"nofollow"
         ];
         $icon = '<i class="icon-'.$icon.'"></i>';
+        if( isset($params['class']) ){
+            $attribute['class'] .= " ".$params['class'];
+        }
+        if( in_array($background,['green','yellow']) ){
+            $attribute['class'] .= " white";
+        }
 
-        return "<a "._stringify_attributes($attribute).">$icon  ".lang($title)." : <span class=\"red\" style=\"font-size: 120%; font-weight: bold;\" >$text</span></a>";
+        //return "<a "._stringify_attributes($attribute).">$icon  ".lang($title)." : <span class=\"red\" style=\"font-size: 120%; font-weight: bold;\" >$text</span></a>";
+        $content = $icon."  ".lang($title)." : <span class=\"red\" style=\"font-size: 120%; font-weight: bold;\" >$text</span>";
+        return anchor(null,$content,$attribute);
     }
 }

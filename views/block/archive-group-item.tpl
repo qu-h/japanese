@@ -15,11 +15,11 @@
             {if $colorIndex >= $bgColor|count}
                 {$colorIndex = 0}
             {/if}
-            <p class="white pa-b-2">
+
                 {foreach $parts AS $p}
-                    {btn_text text=$p bg=$bgColor[$colorIndex]  }
+                    {btn_text text=$p bg=$bgColor[$colorIndex] class="" }
                 {/foreach}
-            </p>
+
         {/foreach}
 
         <div class="nicdark_space5"></div>

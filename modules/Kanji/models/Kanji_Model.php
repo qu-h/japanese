@@ -68,6 +68,17 @@ class Kanji_Model extends CI_Model
         if ( !empty($item->example) ){
             $item->example = $this->getExample(json_decode($item->example));
         }
+        $item->remember = "";
+        if( $item->id ){
+            $img = $this->getRemembering($item->id);
+            if( !empty($img) ){
+                $item->remember = [
+                    'img'=>$this->config->item("kanjiImageUrl").$img->image,
+                    'text'=>$img->text
+                ];
+            }
+        }
+
         return $item;
     }
 
@@ -190,6 +201,12 @@ class Kanji_Model extends CI_Model
         }
 
         return jsonData(array('data'=>$items));
+    }
+
+    function items_get($page=1){
+        $this->db->from($this->table)->select("word,ascii,chinese,stroke");
+        $data = $this->db->limit(25)->get()->result_array();
+        return $data;
     }
 
     /*
@@ -322,5 +339,11 @@ class Kanji_Model extends CI_Model
 
         return $id;
         
+    }
+
+    private function getRemembering($kanji_id=0){
+        return $this->db->where([
+            'kanji_id'=>$kanji_id,
+        ])->limit(1)->get("kanji_remembering")->row();
     }
 }
