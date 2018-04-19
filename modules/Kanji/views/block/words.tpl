@@ -17,7 +17,7 @@
             {if is_array($word)}
                 {btn_word word=$word bg=$bgColor[$colorIndex]  }
             {else}
-                {btn_text text=$word bg="grey3" uri="/word/search?txt="|cat:$word }
+                {btn_text text=$word bg="grey3" uri="/word/search?txt="|cat:$word target='_blank' }
             {/if}
 
         {/foreach}

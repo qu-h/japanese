@@ -5,14 +5,18 @@ class Nicdarkthemes_baby_kidsButton extends CI_Smarty
         $text = isset($params['text']) ? $params['text'] : null;
         $uri = isset($params['uri']) ? $params['uri'] : null;
         $name = isset($params['bg']) ? $params['bg'] : 'red';
-        $color = isset($params['color']) ? $params['color'] : 'white';
+        //$color = isset($params['color']) ? $params['color'] : 'white';
         $class = isset($params['class']) ? $params['class'] : null;
+
 
         $attribute = [
             'class'=>"btn-$name-small-radius-shadow-mt10 $class"
         ];
         if( isset($params['class']) ){
             $attribute['class'] .= " ".$params['class'];
+        }
+        if( array_key_exists("target",$params) ){
+            $attribute['target'] = $params['target'];
         }
         return anchor($uri,$text,$attribute);
     }
