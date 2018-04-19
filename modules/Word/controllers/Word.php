@@ -1,97 +1,71 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Word extends MX_Controller {
-
+class Word extends MX_Controller
+{
     function __construct()
     {
         parent::__construct();
-        $this->fields = $this->Word_Model->fields();
-        $this->config->set_item('word_img_dir', APPPATH."/images/");
-        $this->config->set_item('word_img_url', base_url()."images");
-        $this->load->helper('backend/datatables');
-        //add_js("http://www.google.com/jsapi");
-        //add_module_asset("google-transliteration.js");
-        add_git_assets("wanakana.min.js","input-method/wanakana");
-        add_git_assets("vime.js","input-method/vime");
-        /*
-         * using nodejs
-         * https://www.npmjs.com/package/wanakana
-         * https://www.npmjs.com/package/jp-conversion
-         */
+        $this->load->module('layouts');
+        $this->template
+            ->set_theme('nicdarkthemes_baby_kids')
+            ->set_layout('baby_kids');
     }
-    
+
+
     function index(){
-        if( $this->uri->extension =='json' ){
-            $key = input_get("query");
-            $items = $this->Word_Model->items_search($key);
-            if( !empty($items) ){
-                return jsonData($items);
-            }
 
-        }
     }
 
-    var $table_fields = array(
-        'id'=>array("#",5,false,'text-center'),
-        'img'=>array("Hình ảnh",10,false,'text-center'),
-        'word'=>array("Từ Vựng"),
-        'romaji'=>array("Romaji"),
-        'vietnamese'=>array("Nghĩa"),
-        'actions'=>array(NULL,5,false,'text-center'),
-    );
+    function search(){
 
-
-    function items(){
-        if( $this->uri->extension =='json' ){
-            return $this->items_json_data(array_keys($this->table_fields));
+        $word = input_get('txt');
+        $data = $this->extractData($word);
+        if( isset($data["kanji"]) && strlen($data['kanji']) > 0 ){
+//            $this->load->library('crawler/simple_html_dom');
+//            $url = "https://j-dict.com/?keyword=".$data['kanji'];
+//            $html = file_get_html($url);
+//            $test = $html->find('#txtKanji .romaji',0)->plaintext;
+//            bug($test);
+            redirect("https://j-dict.com/?keyword=".$data['kanji']);
         }
 
-        $data = array('fields'=>$this->table_fields,'columns_filter'=>true);
 
-//        $data['data_json_url'] = base_url($this->uri->uri_string().'.json',NULL);
-//        $data['columns_fields'] = columns_fields($this->table_fields);
-        $data = columns_fields($this->table_fields);
-        temp_view('backend/datatables',$data);
+//        bug($data);
+        //bug($this);
+        temp_view('front-end/form',["word"=>(object)$data]);
     }
 
-    private function items_json_data(){
-        $this->Word_Model->items_json('edit');
-    }
+    private function extractData($word){
+        setlocale(LC_ALL, "ja_JP.utf8");
+        $data = ['kanji'=>'','hiragana'=>''];
+        $pattern_kanji = '/\p{Han}+/u';
+        $pattern_hira = '/\p{Hiragana}+/u';
 
-    public function form($id=0){
+        //$pattern = '/([\p{Han}\p{Katakana}\p{Hiragana}]+)+([(])+([\p{Katakana}\p{Hiragana}])+([)])/u';
 
-        if ($this->input->post()) {
-            $formdata = array();
-            foreach ($this->fields as $name => $field) {
-                $this->fields[$name]['value'] = $formdata[$name] = $this->input->post($name);
-            }
 
-            $add = $this->Word_Model->update($formdata);
-            if( $add ){
-                set_error(lang('Success.'));
-                redirect('admin/word');
-            }
 
-        } else {
-            $item = $this->Word_Model->get_item_by_id($id);
-            foreach ($this->fields AS $field=>$val){
-                if( isset($item->$field) ){
-                    $this->fields[$field]['value']=$item->$field;
-                }
-            }
+//        preg_match_all('/
+//    ([\p{Han}\p{Katakana}\p{Hiragana}]+)    # Kanji
+//    (?: [(]                                 # optional part: paren (
+//    ([\p{Hiragana}]+)                       # Hiragana
+//    [)] )?                                  # closing paren )
+//    \s*=\s*                                 # spaces and =
+//    ([\w\s;=]+)                             # English letters
+//    /ux',
+//            $word, $keywords, PREG_SET_ORDER
+//        );
+
+        preg_match($pattern_kanji, $word, $matches);
+        if( isset($matches[0]) ){
+            $data['kanji'] = $matches[0];
         }
-        $data = array(
-            'fields' => $this->fields
-        );
-        
-        //add_js('{root_assets}wanakana/wanakana.min.js');
-        //add_root_asset("wanakana/wanakana.min.js");
-        add_module_asset("inputs.js");
-        temp_view('word-form',$data);
+        preg_match($pattern_hira, $word, $matches);
+        if( isset($matches[0]) ){
+            $data['hiragana'] = $matches[0];
+            //$data['katakana'] =  mb_convert_kana($data['hiragana'], 'C', 'UTF-8');
+        }
 
-    }
-
-    public function findByRomaji($data){
-        bug($data);die("findByRomaji");
+        return $data;
     }
 }

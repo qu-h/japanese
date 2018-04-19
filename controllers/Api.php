@@ -6,6 +6,7 @@ class Api extends REST_Controller {
         parent::__construct();
         $this->load->model("Api_Model");
         $this->load->model("Kanji/Kanji_Model");
+        $this->load->model("Word/Word_Model");
         $this->load->helper('file');
     }
 
@@ -26,14 +27,14 @@ class Api extends REST_Controller {
         ], REST_Controller::HTTP_OK);
     }
 
-    public function kanjiword_get(){
+    public function kanjichar_get(){
         $char = input_get("txt");
         $id = $this->Kanji_Model->check_exist($char);
         $this->response([
             'status' => $id > 0,
         ], REST_Controller::HTTP_OK);
     }
-    public function kanjiword_post(){
+    public function kanjichar_post(){
 
         $data = [
             'word' => "",
@@ -49,7 +50,8 @@ class Api extends REST_Controller {
             'parts'=>[],
             'onyomi' => [],
             'kunyomi' => [],
-            'remembering'=>[]
+            'remembering'=>[],
+            'source'=>null
         ];
         foreach ($data AS $k=>$v){
             $data[$k] = input_post($k);
@@ -62,5 +64,26 @@ class Api extends REST_Controller {
         $this->response([
             'status' => $id > 0,
         ], REST_Controller::HTTP_OK);
+    }
+
+    public function kanjiword_post(){
+        $data = [
+            'kanji' => "",
+            'romaji'=>null,
+            'hiragana'=>null,
+            'vietnamese'=>null,
+            'type'=>null,
+            'source'=>null,
+        ];
+        foreach ($data AS $k=>$v){
+            $data[$k] = input_post($k);
+        }
+        $data['romaji'] = str_replace(['/'], '', $data['romaji']);
+        if( is_array($data['vietnamese']) ){
+            $data['vietnamese'] = implode('\n',$data['vietnamese']);
+        }
+        $id = $this->Word_Model->update($data,true);
+        bug($data);
+        bug($id);
     }
 }

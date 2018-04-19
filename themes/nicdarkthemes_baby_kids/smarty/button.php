@@ -1,20 +1,20 @@
 <?php
 class Nicdarkthemes_baby_kidsButton extends CI_Smarty
 {
-    static function btn_text($params = []){
+    static function btn_text($params){
         $text = isset($params['text']) ? $params['text'] : null;
-        $background = isset($params['bg']) ? $params['bg'] : 'red';
+        $uri = isset($params['uri']) ? $params['uri'] : null;
+        $name = isset($params['bg']) ? $params['bg'] : 'red';
         $color = isset($params['color']) ? $params['color'] : 'white';
-        if( $background =='grey' || $background == 'grey2' ){
-            $color = "";
-        }
+        $class = isset($params['class']) ? $params['class'] : null;
+
         $attribute = [
-            'class'=>"btn-icon small btn-zoom radius5 nicdark_bg_$background $color"
+            'class'=>"btn-$name-small-radius-shadow-mt10 $class"
         ];
         if( isset($params['class']) ){
             $attribute['class'] .= " ".$params['class'];
         }
-        return anchor(null,$text,$attribute);
+        return anchor($uri,$text,$attribute);
     }
 
     static function btn_icon($params = []){
@@ -39,5 +39,12 @@ class Nicdarkthemes_baby_kidsButton extends CI_Smarty
         //return "<a "._stringify_attributes($attribute).">$icon  ".lang($title)." : <span class=\"red\" style=\"font-size: 120%; font-weight: bold;\" >$text</span></a>";
         $content = $icon."  ".lang($title)." : <span class=\"red\" style=\"font-size: 120%; font-weight: bold;\" >$text</span>";
         return anchor(null,$content,$attribute);
+    }
+
+    static function btn_word($params){
+        $word = array_key_exists('word',$params) ? $params['word'] : [];
+        $params['text'] = $word['text'];
+        $params['class'] = 'btn-zoom';
+        return self::btn_text($params);
     }
 }

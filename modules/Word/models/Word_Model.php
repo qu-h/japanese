@@ -61,14 +61,12 @@ class Word_Model extends CI_Model {
 	function get_item_by_alias($id=0){
 	    return $this->db->where('alias',$id)->get($this->table)->row();
 	}
-	
 	function get_item_by_romaji($romaji_str=null){
 	    $romaji_str = strtolower($romaji_str);
 	    $this->db->from($this->table);
         $this->db->where("LOWER(romaji)",$romaji_str);
         return $this->db->get()->row();
 	}
-
 	function update($data=NULL,$returnIdExist=false){
 
 	    $data['romaji'] = trim($data['romaji']);
@@ -95,7 +93,7 @@ class Word_Model extends CI_Model {
 	        if( $returnIdExist ){
 	            return $id_exist;
             }
-	        set_error('Dupplicate Word, are you want '.anchor("admin/word/edit/$id_exist","edit")." ?");
+	        //set_error('Dupplicate Word, are you want '.anchor("admin/word/edit/$id_exist","edit")." ?");
 	        return false;
 	    } elseif( intval($data['id']) > 0 ) {
 	        $data['modified'] = date("Y-m-d H:i:s");
@@ -114,7 +112,6 @@ class Word_Model extends CI_Model {
 
         return $id;
 	}
-
 	function update_by_romaji($data){
 	    if( strlen($data['romaji']) < 1 ){
 	        set_error('Please enter romaji');
@@ -138,7 +135,6 @@ class Word_Model extends CI_Model {
 	    }
 	    return $data['romaji'];
 	}
-
 	function check_exist($romaji,$id){
 
 	    if( !is_numeric($id) ){
@@ -150,7 +146,6 @@ class Word_Model extends CI_Model {
 
 	    return ( $result->num_rows() > 0) ? $result->row()->id : false;
 	}
-
 	/*
 	 * using other module
 	 */
@@ -171,7 +166,6 @@ class Word_Model extends CI_Model {
         }
         return $id;
 	}
-	
 	/*
 	 * Json return for Datatable
 	 */
@@ -212,8 +206,7 @@ class Word_Model extends CI_Model {
 	    }
 	    return jsonData(array('data'=>$items));
 	}
-	
-	
+
 	
 	function items_search($key=""){
 	    $this->db->from($this->table)->select("id, hiragana AS name");
@@ -224,4 +217,8 @@ class Word_Model extends CI_Model {
 	    }
 	    return array();
 	}
+	function item_search($where=[],$where_like=[]){
+        $this->db->where($where);
+        return $this->db->limit(1)->get($this->table)->row();
+    }
 }

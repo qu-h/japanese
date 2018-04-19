@@ -62,7 +62,7 @@
 
             {if $kanji->example|count > 0}
                 <div class="col-md-8 ">
-                    {block_archive_group_items title="example" content=$kanji->example col=3}
+                    {include file=$tplPath|cat:"block/words.tpl" content=$kanji->example title="example"}
                 </div>
             {/if}
 

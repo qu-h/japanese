@@ -10,7 +10,7 @@ $autoload['helper'] = array(
 //    'layouts/messages',
 //    'layouts/assets',
 //    'layouts/ci_smarty_function',
-//    'layouts/template',
+    //'layouts/template',
 );
 $autoload['language'] = array("site",'format');
 //$autoload['libraries'] = array('layouts/Smarty','layouts/Template');

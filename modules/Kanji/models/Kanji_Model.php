@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script core allowed');
 
-class Kanji_Model extends CI_Model
+class Kanji_Model extends MY_Model
 {
     var $table = 'kanji';
 
@@ -68,6 +68,7 @@ class Kanji_Model extends CI_Model
         if ( !empty($item->example) ){
             $item->example = $this->getExample(json_decode($item->example));
         }
+
         $item->remember = "";
         if( $item->id ){
             $img = $this->getRemembering($item->id);
@@ -204,8 +205,10 @@ class Kanji_Model extends CI_Model
     }
 
     function items_get($page=1){
+        $pageLimit = $this->limit;
         $this->db->from($this->table)->select("word,ascii,chinese,stroke");
-        $data = $this->db->limit(25)->get()->result_array();
+        $data = $this->db->limit($pageLimit,$pageLimit*$page)->get()->result_array();
+
         return $data;
     }
 
@@ -299,10 +302,25 @@ class Kanji_Model extends CI_Model
                 if( is_array($id) ){
                     $parts[$k] = $this->getExamples($id);
                 } else if ( is_numeric($id) ){
-                    $exm = $this->db->where([
-                        'id'=>$id,
-                    ])->limit(1)->get("example")->row();
-                    $parts[$k] = $exm->content;
+                    $this->db->from("example AS e")->where(['e.id'=>$id]);
+                    $exm = $this->db->limit(1)->get()->row();
+
+                    if( empty($exm->linkto_id) ){
+                        $kanji = han_in_string($exm->content);
+                        if( isset($kanji['kanji']) && !empty($kanji['kanji']) ){
+                            $word = $this->Word_Model->item_search(["kanji"=>$kanji['kanji']]);
+                            if( !empty($word) ){
+                                $this->db->update("example",["linkto"=>$this->Word_Model->table,'linkto_id'=>$word->id],['id'=>$exm->id]);
+                                $parts[$k] = ['text'=>$word->kanji,'id'=>$word->id,'romaji'=>$word->romaji];
+                            }
+                        }
+                    } else if( $exm->linkto_id > 0 ) {
+                        $word = $this->row_get($exm->linkto_id,$exm->linkto);
+                        $parts[$k] = ['text'=>$word->kanji,'id'=>$word->id,'romaji'=>$word->romaji];
+                    }
+                    if( !isset($parts[$k]) || empty($parts[$k]) ){
+                        $parts[$k] = $exm->content;
+                    }
                 }
             }
         }
