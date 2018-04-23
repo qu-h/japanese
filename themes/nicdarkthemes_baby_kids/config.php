@@ -7,7 +7,6 @@ $config['theme_url'] = "//".$_SERVER['HTTP_HOST']."/themes/nicdarkthemes_baby_ki
 
 $config['css'] = array(
     'http://fonts.googleapis.com/css?family=Great+Vibes&ver=4.1.1',
-
     git_assets("bootstrap.css",'bootstrap','4.0.0-beta',null,true),
     'style.css'
 );
@@ -25,17 +24,27 @@ $config['js'] = array(
     'excanvas.js',
 
     'jquery-ui.js',
-    'widget.min.js', // jquery UI
-    'tabs.min.js',  // jquery UI
+
+    git_assets('widget.min.js','jquery/ui','1.11.2',null,false),
+    //'widget.min.js', // jquery UI
+    git_assets('widget.min.js','jquery/ui','1.11.2',null,false),
+    //'tabs.min.js',  // jquery UI
 
     'scroolto.js',
-    'jquery.nicescroll.min.js',
-    'jquery.inview.min.js',
-    'tinynav.min.js',
-    'superfish.min.js',
-    'jquery.magnific-popup.min.js',
+    git_assets('jquery.nicescroll.min.js','jquery/nicescroll','3.2.0',null,false),
+    //'jquery.nicescroll.min.js',
+    git_assets('jquery.inview.min.js','jquery/inview',null,null,false),
+    //'jquery.inview.min.js',
+    git_assets('tinynav.min.js','jquery/tinynav',1.1,null,false),
+    //'tinynav.min.js',
+    git_assets('superfish.min.js','jquery/superfish','1.7.4',null),
+    //'superfish.min.js',
+    git_assets('jquery.magnific-popup.min.js','jquery/magnific-popup','0.9.9',null,false),
+    //'jquery.magnific-popup.min.js',
+    git_assets('jquery.cookie.min.js','jquery/cookie','1.4.0',null,false),
+    //'jquery.cookie.min.js',
+
     'settings.js',
-    'jquery.cookie.min.js',
     'japan_text.js'
 );
 

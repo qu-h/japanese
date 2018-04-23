@@ -7,8 +7,8 @@ class Topic extends MX_Controller {
         parent::__construct();
         $this->load->model('Topic_Model');
         $this->load->smarty("Word/smartadmin");
-        add_git_assets("wanakana.min.js","input-method/wanakana");
-        add_git_assets("vime.js","input-method/vime");
+        add_git_assets("wanakana.min.js","input-method/wanakana",null,null,false);
+        add_git_assets("vime.js","input-method/vime",null,null,false);
     }
 
     public function form($id=0){

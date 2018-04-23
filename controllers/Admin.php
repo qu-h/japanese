@@ -5,8 +5,6 @@ class Admin extends MX_Controller {
     function __construct(){
         parent::__construct();
 
-
-        
         $this->load->module('layouts');
         $this->template->set_theme('smartadmin')->set_layout('main');
         add_site_structure('admin',lang("Admin area") );
@@ -37,7 +35,16 @@ class Admin extends MX_Controller {
 
     function login()
     {
-        modules::run("User/login",'admin/article');
+        if ( $this->session->userdata('user_id') ) {
+            redirect('admin/article', 'location');
+        }
+        modules::run("user/login",'admin/article');
+    }
+
+    function logout()
+    {
+        modules::run("user/logout");
+        redirect('admin', 'location');
     }
 
     function home(){
@@ -46,6 +53,7 @@ class Admin extends MX_Controller {
 
     function article($action=NULL,$id=0){
         $this->load->module('Backend/article');
+
         if( strlen($action) > 0 ){
             if( method_exists($this->article, $action) ){
                 return $this->article->$action();

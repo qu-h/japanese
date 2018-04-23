@@ -45,6 +45,7 @@ kanjiWord = {
 			if( lastRow.length > 1 ){
                 lastRow = lastRow.last();
 			}
+			console.log("add word click",{lastRow});
 			if( lastRow.find('input.words-romaji').length > 0 &&
 				lastRow.find('input.words-romaji').val().length > 0 ){
                 var row = lastRow.clone();
