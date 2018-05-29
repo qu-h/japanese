@@ -123,10 +123,10 @@ class Admin extends MX_Controller {
         switch ($action){
             case 'add':
             case 'edit':
-                Modules::run("word/form",$id);
+                Modules::run("word/WordAdmin/form",$id);
                 break;
             default:
-                Modules::run("word/items");
+                Modules::run("word/WordAdmin/items");
                 break;
         }
     }

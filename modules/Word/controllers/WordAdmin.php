@@ -11,8 +11,8 @@ class WordAdmin extends MX_Controller {
         $this->load->helper('backend/datatables');
         //add_js("http://www.google.com/jsapi");
         //add_module_asset("google-transliteration.js");
-        add_git_assets("wanakana.min.js","input-method/wanakana");
-        add_git_assets("vime.js","input-method/vime");
+        add_git_assets("wanakana.min.js","input-method/wanakana",null,null,false);
+        add_git_assets("vime.js","input-method/vime",null,null,false);
         /*
          * using nodejs
          * https://www.npmjs.com/package/wanakana
