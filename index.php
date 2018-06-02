@@ -33,7 +33,7 @@ if (defined('STDIN')){
 	chdir(dirname(__FILE__));
 }
 
-$system_path = '/media/quanict/WWW/QuanNH/CI_3.0.6/system/';
+$system_path = 'E:/PHP/CodeIgniter/CI-3.0.1/system/';
 $application_folder = getcwd();
 $view_folder = 'views';
 
