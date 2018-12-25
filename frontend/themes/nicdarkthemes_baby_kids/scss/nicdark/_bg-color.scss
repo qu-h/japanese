@@ -1,0 +1,46 @@
+@import "../mixin/bg-color";
+$green-bg: #6fc191;
+$green-border: #6ab78a;
+$green-dark: #65ae83;
+
+@include bg-color("green", $green-bg, $green-bg,$green-dark);
+@include bg-color("blue",   #74cee4, #6fc4d9, #6dc0d5);
+@include bg-color("violet", #c389ce, #ac7ab5, #a675af);
+@include bg-color("orange", #ec774b, #df764e, #d8734c);
+@include bg-color("red",    #e16c6c, #c86969, #bf6363);
+@include bg-color("yellow", #edbf47, #e0b84e, #d4ae49);
+@include bg-color("grey3",  #404547, #404547, #404547);
+
+
+
+
+
+[class^="btn-"]{
+  &[class*='-small'] {
+    padding: 5px 10px;
+    font-size: 15px;
+    margin: 1px 2px;
+  }
+
+  &[class*='-radius'] {
+    border-radius: 5px;
+  }
+
+  &[class*="-mt5"]{
+    margin-top: 5px;
+  }
+
+  &[class*="-mt10"]{
+    margin-top: 10px;
+  }
+}
+
+@include btn-color("green"    ,#6fc191, #6fc191 ,#ffffff);
+@include btn-color("blue"     ,#74cee4, #6fc4d9 ,#ffffff);
+@include btn-color("violet"   ,#c389ce, #ac7ab5 ,#ffffff);
+@include btn-color("orange"   ,#ec774b, #df764e ,#ffffff);
+@include btn-color("red"      ,#e16c6c, #c86969 ,#ffffff);
+@include btn-color("yellow"   ,#yellow, #e0b84e ,#ffffff);
+@include btn-color("grey"     ,#f9f9f9, #f1f1f1 ,#868585);
+@include btn-color("grey3"    ,#404547, #353b3d ,#ffffff);
+

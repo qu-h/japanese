@@ -1,0 +1,28 @@
+<section
+	class="nicdark_section  vc_row wpb_row vc_row-fluid">
+	<div class="nicdark_container nicdark_vc nicdark_clearfix">
+		<div class="vc_col-sm-8 wpb_column vc_column_container">
+
+			<div class="nicdark_archive1 nicdark_bg_grey nicdark_radius nicdark_shadow">
+				<div class="nicdark_textevidence nicdark_bg_yellow nicdark_radius_top">
+					<h4 class="white nicdark_margin20">{lang txt="Add Word"}</h4> <i class="tags-1 nicdark_iconbg right medium yellow"></i>
+				</div>
+				<form class="nicdark_margin20" method="post" action="" >
+					<input class="nicdark_bg_grey2 nicdark_radius nicdark_shadow grey subtitle hirainput" value="" size="10" placeholder="{lang txt="Add Word want to learn"}" type="text" name="word">
+					<div class="nicdark_space20"></div>
+					<input class="nicdark_btn nicdark_bg_yellow medium nicdark_shadow nicdark_radius white" value="{lang txt="add"}" type="submit">
+				</form>
+			</div>
+			<div class="wpb_wrapper japanword">
+				{if !empty($words)}{foreach $words AS $wo}
+					<a href="javascript:void(0)" class="nicdark_btn nicdark_bg_grey2 small nicdark_shadow nicdark_radius grey subtitle nicdark_margin10">{$wo->word}</a>
+				{/foreach}{/if}
+			</div>
+		</div>
+
+		<div class="vc_col-sm-4 wpb_column vc_column_container">
+			<div class="wpb_wrapper">
+			{include file="../../modules/course-left-col.html"}</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,82 @@
+@mixin bg-color($name, $bg, $border,$dark) {
+
+  /*first*/
+  .nicdark_bg_#{$name},
+  .nicdark_bg_#{$name}_hover:hover {
+    background-color: $bg !important;
+  }
+
+  $nodes-list: p h1 h2 h3 h4 h5 h6 a i span textarea select;
+  @each $node in $nodes-list {
+    #{$node}.#{$name} {
+      color: $bg;
+    }
+  }
+  input[type="text"].#{$name},
+  input[type="submit"].#{$name} {
+    color: $bg;
+  }
+
+  /*second*/
+  .nicdark_border_#{$name} {
+    border: 2px solid $border;
+    th, td {
+      border: 2px solid $border;
+    }
+  }
+
+  .nicdark_shadow.nicdark_bg_#{$name} {
+    box-shadow: 0 4px 0 0 $border;
+  }
+
+  .nicdark_iconbg.#{$name} {
+    color: $border;
+  }
+
+  .nicdark_triangle.#{$name} {
+    border-color: $border transparent transparent transparent;
+  }
+
+  .nicdark_bg_#{$name}dark,
+  .nicdark_bg_#{$name}dark_hover:hover {
+    background-color: $border !important;
+  }
+
+  /*third*/
+  .nicdark_border_#{$name}dark {
+    border: 2px solid $dark;
+    td, th {
+      border: 2px solid $dark;
+    }
+  }
+
+  .nicdark_shadow.nicdark_bg_#{$name}dark {
+    box-shadow: 0 4px 0 0 $dark;
+  }
+
+  .menu > .#{$name} > a:after,
+  .menu > .#{$name} .sub-menu li:first-child:before,
+  .menu > .#{$name} .sub-menu li ul li:first-child:before {
+    color: $bg;
+  }
+}
+
+@mixin btn-color($name, $color,$shadow-color,$text-color) {
+  [class^="btn-#{$name}"] {
+    background-color: $color;
+    color: $text-color;
+    margin: 2px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+
+    &[class*="-shadow"] {
+      box-shadow: 0 4px 0 0 $shadow-color;
+    }
+
+  }
+
+  a[class^="btn-#{$name}"]:hover {
+    color: $text-color;
+  }
+}
