@@ -1,0 +1,4 @@
+compile/*.php
+logs/*.php
+logs/*.php_*
+
