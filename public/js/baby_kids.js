@@ -931,7 +931,7 @@ jQuery(document).ready(function() {
 	var audio = new Audio();
 
 	jQuery('.mp3').click(function(){
-		audio.src = jQuery(this).attr('src')
+		audio.src = jQuery(this).attr('src');
 		audio.play();
 	});
 
@@ -958,13 +958,17 @@ jQuery(document).ready(function() {
 	var $draw = jQuery('.japandraw');
 	if( $draw.length > 0 ){
 		jQuery( ".writing" ).each(function( index ) {
+			var draw = jQuery(this).get(0), dataset = draw.dataset;
 			var code = jQuery(this).attr('code');
 			var romaji = jQuery(this).attr('romaji');
 			var dmak_id = jQuery(this).attr('id');
 			var group = jQuery(this).attr('group');
+console.log('debug 2',{draw,dataset});
+			drawjp(dataset.char,dataset.code,dataset.group,draw.id);
+			/*
 			jQuery.ajax({ 
 			    type: 'GET', 
-			    url: '/api/character/', 
+			    url: '/syllabary/api/character.json',
 			    data: { 'romaji': romaji ,'type':group}, 
 			    dataType: 'json',
 			    success: function (data) {
@@ -973,14 +977,17 @@ jQuery(document).ready(function() {
 			    	}
 			    }
 			});
-			
+			*/
 			
 	  
 		});
 		
 	}
 });
-
+/**
+ * http://mbilbille.github.io/dmak/#%E3%81%82
+ * https://github.com/mbilbille/dmak/blob/master/demo/jquery.html
+ */
 drawjp = function(char,code,group,dmak_id ){
 	var audio = new Audio();
 	audio.src = '//'+window.location.hostname+'/sound/syllabary/'+code+'.mp3';

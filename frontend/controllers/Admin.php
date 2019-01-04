@@ -33,13 +33,6 @@ class Admin extends MX_Controller {
         $this->login();
     }
 
-    function login()
-    {
-        if ( $this->session->userdata('user_id') ) {
-            redirect('admin/article', 'location');
-        }
-        modules::run("user/login",'admin/article');
-    }
 
     function logout()
     {

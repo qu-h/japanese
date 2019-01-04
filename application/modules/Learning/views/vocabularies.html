@@ -1,7 +1,0 @@
-{if isset($words) && count($words) > 0}
-	<ul>
-	{foreach $words AS $w}
-	<li><a href="/vocabulary/{$w->romaji}">{$w->word}</a></li>
-	{/foreach}
-	</ul>
-{/if}

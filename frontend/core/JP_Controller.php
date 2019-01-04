@@ -22,7 +22,7 @@ class JP_Controller extends MX_Controller{
          $this->load->module('layouts');
          //check the session data and assign a user to the user var
          $this->user = ($this->session->userdata('user_id'))
-                     ? User::find($this->session->userdata('user_id'))
+                     ? ICTUser::find($this->session->userdata('user_id'))
                      : NULL;
 
          if($this->user !== NULL)

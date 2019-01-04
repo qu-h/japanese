@@ -3,3 +3,10 @@
 compile/*.php
 .settings/
 .project
+package-lock.jsons
+node_modules/*
+package-lock.json
+.env
+
+
+*-removed.php
