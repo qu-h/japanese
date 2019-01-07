@@ -35,8 +35,15 @@ japaninput = {
 
 kanjiWord = {
 	ini:function () {
-        var g_vietTyper = new VietIME();
-        g_vietTyper.setTelexMode();
+        var g_vietTyper;
+	    if ( typeof VietIME !== 'undefined' ){
+            g_vietTyper = new VietIME();
+            g_vietTyper.setTelexMode();
+            console.log('using vietIME');
+        }
+
+
+
 
 		jQuery("a.add-word").unbind('click').click(function (e) {
 			var lastRow = jQuery(this).closest("label.input").find('.row');

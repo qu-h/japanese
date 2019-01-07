@@ -90,7 +90,6 @@ var getGitResource = function(dir,version,file){
 };
 
 Array.prototype.addGitResource = function(dir,version,file) {
-
     var fileCheck = getGitResource(dir,version,file);
     if( typeof fileCheck === 'string' ){
         this.push(fileCheck);
@@ -129,8 +128,6 @@ gulp.task('js', function(){
         //.pipe(uglify())
         .pipe(gulp.dest('public/js'))
 });
-
-
 
 gulp.task('default', function() {
     gulp.start(['js']);
