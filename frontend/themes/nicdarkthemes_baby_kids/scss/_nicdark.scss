@@ -379,7 +379,13 @@ pre p {
 /*END NICDARKTEXT*/
 
 /* 8 - START NICDARKFORMELEMENTS*/
-input[type="text"], input[type="email"], input[type="url"], input[type="tel"], input[type="number"], input[type="date"], textarea {
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+textarea {
   border: 0;
   outline: 0;
   box-shadow: 0 4px 0 0 #e5e5e5;

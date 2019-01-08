@@ -5,9 +5,6 @@ class Grammar extends MX_Controller {
     function __construct()
     {
         parent::__construct();
-        if( !property_exists($this, 'template') ){
-        }
-
         $this->fields = $this->Grammar_Model->fields();
     }
 
@@ -15,7 +12,7 @@ class Grammar extends MX_Controller {
      * Frontend
      */
     function index(){
-        die('show index grammar');
+        return $this->items();
     }
     function item($alias=NULL){
         

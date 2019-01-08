@@ -4,7 +4,31 @@
     <div class="nicdark_container nicdark_vc nicdark_clearfix">
         <div class="row">
             <div class="col-md-6 offset-md-2">
-                <div id="kanjiViewer" class="kanji-char" data-value="{$kanji->word}"></div>
+                <div id="kanjiViewer" class="kanji-char" data-value="{$kanji->word}" style="width: 250px; height: 350px;"></div>
+
+                <script>
+                    jQuery(function () {
+                        // var dmak = jQuery("#kanjiViewer");
+                        // dmak.dmak('電車');
+
+                        // var dmak = new Dmak('電車', {
+                        //     'element' : "kanjiViewer",
+                        //     'uri':'',
+                        // });
+
+                        KanjiViewer.initialize(
+                            "kanjiViewer",
+                            3,
+                            5,
+                            100,
+                            true,
+                            false,
+                            '{$kanji->word}'
+                        );
+
+                    });
+                </script>
+
             </div>
 
             <div class="col-md-4 wpb_column vc_column_container">

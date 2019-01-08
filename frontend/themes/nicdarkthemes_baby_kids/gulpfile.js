@@ -13,7 +13,7 @@ var autoprefixer = require('gulp-autoprefixer');
 
 
 
-var publicPath = "../../../public/";
+var publicPath = "D:/WWW/sites-template-git/nicdarkthemes/baby_kids/";
 var gitAssetsPath = "D:/WWW/quanict.github.io";
 
 String.prototype.fileIsExist = function(){
@@ -140,15 +140,13 @@ Array.prototype.addGitResource = function(dir,version,file) {
 Object.prototype.addConcatCss = function(dir,version,file){
     var fileCheck = getGitResource(dir,version,file);
     if( typeof fileCheck === 'string' ){
-        console.log('add file concat',fileCheck
-        )
         this.pipe(concatCss(fileCheck))
     }
 };
 
 gulp.task('sass', function() {
     var files = [];
-    files.addGitResource('bootstrap/','4.0.0',"bootstrap.scss");
+    // files.addGitResource('bootstrap/','4.0.0',"bootstrap.scss");
     files.push('scss/*.scss');
 
     var gulpTask = gulp.src(files)
@@ -201,7 +199,7 @@ gulp.task('jquery-plugin', function(){
 });
 
 gulp.task('copy-fonts', function () {
-    return gulp.src(['fonts/**/*']).pipe(gulp.dest(publicPath+'fonts'));
+    return gulp.src(['fonts/**/*']).pipe(gulp.dest(publicPath+'fonts/'));
 });
 gulp.task('copy-image', function () {
     return gulp.src(['images/*']).pipe(gulp.dest(publicPath+'images'));
@@ -209,9 +207,8 @@ gulp.task('copy-image', function () {
 
 gulp.task('default', function() {
     gulp.start(['sass', 'js']);
-    //gulp.start('jquery-plugin');
+    // gulp.start('jquery-plugin');
     //gulp.start('concatCss');
-
     // gulp.start(['copy-fonts','copy-image']);
 });
 

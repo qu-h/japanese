@@ -43,7 +43,7 @@ class Grammar_Model extends CI_Model {
 
     function fields(){
 
-    	$this->grammar_fields["category"]['options'] = $this->Category_Model->load_options("grammar");
+    	$this->grammar_fields["category"]['options'] = $this->SystemCategoryModel->load_options("grammar");
         return $this->grammar_fields;
     }
 

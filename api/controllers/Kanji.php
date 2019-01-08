@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Kanji extends REST_Controller
+class CI_Kanji extends REST_Controller
 {
     function __construct()
     {

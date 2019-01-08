@@ -968,36 +968,29 @@ JQUERY UI
 
 .nicdark_space150 {
   height: 150px;
-  width: 100%;
-  float: left;
 }
 
 .nicdark_space160 {
   height: 160px;
-  width: 100%;
-  float: left;
 }
 
 .nicdark_space170 {
   height: 170px;
-  width: 100%;
-  float: left;
 }
 
 .nicdark_space180 {
   height: 180px;
-  width: 100%;
-  float: left;
 }
 
 .nicdark_space190 {
   height: 190px;
-  width: 100%;
-  float: left;
 }
 
 .nicdark_space200 {
   height: 200px;
+}
+
+[class^='.nicdark_space']{
   width: 100%;
   float: left;
 }

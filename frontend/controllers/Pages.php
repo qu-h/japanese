@@ -29,4 +29,10 @@ class Pages extends JP_Controller
         $this->template->set_layout('single');
         temp_view('modules/grammar',array('art'=>$article));
     }
+
+    function articles(){
+        temp_view('pages/learning/vocabulary');
+    }
+
+
 }

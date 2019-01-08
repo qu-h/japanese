@@ -32,7 +32,7 @@ http://www.nicdarkthemes.com/themes/baby-kids/wp/demo/color-section/
 			<div class="nicdark_overlay"></div>
 			{include file="../modules/main-menu.html"}
 			<div class="nicdark_space160"></div>
-			<div class="post-801 page type-page status-publish hentry">
+			<div class="page type-page status-publish hentry clearfix">
 				<section  class="nicdark_section  vc_row wpb_row vc_row-fluid vc_custom_1422455808580">
 					<div class="nicdark_container nicdark_vc nicdark_clearfix">
 						<div class="vc_col-sm-8 wpb_column vc_column_container">

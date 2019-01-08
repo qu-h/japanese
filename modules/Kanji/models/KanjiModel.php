@@ -29,6 +29,7 @@ class KanjiModel extends MX_Model
 
     function __construct(){
         parent::__construct();
+        $this->limit = 30;
         $this->load->database();
     }
 

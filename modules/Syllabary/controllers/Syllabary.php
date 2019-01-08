@@ -6,11 +6,6 @@ class Syllabary extends JP_Controller
     {
 
         parent::__construct();
-        $this->load->module('Tip');
-        $this->load->module('layouts');
-
-        $this->template->set_theme('nicdarkthemes_baby_kids')->set_layout('course');
-
 //         add_asset('jquery.dmak.js','dmak');
 //         add_asset('jquery.dmak.js','dmak');
 
@@ -34,18 +29,17 @@ class Syllabary extends JP_Controller
         if( $char ){
             return $this->draw_char($char,"hiragana");
         }
-        $data = array('tips'=>$this->tip->items('chu-cai-nhat,hiragana-text'));
+        $data = array('tips'=> Modules::run("Tip/items",['chu-cai-nhat,hiragana-text']));
         temp_view('hiragana',$data);
     }
 
     function katakana($char=NULL)
     {
         if( $char ){
-            
             return $this->draw_char($char,"katakana");
         }
         
-        $data = array('tips'=>$this->tip->items('chu-cai-nhat,katakana-text'));
+        $data = array('tips'=>Modules::run("Tip/items",'chu-cai-nhat,katakana-text'));
         $data = array();
         temp_view('katakana',$data);
 
