@@ -30,7 +30,7 @@ http://www.nicdarkthemes.com/themes/baby-kids/wp/demo/color-section/
 <div class="nicdark_site">
     <div class="nicdark_site_fullwidth nicdark_site_fullwidth_boxed nicdark_clearfix">
         <div class="nicdark_overlay"></div>
-        {include file="../modules/main-menu.html"}
+        {include file="../modules/main-menu.tpl"}
         <div class="nicdark_space150"></div>
         <div class="page type-page status-publish hentry clearfix">
             <section  class="nicdark_section  vc_row wpb_row vc_row-fluid">
