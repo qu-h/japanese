@@ -1,32 +1,24 @@
-
-
 <section class="nicdark_section  vc_row wpb_row vc_row-fluid ">
     <div class="nicdark_container nicdark_vc nicdark_clearfix">
         <div class="row">
-            <div class="col-md-6 offset-md-2">
-                <div id="kanjiViewer" class="kanji-char" data-value="{$kanji->word}" style="width: 250px; height: 350px;"></div>
+            <div class="col-md-8 text-center">
+                <div class="row">
+                    <div class="col-md-6  offset-md-3">
+                        <div id="kanjiViewer" class="kanji-char" data-value="{$kanji->word}"></div>
+                    </div>
+                </div>
+                <div class="row">
 
+                    <div class="col-md-6">
+                        {block_archive_button title="onyomi" content=$kanji->onyomi}
+                    </div>
+                    <div class="col-md-6">
+                        {block_archive_button title="kunyomi" content=$kanji->kunyomi}
+                    </div>
+
+                </div>
                 <script>
-                    jQuery(function () {
-                        // var dmak = jQuery("#kanjiViewer");
-                        // dmak.dmak('電車');
-
-                        // var dmak = new Dmak('電車', {
-                        //     'element' : "kanjiViewer",
-                        //     'uri':'',
-                        // });
-
-                        KanjiViewer.initialize(
-                            "kanjiViewer",
-                            3,
-                            5,
-                            100,
-                            true,
-                            false,
-                            '{$kanji->word}'
-                        );
-
-                    });
+                    var kanjiSvgPath = '{$svnPath}';
                 </script>
 
             </div>
@@ -37,7 +29,7 @@
 
                         <h4 class="pa-b-20 f-upcase">
                             {btn_text text=$kanji->word  bg="red"}
-                             : {$kanji->chinese}
+                            : {$kanji->chinese}
                         </h4>
                         <p>{$kanji->vietnamese}</p>
                         <div class="nicdark_space5"></div>
@@ -60,20 +52,17 @@
                         </div>
                     </div>
                 {/if}
-                <div class="nicdark_space10"></div>
-                {block_archive_button title="onyomi" content=$kanji->onyomi}
-                <div class="nicdark_space10"></div>
-                {block_archive_button title="kunyomi" content=$kanji->kunyomi}
+
 
             </div>
             <div class="nicdark_space10"></div>
 
         </div>
         {if $kanji->explanation|count_characters > 0}
-        <div class="row">
-            {block_archive title="explanation" content=$kanji->explanation col=12}
-            <div class="nicdark_space10"></div>
-        </div>
+            <div class="row">
+                {block_archive title="explanation" content=$kanji->explanation col=12}
+                <div class="nicdark_space10"></div>
+            </div>
         {/if}
 
         <div class="row">

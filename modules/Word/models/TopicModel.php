@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script core allowed');
 
-class TopicModel extends CI_Model
+class TopicModel extends MX_Model
 {
     var $table = 'word_topic';
 
@@ -62,7 +62,6 @@ class TopicModel extends CI_Model
             $id = $data['id'];
             unset($data['id']);
             $this->db->where('id',$id)->update($this->table,$data);
-
         } else {
             $this->db->insert($this->table,$data);
             $id = $this->db->insert_id();
@@ -112,16 +111,41 @@ class TopicModel extends CI_Model
 
 
     function items_json(){
-        $this->db->select('*');
+        $this->db->select('*')->from($this->table);
         $this->db->order_by('id DESC');
-        $query = $this->db->get($this->table);
-        $items = array();
+
+        $db = $this->db;
+        $tempdb = clone $db;
+        $num_rows = $tempdb->count_all_results();
+
+        $query = $this->db->limit($this->limit, $this->offset)->get();
+        $items = [];
+
         foreach ($query->result() AS $ite){
             $words = unserialize($ite->words);
             $ite->total = count($words);
             $ite->actions = "";
             $items[] = $ite;
         }
-        return jsonData(array('data'=>$items));
+        return jsonData(array('data' => $items, 'draw' => $this->draw, 'recordsTotal' => $num_rows, 'recordsFiltered' => $num_rows));
+
+    }
+
+    function row(){
+        $row = parent::row();
+        if( !empty($row) ){
+            $wordIds = unserialize($row->words);
+            $row->words = $this->WordModel->where_in('id',$wordIds)->get();
+        }
+        return $row;
+    }
+
+    function row_array(){
+        $row = parent::row_array();
+        if( !empty($row) ){
+            $wordIds = unserialize($row['words']);
+            $row['words'] = $this->WordModel->where_in('id',$wordIds)->get_array();
+        }
+        return $row;
     }
 }

@@ -1,17 +1,18 @@
 {if isset($tips)}
 	{foreach $tips AS $tip}
-		{include file="../block/tip-left.html" tip=$tip}
+		{include file="../block/tip-left.tpl" tip=$tip}
 	{/foreach}
 {/if}
+{if isset($blockLeft)}
+	{$blockLeft}
+{/if}
+
 
 <section class="nicdark_section  vc_row wpb_row vc_inner vc_row-fluid">
 	<div
 		class="vc_col-sm-12 nicdark_bg_grey nicdark_radius nicdark_shadow wpb_column vc_column_container vc_custom_1421233115518">
 		<div class="wpb_wrapper">
-
-
 			<div class=" nicdark_archive1 nicdark_relative">
-
 				<a target="" href=""
 					class="nicdark_btn_icon nicdark_bg_blue extrabig nicdark_radius_circle white nicdark_absolute nicdark_shadow"><i
 					class="icon-location-outline"></i></a>
@@ -30,8 +31,9 @@
 		</div>
 	</div>
 </section>
+
 <section
-	class="nicdark_section  vc_row wpb_row vc_inner vc_row-fluid vc_custom_1422455856614">
+	class="nicdark_section  vc_row wpb_row vc_inner vc_row-fluid">
 	<div
 		class="vc_col-sm-12 nicdark_bg_grey nicdark_radius nicdark_shadow wpb_column vc_column_container vc_custom_1421233136895">
 		<div class="wpb_wrapper">
@@ -57,6 +59,7 @@
 		</div>
 	</div>
 </section>
+
 <section id=""
 	class="nicdark_section  vc_row wpb_row vc_inner vc_row-fluid vc_custom_1422455866009">
 	<div

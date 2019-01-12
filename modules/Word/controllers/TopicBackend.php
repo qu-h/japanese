@@ -26,12 +26,11 @@ class TopicBackend extends Admin_Controller {
         return $this->form($id);
     }
 
-
     public function form($id=0){
         $this->fields = $this->TopicModel->fields();
 
         if ($this->input->post()) {
-            $formdata = array();
+            $formdata = [];
             foreach ($this->fields as $name => $field) {
                 $this->fields[$name]['value'] = $formdata[$name] = $this->input->post($name);
             }
@@ -72,6 +71,9 @@ class TopicBackend extends Admin_Controller {
 
     }
 
+    /**
+     * @var array TableColumn
+     */
     var $table_fields = array(
         'id'=>array("#",5,false,'text-center'),
         'name'=>array("Name"),
@@ -79,13 +81,14 @@ class TopicBackend extends Admin_Controller {
         'actions'=>array(NULL,5,false,'text-center'),
     );
 
+    /**
+     *
+     * @return template : Datatable Topics
+     */
     public function items(){
         if( $this->uri->extension =='json' ){
             return $this->TopicModel->items_json();
         }
-
-        //$data = array('fields'=>$this->table_fields,'columns_filter'=>true);
-
         $data = columns_fields($this->table_fields);
         temp_view('backend/datatables',$data);
     }

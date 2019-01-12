@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script core allowed');
 
-class WordModel extends CI_Model {
+class WordModel extends MX_Model {
 	var $table = 'word';
 
 	var $img_dirs = array(
@@ -172,10 +172,13 @@ class WordModel extends CI_Model {
 	 * Json return for Datatable
 	 */
 	function items_json($actions_allow=NULL){
-	    $this->db->select('id,romaji, kanji, hiragana, katakana, vietnamese, alias');
+	    $this->db->select('id,romaji, kanji, hiragana, katakana, vietnamese, alias')->from($this->table);
 	    $this->db->order_by('id DESC');
-	    $query = $this->db->get($this->table);
-	    $items = array();
+
+        $num_rows = $this->count_ajax();
+
+        $query = $this->db->limit($this->limit, $this->offset)->get();
+	    $items = [];
 	    foreach ($query->result() AS $ite){
 	        $ite->img = "";
 	        $ite->word = $ite->hiragana;
@@ -206,7 +209,8 @@ class WordModel extends CI_Model {
 	        $ite->actions = "";
 	        $items[] = $ite;
 	    }
-	    return jsonData(array('data'=>$items));
+        return jsonData(array('data' => $items, 'draw' => $this->draw, 'recordsTotal' => $num_rows, 'recordsFiltered' => $num_rows));
+
 	}
 
 	

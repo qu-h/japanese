@@ -18,15 +18,16 @@ class Kanji extends JP_Controller
     }
 
     function character($ascii=null){
-        $char = $this->KanjiModel->item_get(['ascii'=>$ascii]);
+        $kanji = $this->KanjiModel->item_get(['ascii'=>$ascii]);
 
-        //https://github.com/KanjiVG/kanjivg
-        //http://kanjivg.tagaini.net
-        //https://github.com/mbilbille/dmak
-        add_js(git_assets('raphael-min.js','raphael',"2.0.2",null,false));
-        add_js(git_assets('kanjiviewer.js','svg',null,null,false));
-        add_module_asset("kanji.js",'kanji');
+//        add_js(git_assets('raphael-min.js','raphael',"2.0.2",null,false));
+//        add_js(git_assets('kanjiviewer.js','svg',null,null,false));
+        //        add_module_asset("kanji.js",'kanji');
 
-        temp_view('character',["kanji"=>$char]);
+        $svnPath = env('ASSETS_GIT_PATH').'svg/kanji/';
+        add_git_assets("kanji.min.js",'sites-template/nicdarkthemes/baby_kids');
+
+        set_layout('full-content');
+        temp_view('character',compact('kanji','svnPath'));
     }
 }
