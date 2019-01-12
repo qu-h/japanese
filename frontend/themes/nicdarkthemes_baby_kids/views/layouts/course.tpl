@@ -16,12 +16,10 @@ http://www.nicdarkthemes.com/themes/baby-kids/wp/demo/color-section/
 <meta name="generator" content="WordPress 4.1.1" />
 
 <!--FAVICONS-->
-<link rel="shortcut icon" href="/images/logo-icon.png">
-<link rel="apple-touch-icon" href="/images/logo-icon.png">
-<link rel="apple-touch-icon" sizes="72x72"
-	href="">
-<link rel="apple-touch-icon" sizes="114x114"
-	href="">
+<link rel="shortcut icon" href="{theme_url}images/favicon-icon.png">
+<link rel="apple-touch-icon" href="{theme_url}images/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="72x72" href="{theme_url}images/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="{theme_url}images/apple-touch-icon-114x114.png">
 
 {assets type='css'}
 {assets type='js'}
@@ -30,7 +28,7 @@ http://www.nicdarkthemes.com/themes/baby-kids/wp/demo/color-section/
 	<div class="nicdark_site">
 		<div class="nicdark_site_fullwidth nicdark_site_fullwidth_boxed nicdark_clearfix">
 			<div class="nicdark_overlay"></div>
-			{include file="../modules/main-menu.html"}
+			{include file="../modules/main-menu.tpl"}
 			<div class="nicdark_space160"></div>
 			<div class="page type-page status-publish hentry clearfix">
 				<section  class="nicdark_section  vc_row wpb_row vc_row-fluid vc_custom_1422455808580">
