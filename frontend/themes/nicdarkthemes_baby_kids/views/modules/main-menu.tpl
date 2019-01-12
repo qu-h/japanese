@@ -63,7 +63,7 @@
 
 					<!--logo-->
 					<div class="nicdark_logo nicdark_marginleft10">
-						<a href=""><img alt="{lang text="SiteName"}" src="http://www.nicdarkthemes.com/themes/baby-kids/html/demo/img/logo.png"></a>
+						<a href=""><img alt="{lang text="SiteName"}" src="{theme_url}images/logo.png"></a>
 					</div>
 					<!--end logo-->
 

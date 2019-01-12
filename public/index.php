@@ -29,7 +29,7 @@ if (defined('STDIN')) {
 $system_path = 'D:\WWW\CI-3.0.1/system/';
 $mainPath = getcwd() . "/..";
 $application_folder = "$mainPath/frontend/";
-$domain = $_SERVER['SERVER_NAME'];
+$domain = $_SERVER['HTTP_HOST'];
 $subdomain = explode('.', $domain);
 if (count($subdomain) > 1) {
     switch ($subdomain[0]) {
