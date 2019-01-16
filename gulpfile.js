@@ -15,6 +15,7 @@ var autoprefixer = require('gulp-autoprefixer');
 
 var publicPath = "../../../public/";
 var gitAssetsPath = "D:/WWW/quanict.github.io";
+var gitPublicResource = 'D:\\WWW\\sites-template-git';
 
 String.prototype.fileIsExist = function(){
     var file = this;
@@ -124,9 +125,9 @@ gulp.task('js', function(){
         'modules/Word/assets/js/inputs.js'
     ];
     return gulp.src(jsFiles)
-        .pipe(concat('backend.js'))
+        .pipe(concat('backend-japanese.js'))
         //.pipe(uglify())
-        .pipe(gulp.dest('public/js'))
+        .pipe(gulp.dest(gitPublicResource+'/smart-admin/js'))
 });
 
 gulp.task('default', function() {

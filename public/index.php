@@ -1,5 +1,6 @@
 <?php define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
+$system_path = 'D:\WWW\CI-3.0.1/system/';
 switch (ENVIRONMENT) {
     case 'development':
         error_reporting(-1);
@@ -26,7 +27,6 @@ if (defined('STDIN')) {
     chdir(dirname(__FILE__));
 }
 
-$system_path = 'D:\WWW\CI-3.0.1/system/';
 $mainPath = getcwd() . "/..";
 $application_folder = "$mainPath/frontend/";
 $domain = $_SERVER['HTTP_HOST'];

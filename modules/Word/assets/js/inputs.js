@@ -42,9 +42,6 @@ kanjiWord = {
             console.log('using vietIME');
         }
 
-
-
-
 		jQuery("a.add-word").unbind('click').click(function (e) {
 			var lastRow = jQuery(this).closest("label.input").find('.row');
 			var ordering = lastRow.length;
@@ -77,7 +74,7 @@ kanjiWord = {
     },
     getByRomaji:function(romaji,callback,area){
         jQuery.ajax({
-            url: "/api/word",
+            url: API_BASE + "/word.json",
             data: {'r':romaji},
             dataType: "JSON"
         }).done(function(result) {

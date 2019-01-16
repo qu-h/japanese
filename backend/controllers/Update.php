@@ -15,5 +15,7 @@ class Update extends Admin_Controller
 
     function index(){
         modules::run('Backend/BackendUpdate/index');
+        modules::run('Backend/MenuUpdate/index');
+
     }
 }

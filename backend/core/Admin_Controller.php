@@ -42,7 +42,8 @@ class Admin_Controller extends MX_Controller
             $this->_assign_permissions();
         }
 
-        add_asset("backend.js");
+        add_asset("backend-japanese.js");
+        add_js_header('API_BASE="'.env('API_BASE').'";');
     }
 
     private function SetLink(){
