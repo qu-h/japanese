@@ -45,14 +45,13 @@
                                     <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>
                                     Success
                                 </button>
-
                             </footer>
                         </form>
                     </div>
                 </div>
             </div>
 
-            <div  <div class="jarviswidget" id="wid-id-0"
+            <div class="jarviswidget" id="wid-id-0"
                        data-widget-colorbutton="false"
                        data-widget-editbutton="false"
                        data-widget-custombutton="false"

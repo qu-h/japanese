@@ -7,6 +7,7 @@ class TopicBackend extends Admin_Controller {
         parent::__construct();
         $this->load->model('TopicModel');
         $this->load->smarty("Word/smartadmin");
+        add_site_structure('word/topic/',lang("Topics") );
 
         set_temp_val('uri_add','word/topic/add' );
         add_git_assets("wanakana.min.js","input-method/wanakana",null,null,false);
@@ -28,7 +29,6 @@ class TopicBackend extends Admin_Controller {
 
     public function form($id=0){
         $this->fields = $this->TopicModel->fields();
-
         if ($this->input->post()) {
             $formdata = [];
             foreach ($this->fields as $name => $field) {
@@ -90,6 +90,6 @@ class TopicBackend extends Admin_Controller {
             return $this->TopicModel->items_json();
         }
         $data = columns_fields($this->table_fields);
-        temp_view('backend/datatables',$data);
+        temp_view('Word/backend/topics-datatable',$data);
     }
 }

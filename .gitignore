@@ -7,6 +7,8 @@ package-lock.jsons
 node_modules/*
 package-lock.json
 .env
+.env.server
+.env.dev
 
 
 *-removed.php

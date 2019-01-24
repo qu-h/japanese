@@ -48,7 +48,7 @@ class Admin_Controller extends MX_Controller
 
     private function SetLink(){
         set_temp_val("SignOutLink", "/user/logout");
-        add_site_structure('admin',lang("Admin area") );
+        add_site_structure('/',lang("Admin area") );
     }
 
 
