@@ -27,13 +27,14 @@ class TipBackend extends Admin_Controller {
             $this->load->helper('backend/datatables');
         }
         if( $this->uri->extension =='json' ){
-            return $this->Tip_Model->items_json(array_keys($this->table_fields));
+            return $this->TipModel->items_json(array_keys($this->table_fields));
         }
 
         $data = columns_fields($this->table_fields);
 
+//dd($data);
         //$this->template->build('backend/datatables',$data);
-        temp_view('Backend/articles', $data);
+        temp_view('Backend/datatables', $data);
     }
 
     public function add(){

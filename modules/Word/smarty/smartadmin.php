@@ -57,7 +57,7 @@ class word_smartadmin_ui extends SmartadminInputs {
             'value'=>$order
         ];
         $html.= '<section class="col-lg-2 col-md-3 col-sm-3 visible-lg">'.parent::text_addon($orderParams).'</section>';
-        $html.= '<section class="col-sm-1 visible-sm"><span class="">'.$order.'</span></section>';
+        $html.= '<section class="col-xs-1 visible-sm visible-xs"><span class="">'.$order.'</span></section>';
 
         $romaji_params = array(
             'name'=>$name."[romaji][]",
@@ -68,7 +68,7 @@ class word_smartadmin_ui extends SmartadminInputs {
         );
         $html.= '<section class="col-lg-2 col-md-3 col-xs-11">'.parent::text_addon($romaji_params).'</section>';
 
-        $classContent = "col-lg-2 col-md-3 col-xs-3 col-sm-11 col-md-offset-0 col-xs-offset-1";
+        $classContent = "col-lg-2 col-md-3 col-xs-11 col-sm-11 col-md-offset-0 col-xs-offset-1";
         $kanji_params = array(
             'name'=>$name."[kanji][]",
             'icon'=>'language',
@@ -85,7 +85,7 @@ class word_smartadmin_ui extends SmartadminInputs {
             'class'=>"$name-vn vietnamese-input",
             'value'=>$word->vietnamese
         );
-        $html.= '<section class="col-lg-2 col-md-3 col-xs-11 col-md-offset-0 col-xs-offset-1">'.parent::text_addon($japan_params).'</section>';
+        $html.= '<section class="'.$classContent.'">'.parent::text_addon($japan_params).'</section>';
 
         $english_params = array(
             'name'=>$name."[en][]",
@@ -94,7 +94,7 @@ class word_smartadmin_ui extends SmartadminInputs {
             'class'=>"$name-en",
             'value'=>$word->english
         );
-        $html.= '<section class="col-lg-2 col-md-3 col-xs-11 col-md-offset-0 col-xs-offset-1">'.parent::text_addon($english_params).'</section>';
+        $html.= '<section class="'.$classContent.'">'.parent::text_addon($english_params).'</section>';
         $html .= parent::input_hidden(['class'=>'words-id','name'=>$name."[id][]",'value'=>$word->id]);
         return $html;
     }
