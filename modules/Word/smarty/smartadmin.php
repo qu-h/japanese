@@ -6,7 +6,7 @@ class word_smartadmin_ui extends SmartadminInputs {
 
     }
 
-    static function input_words(array $params = null){
+    static function input_words(array $params = []){
         $name = isset($params['name']) ? $params['name'] : NULL;
         $course = isset($params['course']) ? $params['course'] : NULL;
         $values = isset($params['value']) ? $params['value'] : NULL;
@@ -18,9 +18,12 @@ class word_smartadmin_ui extends SmartadminInputs {
         $html = "";
 
         $ordering = 1;
-        if( !empty($values) && strlen($values) > 2 ){
-            $values = unserialize($values);
+        if( !empty($values) ){
+            if( is_string($values) && strlen($values) > 2 ){
+                $values = unserialize($values);
+            }
             if( count($values) >0 ) foreach ($values AS $word){
+
                 $html.= '<div class="row clearfix">'.self::input_word_row($name,$word,$ordering).'</div>';
                 $ordering++;
             }
@@ -33,10 +36,12 @@ class word_smartadmin_ui extends SmartadminInputs {
         return self::row_input($params);
     }
 
-    private static function input_word_row($name,$id=0,$order=0){
+    private static function input_word_row($name, $id=0, $order=0){
         $html = "";
-        if( $id > 0 ){
+        if( is_numeric($id) && $id > 0 ) {
             $word = get_instance()->WordModel->get_item_by_id($id);
+        } else if ( is_array($id)){
+            $word = (object)$id;
         } else {
             $word = (object)array(
                 'kanji'=>null,

@@ -51,8 +51,7 @@
                 </div>
             </div>
 
-            <div class="jarviswidget" id="wid-id-0"
-                       data-widget-colorbutton="false"
+            <div class="jarviswidget" data-widget-colorbutton="false"
                        data-widget-editbutton="false"
                        data-widget-custombutton="false"
                        data-widget-deletebutton="false"

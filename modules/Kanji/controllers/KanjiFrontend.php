@@ -2,11 +2,21 @@
 
 class Kanji extends JP_Controller
 {
+    private $levels = [
+        0=>'Any',
+        5=>'JLPT N5',
+        4=>'JLPT N4',
+        3=>'JLPT N3',
+        2=>'JLPT N2',
+        1=>'JLPT N1'
+    ];
     function __construct()
     {
         parent::__construct();
 
-     }
+    }
+
+
 
     function index(){
         $page = input_get('p',1);
@@ -14,7 +24,8 @@ class Kanji extends JP_Controller
         $items = $this->KanjiModel->where('level',$level)->pagination_get($page);
 
         set_layout('full-content');
-        temp_view('index',compact('items'));
+        $levels = $this->levels;
+        temp_view('index',compact('items','levels'));
     }
 
     function character($ascii=null){

@@ -15,7 +15,6 @@
                 data-widget-colorbutton="false"
                 data-widget-editbutton="false"
 
-
                 data-widget-fullscreenbutton="false"
                 data-widget-custombutton="false"
                 data-widget-collapsed="true"
@@ -40,30 +39,14 @@
                             </fieldset>
 
                             <footer class="smart-form" >
-                                <button class="btn btn-primary" type="submit">{lang txt="Submit Form"}</button>
-                                <button class="btn btn-labeled btn-success">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>
-                                    Success
-                                </button>
-
+                                {btnSubmit}
+                                {btnSave}
+                                {btnCrawler}
                             </footer>
                         </form>
                     </div>
                 </div>
             </div>
-
-            {*<div class="jarviswidget" id="wid-id-0"*}
-                       {*data-widget-colorbutton="false"*}
-                       {*data-widget-editbutton="false"*}
-                       {*data-widget-custombutton="false"*}
-                       {*data-widget-deletebutton="false"*}
-                       {*data-widget-togglebutton="false"*}
-            {*>*}
-                {*<iframe*}
-
-                        {*sandbox="allow-same-origin allow-scripts allow-popups allow-forms"*}
-                        {*src="https://translate.google.com/m/translate#auto/vi/oogle%20provid" style="height: 250px" width="100%"></iframe>*}
-            {*</div>*}
         </article>
     </div>
 </section>

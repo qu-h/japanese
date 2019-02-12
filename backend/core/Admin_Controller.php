@@ -1,5 +1,10 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Class Admin_Controller
+ * @property CI_Input $input
+ * @property CI_URI $uri
+ */
 class Admin_Controller extends MX_Controller
 {
     //presumes you use hmvc
@@ -50,8 +55,6 @@ class Admin_Controller extends MX_Controller
         set_temp_val("SignOutLink", "/user/logout");
         add_site_structure('/',lang("Admin area") );
     }
-
-
 
     public function _assign_group()
     {

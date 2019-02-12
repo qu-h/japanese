@@ -19,8 +19,6 @@
                 <div class="vc_empty_space" style="height: 20px">
                     <span class="vc_empty_space_inner"></span>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -69,7 +67,6 @@
                                     style="box-sizing: border-box; position: absolute; left: 0px; top: 0px;"
                                     class="grid grid_4 percentage nicdark_padding10 nicdark_masonry_item  art  music ">
 
-
                                 <div  class="nicdark_archive1 nicdark_radius nicdark_shadow nicdark_bg_{$color}">
 
                                     <a href="{$urlDetail|cat:'/'|cat:$topic.alias}"
@@ -81,7 +78,7 @@
                                     </div>
 
                                     <div class="nicdark_margin20 nicdark_post_archive">
-                                        <h4 class="white">{$topic.name}</h4>
+                                        <a href="{$urlDetail|cat:'/'|cat:$topic.alias}" class="white">{$topic.name}</a>
                                         <div class="nicdark_space20"></div>
                                         <div class="nicdark_divider left small">
                                             <span class="nicdark_bg_white nicdark_radius"></span>

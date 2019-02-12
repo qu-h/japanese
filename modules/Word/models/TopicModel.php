@@ -4,7 +4,7 @@ class TopicModel extends MX_Model
 {
     var $table = 'word_topic';
 
-    var $topic_fields = array(
+    var $topic_fields = [
         'id' => array(
             'type' => 'hidden'
         ),
@@ -19,7 +19,7 @@ class TopicModel extends MX_Model
         'words' => ['type'=>'words'],
         'source' => ['icon'=>"glyphicon-link"],
 
-    );
+    ];
 
     function __construct()
     {
