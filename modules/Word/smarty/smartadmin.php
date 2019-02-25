@@ -74,13 +74,13 @@ class word_smartadmin_ui extends SmartadminInputs {
         $html.= '<section class="col-lg-2 col-md-3 col-xs-11">'.parent::text_addon($romaji_params).'</section>';
 
         $classContent = "col-lg-2 col-md-3 col-xs-11 col-sm-11 col-md-offset-0 col-xs-offset-1";
-        $kanji_params = array(
+        $kanji_params = [
             'name'=>$name."[kanji][]",
             'icon'=>'language',
             'title'=>'Kanji',
             'class'=>"$name-kanji",
             'value'=>$word->kanji
-        );
+        ];
         $html.= '<section class="'.$classContent.'">'.parent::text_addon($kanji_params).'</section>';
 
         $japan_params = array(

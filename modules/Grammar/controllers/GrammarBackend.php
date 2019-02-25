@@ -106,4 +106,8 @@ class GrammarBackend extends Admin_Controller {
         temp_view('backend/form',$data);
 
     }
+
+    public function edit($id=0){
+        return $this->form($id);
+    }
 }

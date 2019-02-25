@@ -81,7 +81,7 @@ class WordBackend extends Admin_Controller {
         //add_root_asset("wanakana/wanakana.min.js");
         add_module_asset("inputs.js");
 
-        temp_view('word-form-backend',$data);
+        temp_view('Word/backend/word-form',$data);
 
     }
 

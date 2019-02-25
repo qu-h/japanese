@@ -10,7 +10,7 @@ class WordModel extends MX_Model {
 	    'id' => array(
 	        'type' => 'hidden'
 	    ),
-        'romaji'=>'',
+        'romaji'=>[],
 	    
 	    'alias' => array(
 	        'label' => 'Alias',
@@ -25,7 +25,7 @@ class WordModel extends MX_Model {
         'hiragana'=>array("id"=>'input_hira','class'=>'hiragana-input'),
         'katakana'=>['class'=>'katakana-input'],
         'vietnamese'=>['class'=>'vietnamese-input'],
-        'english'=>'',
+        'english'=>[],
         'example'=>array(
 	        'type' => 'textarea'
 	    ),
