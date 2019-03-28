@@ -29,7 +29,9 @@ class Syllabary extends JP_Controller
         if( $char ){
             return $this->draw_char($char,"hiragana");
         }
-        $data = array('tips'=> Modules::run("Tip/items",['chu-cai-nhat,hiragana-text']));
+        $data = [
+            'tips'=> Modules::run("Tip/items",['chu-cai-nhat,hiragana-text'])
+        ];
         temp_view('hiragana',$data);
     }
 

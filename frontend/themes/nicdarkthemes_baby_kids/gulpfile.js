@@ -174,6 +174,7 @@ gulp.task('js', function(){
 gulp.task('jquery-plugin', function(){
     var jsFiles = [];
 
+    jsFiles.addGitResource( 'jquery','2.0.3','jquery.min.js');
     jsFiles.addGitResource( 'jquery/ui','1.11.2','widget.min.js');
     jsFiles.addGitResource( 'jquery/ui','1.11.2','tabs.min.js');
 
@@ -190,8 +191,12 @@ gulp.task('jquery-plugin', function(){
     jsFiles.addGitResource( 'jquery/parallax','1.1.3','jquery.parallax-1.1.3.js');
     jsFiles.addGitResource( 'jquery/isotope','2.0.0','isotope.pkgd.min.js');
 
+    jsFiles.addGitResource( 'tether','1.4.0','tether.min.js');
+    jsFiles.addGitResource( 'popper','1.11.0','popper.min.js');
+    jsFiles.addGitResource( 'bootstrap','4.0.0-beta','bootstrap.min.js');
     // console.log("call task jquery-plugin with files :",jsFiles);
 
+    //console.log("add js",jsFiles);
     return gulp.src(jsFiles)
         .pipe(concat('jquery-plugin.js'))
         .pipe(uglify())

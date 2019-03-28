@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$config['url_suffix'] = '.html';
+$config['url_suffix'] = '';
 $config['index_page'] = '';
 $config['theme_url'] = "//".$_SERVER['HTTP_HOST']."/themes/";
 $config['theme_dir'] = APPPATH."themes/nicdarkthemes_baby_kids/";

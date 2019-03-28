@@ -22,16 +22,6 @@ class WordBackend extends Admin_Controller {
     
     function index(){
         return $this->items();
-
-//        if( $this->uri->extension =='json' ){
-//            $key = input_get("query");
-//            $items = $this->WordModel->items_search($key);
-//            if( !empty($items) ){
-//                return jsonData($items);
-//            }
-//        } else {
-//
-//        }
     }
 
     var $table_fields = array(
@@ -101,6 +91,10 @@ class WordBackend extends Admin_Controller {
 
     function add(){
         dd('add word backend');
+    }
+
+    public function edit($id){
+        return $this->form($id);
     }
 
 //    public function topic(){

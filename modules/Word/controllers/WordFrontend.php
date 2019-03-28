@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class ICTWord extends MX_Controller
+class WordFrontend extends MX_Controller
 {
     function __construct()
     {
@@ -63,5 +63,9 @@ class ICTWord extends MX_Controller
         }
 
         return $data;
+    }
+
+    function index(){
+
     }
 }

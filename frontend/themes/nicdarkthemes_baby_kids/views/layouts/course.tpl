@@ -43,7 +43,7 @@ http://www.nicdarkthemes.com/themes/baby-kids/wp/demo/color-section/
 
 						<div class="vc_col-sm-4 wpb_column vc_column_container">
 							<div class="wpb_wrapper">
-								{include file="../modules/course-left-col.html"}
+								{include file="../modules/course-left-col.tpl"}
 							</div>
 						</div>
 					</div>
