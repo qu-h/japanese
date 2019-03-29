@@ -1,5 +1,10 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Class Admin_Controller
+ * @property Template $template
+ * @property ArrayObject $fields
+ */
 class Admin_Controller extends MX_Controller
 {
     //presumes you use hmvc
@@ -41,13 +46,13 @@ class Admin_Controller extends MX_Controller
             $this->_assign_group();
             $this->_assign_permissions();
         }
-
+        $this->loadFormModel();
         add_asset("backend.js");
     }
 
     private function SetLink(){
         set_temp_val("SignOutLink", "/user/logout");
-        add_site_structure('admin',lang("Admin area") );
+        add_site_structure('',lang("Admin area") );
     }
 
 
@@ -105,5 +110,35 @@ class Admin_Controller extends MX_Controller
             $page_order[] = '[0,"desc"]';
         }
         set_temp_val("page_order", implode(',', $page_order));
+    }
+
+    protected $fieldKeys = [];
+    private function loadFormModel(){
+        $className = get_class ($this);
+        $moduleName = $this->load->getModule();
+        $className = str_replace(['Backend','Frontend'],null,$className);
+        $modelName = sprintf('%sModel',$className);
+
+        if( class_exists($modelName) ) {
+            $this->model = $this->$modelName;
+            $this->fields = $this->$modelName->fields();
+            $this->fieldKeys = array_keys($this->fields);
+        }
+    }
+
+    protected function updateDataSubmit(){
+        $data = [];
+        foreach ($this->fieldKeys AS $key){
+            $data[$key] = $this->input->post($key);
+        }
+        return $this->model->updateRow($data);
+    }
+
+    protected function bindData2Fields($row){
+        foreach ($this->fields AS $field=>$val){
+            if( isset($row->$field) ){
+                $this->fields[$field]['value']=$row->$field;
+            }
+        }
     }
 }
