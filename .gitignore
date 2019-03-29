@@ -10,3 +10,5 @@ package-lock.json
 
 
 *-removed.php
+/vendor/
+composer.lock
