@@ -47,7 +47,7 @@ class Admin_Controller extends MX_Controller
             $this->_assign_permissions();
         }
         $this->loadFormModel();
-        add_asset("backend.js");
+        //add_asset("backend.js");
     }
 
     private function SetLink(){

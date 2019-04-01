@@ -106,4 +106,24 @@ class GrammarBackend extends Admin_Controller {
         temp_view('backend/form',$data);
 
     }
+
+
+    public function Markdown($action=null,$id=0){
+        switch ($action){
+            case 'edit':
+            case 'add':
+                break;
+            default:
+                return $this->MarkdownDataTable();
+                break;
+
+        }
+    }
+
+    private function MarkdownForm(){
+
+    }
+    private function MarkdownDataTable(){
+dd('show table');
+    }
 }

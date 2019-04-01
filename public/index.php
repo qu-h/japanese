@@ -26,7 +26,7 @@ if (defined('STDIN')) {
     chdir(dirname(__FILE__));
 }
 
-$system_path = 'D:\WWW\CI-3.0.1/system/';
+$system_path = '/home/quannh/PHP-Development/quannh/CodeIgniter/system/';
 $mainPath = getcwd() . "/..";
 $application_folder = "$mainPath/frontend/";
 $domain = $_SERVER['SERVER_NAME'];
