@@ -110,7 +110,7 @@ class TopicModel extends MX_Model
     }
 
 
-    function items_json(){
+    public function items_json($fields=[]){
         $this->db->select('*')->from($this->table);
         $this->db->order_by('id DESC');
 

@@ -36,7 +36,7 @@ class Admin_Controller extends MX_Controller
         Modules::run('SystemUser/checkLogin','user/login');
 
         $this->SetLink();
-//        $this->datatableValue();
+        $this->datatableValue();
 
 //        $this->user = ($uid = $this->session->userdata('user_id'))
 //            ? ICTUserModel::find($uid)
@@ -92,6 +92,8 @@ class Admin_Controller extends MX_Controller
         $length = $this->session->userdata('page_length');
         if ($length) {
             set_temp_val("dataLength", $length);
+        } else {
+            set_temp_val("dataLength", 20);
         }
         $start = $this->session->userdata('page_start');
         if ($start) {

@@ -114,6 +114,7 @@ class WordModel extends MX_Model {
 
         return $id;
 	}
+
 	function update_by_romaji($data){
 	    if( strlen($data['romaji']) < 1 ){
 	        set_error('Please enter romaji');
@@ -137,6 +138,7 @@ class WordModel extends MX_Model {
 	    }
 	    return $data['romaji'];
 	}
+
 	function check_exist($romaji,$id){
 
 	    if( !is_numeric($id) ){
@@ -171,9 +173,18 @@ class WordModel extends MX_Model {
 	/*
 	 * Json return for Datatable
 	 */
-	function items_json($actions_allow=NULL){
-	    $this->db->select('id,romaji, kanji, hiragana, katakana, vietnamese, alias')->from($this->table);
+	function items_json($fields=[]){
+	    $this->db->select('id,romaji, kanji, hiragana, katakana, vietnamese, english, alias')->from($this->table);
 	    $this->db->order_by('id DESC');
+
+	    if ( strlen($this->search) > 0 ){
+            $this->search = trim($this->search);
+            $whereLike =     "LOWER(romaji) LIKE '%$this->search%' ESCAPE '!'";
+            $whereLike.= " OR LOWER(kanji) LIKE '%$this->search%' ESCAPE '!'";
+            $whereLike.= " OR LOWER(vietnamese) LIKE '%$this->search%' ESCAPE '!'";
+
+            $this->db->where("($whereLike)");
+        }
 
         $num_rows = $this->count_ajax();
 
@@ -188,6 +199,8 @@ class WordModel extends MX_Model {
 	        if( strlen($ite->word) < 1 ){
 	            $ite->word = $ite->katakana;
 	        }
+
+	        $ite->translate = strlen($ite->vietnamese) > 0 ? $ite->vietnamese : $ite->english;
 	        
 	        $img_dir = realpath(config_item('word_img_dir'));
 	        foreach ($this->img_dirs AS $dirName){
