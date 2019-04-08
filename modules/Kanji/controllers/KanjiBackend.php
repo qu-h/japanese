@@ -35,9 +35,11 @@ class KanjiBackend extends Admin_Controller
         $this->template->build('backend/datatables',$data);
     }
 
-    public function form($id = 0)
+    public function edit($id=0){
+        return $this->form($id);
+    }
+    private function form($id = 0)
     {
-        $this->fields = $this->Kanji_Model->fields();
 
         if ($this->input->post()) {
             $data = array();

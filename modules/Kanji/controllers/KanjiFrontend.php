@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Kanji extends JP_Controller
+class KanjiFrontend extends JP_Controller
 {
     function __construct()
     {
@@ -14,7 +14,7 @@ class Kanji extends JP_Controller
         $items = $this->KanjiModel->where('level',$level)->pagination_get($page);
 
         set_layout('full-content');
-        temp_view('index',compact('items'));
+        temp_view('Kanji/index',compact('items'));
     }
 
     function character($ascii=null){
@@ -28,6 +28,6 @@ class Kanji extends JP_Controller
         add_git_assets("kanji.min.js",'sites-template/nicdarkthemes/baby_kids');
 
         set_layout('full-content');
-        temp_view('character',compact('kanji','svnPath'));
+        temp_view('Kanji/character',compact('kanji','svnPath'));
     }
 }

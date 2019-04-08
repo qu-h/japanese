@@ -133,15 +133,59 @@ function getKanjiChar(){
 	}
 }
 
+const symbols = [];
 function getKanjiStatus(){
 	let chars = jQuery("#kanji-filter-result .kanji-in-list-item div.img");
 	console.log("getKanjiStatus",{chars});
+	
+	chars.map((i,char)=>{
+		let symbol = {symbol:char.dataset.text,id:char.id};
+		let check = symbols.find(c=>c.id===symbol.id);
+		if( typeof check ==='undefined' ){
+			symbols.push(symbol);
+		}
+	});
+	
+	$.ajax({
+		data: {symbols:symbols},
+		type: "POST",
+		url:'//300c7631.ngrok.io/kanji/symbols-status',
+		success: function(data){
+			if( typeof data === 'object' && data.saved ){
+				$(char).css({'background':'#33b874'});
+			}
+		}
+	});
+	console.log('finish load ',symbols);
+	
+/*
+	chars.map(async (i,char)=>{
+		//let symbol = {symbol:char.dataset.text,id:char.id};
+		let symbol = char.dataset.text;
+		await $.ajax({data: {symbol:symbol},type: "GET",
+			beforeSend: function( xhr ) {
+				console.log('before ajax get symbol: %s',symbol);
+			},
+	        // success: function(data){
+			// 	console.log('finish ajax get symbol ',data);
+	        // 	if( typeof data === 'object' && data.saved ){
+	        // 		$(char).css({'background':'#33b874'});
+	        // 	} else {
+
+			// 	}
+	    	// }
+    	}).done((data)=>{
+			console.log('done ajax get symbol ',data);
+		});
+	});
+*/
+	/*
 	$.each( chars, function() {
 		let char = $(this).get(0);
 		console.log("debug ajax",{char});
 	    $.ajax({data: {txt:char.dataset.text},type: "GET",
 	        success: function(data){
-	        	if( typeof data === 'object' && data.status ){
+	        	if( typeof data === 'object' && data.saved ){
 	        		$(char).css({'background':'#33b874'});
 	        	} else {
 
@@ -150,10 +194,11 @@ function getKanjiStatus(){
     	});
 	
 	});
+	*/
 }
 
 $( document ).ready(function() {
-    getKanjiStatus();
+    //getKanjiStatus();
     $('#kanji-filter-result .btn-small').click(function(){
     	kanjiChecking = "";
     });

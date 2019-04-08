@@ -117,7 +117,7 @@ class Admin_Controller extends MX_Controller
     protected $fieldKeys = [];
     private function loadFormModel(){
         $className = get_class ($this);
-        $moduleName = $this->load->getModule();
+        //$moduleName = $this->load->getModule();
         $className = str_replace(['Backend','Frontend'],null,$className);
         $modelName = sprintf('%sModel',$className);
 

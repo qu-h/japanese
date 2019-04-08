@@ -6,7 +6,9 @@ compile/*.php
 package-lock.jsons
 node_modules/*
 package-lock.json
+public/index.php
 .env
+.env.server
 
 
 *-removed.php

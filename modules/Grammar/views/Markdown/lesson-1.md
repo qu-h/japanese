@@ -1,3 +1,4 @@
+
 # Vocabulary
 '''
 わたし		        tôi

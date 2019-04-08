@@ -1,5 +1,5 @@
 $.ajaxSetup({
-    url: "https://api.japanese.giaiphapict.loc/kanji/char.json",
+    url: "//300c7631.ngrok.io/kanji/char",
     global: false,
     type: "POST",
     crossDomain:true,
@@ -7,7 +7,7 @@ $.ajaxSetup({
     async:true,
     success: function(msg){
         getKanjiStatus();
-        console.log("success :",msg.responseText);
+        console.log("success :",msg);
         ajaxLoading = false;
     },
     error: function(jxhr){

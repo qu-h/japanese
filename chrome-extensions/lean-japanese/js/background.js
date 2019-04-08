@@ -86,7 +86,7 @@ chrome.runtime.onSuspend.addListener(function() {
     
     });
     console.log("Unloading.");
-    if( typeof chrome !== 'undefined'){
+    if( typeof chrome !== 'undefined' && typeof chrome.browserAction !== 'undefined'){
       chrome.browserAction.setBadgeText({text: ""});
       chrome.tabs.sendMessage(lastTabId, "Background page unloaded.");
     }

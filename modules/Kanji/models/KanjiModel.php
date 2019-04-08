@@ -21,10 +21,10 @@ class KanjiModel extends MX_Model
         'stroke'=>['type'=>"number"],
         'onyomi' => [ 'label' => 'Onyomi', 'icon' => 'link' ],
         'kunyomi' => [ 'label' => 'Kunyomi', 'icon' => 'link' ],
-        'explanation'=>['type'=>'textarea','editor'=>''],
+        'explanation'=>['type'=>'textarea'],
         'meaning'=>[],
         'level'=>['type'=>'select'],
-        'example'=>['type'=>'textarea','editor'=>''],
+        'example'=>['type'=>'textarea'],
     );
 
     function __construct(){

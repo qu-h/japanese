@@ -1,21 +1,21 @@
 let ajaxLoading = false;
-$.ajaxSetup({
-    url: "https://api.japanese.giaiphapict.loc/kanji/char.json",
-    global: false,
-    type: "POST",
-    crossDomain:true,
-    cache:true,
-    async:true,
-    success: function(msg){
-        //getKanjiStatus();
-        ajaxLoading = false;
-        console.log(msg);
-    },
-    error: function(jxhr){
-        console.log(jxhr);
+// $.ajaxSetup({
+//     url: "https://api.japanese.giaiphapict.loc/kanji/char.json",
+//     global: false,
+//     type: "POST",
+//     crossDomain:true,
+//     cache:true,
+//     async:true,
+//     success: function(msg){
+//         //getKanjiStatus();
+//         ajaxLoading = false;
+//         console.log(msg);
+//     },
+//     error: function(jxhr){
+//         console.log(jxhr);
 
-    }
-});
+//     }
+// });
 
 $( document ).ajaxStart(function() {
     ajaxLoading = true;
@@ -24,6 +24,7 @@ $( document ).ajaxStart(function() {
 let wordTypes = ['','noun'];
 
 let kanjiChecking;
+
 function getKanjiWord(){
     let word = $("#word-detail-overview");
     if( word.length > 0 && (kanjiChecking === undefined || kanjiChecking.length < 1) ){
@@ -63,7 +64,7 @@ function getKanjiStatus(){
         let char = $(this);
         $.ajax({data: {txt:char.attr("data-text")},type: "GET",
             success: function(data){
-                if( typeof data === 'object' && data.status ){
+                if( typeof data.saved !== 'undefined' && data.saved ){
                     char.css({'background':'#33b874'});
                 }
             }

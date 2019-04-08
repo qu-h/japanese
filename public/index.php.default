@@ -44,7 +44,6 @@ if (count($subdomain) > 1) {
 
 $view_folder = 'views';
 
-
 if (($_temp = realpath($system_path)) !== FALSE) {
     $system_path = $_temp . '/';
 } else {
@@ -91,7 +90,6 @@ if (is_dir($application_folder)) {
         echo 'Your application folder path does not appear to be set correctly. Please open the following file and correct this: ' . SELF;
         exit(3); // EXIT_CONFIG
     }
-
     define('APPPATH', BASEPATH . $application_folder . DIRECTORY_SEPARATOR);
 }
 
@@ -115,7 +113,6 @@ if (($_temp = realpath($view_folder)) !== FALSE) {
 }
 
 define('VIEWPATH', str_replace(array("\\"), "/", $view_folder));
-// 	var_dump(VIEWPATH);die;
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE
