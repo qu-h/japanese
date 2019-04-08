@@ -43,7 +43,6 @@ function getKanjiChar(){
 	let kanjiDetail = Array.from(document.querySelectorAll(".dekiru-popup-detail"));
 	if( kanjiDetail.length > 0 ){
 		kanjiDetail = kanjiDetail[0];
-		//console.log("get kanji",kanjiDetail.innerHTML);
 		if( kanjiDetail.innerHTML.length > 0 ){
 			let data = {
                 word : document.querySelectorAll(".dekiru-popup-detail .qqq.japan-font")[0].innerText,
@@ -134,67 +133,45 @@ function getKanjiChar(){
 }
 
 const symbols = [];
+
 function getKanjiStatus(){
 	let chars = jQuery("#kanji-filter-result .kanji-in-list-item div.img");
 	console.log("getKanjiStatus",{chars});
-	
+	console.log('debug',symbols);
 	chars.map((i,char)=>{
-		let symbol = {symbol:char.dataset.text,id:char.id};
-		let check = symbols.find(c=>c.id===symbol.id);
-		if( typeof check ==='undefined' ){
-			symbols.push(symbol);
+		if( typeof char.dataset.saved === 'undefined' ){
+			let symbol = {symbol:char.dataset.text,id:char.id};
+			let check = symbols.find(c=>c.id===symbol.id);
+			if( typeof check ==='undefined' ){
+				symbols.push(symbol);
+			}
 		}
+		
 	});
-	
+	console.log('debug',symbols);
 	$.ajax({
 		data: {symbols:symbols},
 		type: "POST",
-		url:'//300c7631.ngrok.io/kanji/symbols-status',
+		url: ajaxJDict.uri('kanji/symbols-status'),
 		success: function(data){
-			if( typeof data === 'object' && data.saved ){
-				$(char).css({'background':'#33b874'});
+			if( data instanceof Array ){
+				data.map((row)=>{
+					if(typeof row.saved !== 'undefined' && row.saved) {
+						$("#"+row.id)
+							.css({'background':configjDict.color.saved})
+							.attr('data-saved',true);
+						
+						let symbolIndex = symbols.findIndex(s => s.id === row.id);
+						console.log(' find symbold id',symbolIndex, row.id);
+						//symbols.splice( symbolIndex, 1 );
+					}
+				});
+			} else  if( typeof data === 'object' && data.saved ){
+				$(char).css({'background':configjDict.color.saved});
 			}
 		}
 	});
 	console.log('finish load ',symbols);
-	
-/*
-	chars.map(async (i,char)=>{
-		//let symbol = {symbol:char.dataset.text,id:char.id};
-		let symbol = char.dataset.text;
-		await $.ajax({data: {symbol:symbol},type: "GET",
-			beforeSend: function( xhr ) {
-				console.log('before ajax get symbol: %s',symbol);
-			},
-	        // success: function(data){
-			// 	console.log('finish ajax get symbol ',data);
-	        // 	if( typeof data === 'object' && data.saved ){
-	        // 		$(char).css({'background':'#33b874'});
-	        // 	} else {
-
-			// 	}
-	    	// }
-    	}).done((data)=>{
-			console.log('done ajax get symbol ',data);
-		});
-	});
-*/
-	/*
-	$.each( chars, function() {
-		let char = $(this).get(0);
-		console.log("debug ajax",{char});
-	    $.ajax({data: {txt:char.dataset.text},type: "GET",
-	        success: function(data){
-	        	if( typeof data === 'object' && data.saved ){
-	        		$(char).css({'background':'#33b874'});
-	        	} else {
-
-				}
-	    	}
-    	});
-	
-	});
-	*/
 }
 
 $( document ).ready(function() {

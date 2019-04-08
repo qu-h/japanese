@@ -8,6 +8,7 @@ const kanjiRule = {
   actions: [new chrome.declarativeContent.ShowPageAction()]
 };
 
+/*
 var RequestMatcher = chrome.declarativeWebRequest.RequestMatcher;
 var IgnoreRules = chrome.declarativeWebRequest.IgnoreRules;
 var RedirectRequest = chrome.declarativeWebRequest.RedirectRequest;
@@ -60,7 +61,7 @@ function registerRules() {
 
   chrome.declarativeWebRequest.onRequest.addRules([ exceptionRule], callback);
 }
-
+*/
 function setup() {
 
   // chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
@@ -69,39 +70,39 @@ function setup() {
   // This function is also called when the extension has been updated.  Because
   // registered rules are persisted beyond browser restarts, we remove
   // previously registered rules before registering new ones.
-  chrome.declarativeWebRequest.onRequest.removeRules(
-    null,
-    function() {
-      if (chrome.runtime.lastError) {
-        console.error('Error clearing rules: ' + chrome.runtime.lastError);
-      } else {
-        registerRules();
+  if( typeof chrome.declarativeWebRequest !== 'undefined' ){
+    chrome.declarativeWebRequest.onRequest.removeRules(
+      null,
+      function() {
+        if (chrome.runtime.lastError) {
+          console.error('Error clearing rules: ' + chrome.runtime.lastError);
+        } else {
+          registerRules();
+        }
+    });
+  }
+  
+  chrome.runtime.onSuspend.addListener(function() {
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      // After the unload event listener runs, the page will unload, so any
+      // asynchronous callbacks will not fire.
+      });
+      if( typeof chrome !== 'undefined' && typeof chrome.browserAction !== 'undefined'){
+        chrome.browserAction.setBadgeText({text: ""});
+        chrome.tabs.sendMessage(lastTabId, "Background page unloaded.");
       }
-    });
-
-chrome.runtime.onSuspend.addListener(function() {
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    // After the unload event listener runs, the page will unload, so any
-    // asynchronous callbacks will not fire.
-    
-    });
-    console.log("Unloading.");
-    if( typeof chrome !== 'undefined' && typeof chrome.browserAction !== 'undefined'){
-      chrome.browserAction.setBadgeText({text: ""});
-      chrome.tabs.sendMessage(lastTabId, "Background page unloaded.");
-    }
 
   });
 
-var wr = chrome.declarativeWebRequest;
-  chrome.declarativeWebRequest.onRequest.addRules([{
-    id: "0",
-    conditions: [new wr.RequestMatcher({url: {hostSuffix: "bing.com"}})],
-    actions: [new wr.RedirectRequest({redirectUrl: "http://google.com"})]
-  }]);
-
+  var wr = chrome.declarativeWebRequest;
+  if( typeof wr !== 'undefined' ){
+    wr.onRequest.addRules([{
+      id: "0",
+      conditions: [new wr.RequestMatcher({url: {hostSuffix: "bing.com"}})],
+      actions: [new wr.RedirectRequest({redirectUrl: "http://google.com"})]
+    }]);
+  }
 }
 
 chrome.runtime.onInstalled.addListener(setup);
-
 

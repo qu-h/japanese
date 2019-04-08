@@ -222,6 +222,7 @@ class KanjiModel extends MX_Model
         $data = ['text'=>$text,'type'=>$type];
         $word = $this->db->where($data)
             ->limit(1)->get($table)->row();
+            
         if( !empty($word) ){
             $id = $word->id;
         } else {
