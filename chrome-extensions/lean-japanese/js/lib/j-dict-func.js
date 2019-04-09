@@ -1,5 +1,5 @@
 var ajaxJDict = {
-    domain:'//3d44881d.ngrok.io/',
+    domain:'//14b12c8c.ngrok.io/',
     uri:(uri)=>{
         return ajaxJDict.domain + uri;
     }
@@ -23,6 +23,12 @@ $.ajaxSetup({
     },
     error: function(jxhr){
         console.log("error:",{jxhr});
-
+    },
+    complete: function(){
+        console.log('ajax is complete 28');    
     }
+});
+
+$( document ).ajaxSuccess(function( event, request, settings ) {
+    console.log('ajax is complete 33');
 });
