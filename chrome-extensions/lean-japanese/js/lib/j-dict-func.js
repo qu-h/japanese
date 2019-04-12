@@ -1,5 +1,5 @@
 var ajaxJDict = {
-    domain:'//14b12c8c.ngrok.io/',
+    domain:'//9c27c5d0.ngrok.io/',
     uri:(uri)=>{
         return ajaxJDict.domain + uri;
     }
