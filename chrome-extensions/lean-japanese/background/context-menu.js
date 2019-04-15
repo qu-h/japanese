@@ -77,5 +77,6 @@ function setup() {
     });
 }
 
+
 // Set up context menu tree at install time.
 chrome.runtime.onInstalled.addListener(setup);

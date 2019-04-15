@@ -175,7 +175,8 @@ function getKanjiStatus(){
 }
 
 $( document ).ready(function() {
-    //getKanjiStatus();
+	//getKanjiStatus();
+	console.log('this on document ready');
     $('#kanji-filter-result .btn-small').click(function(){
     	kanjiChecking = "";
     });

@@ -1,5 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Class JP_Controller
+ * @property Template $template
+ */
 class JP_Controller extends MX_Controller{
 
      // this is the main controller, it feeds data to its child(extended) controllers
@@ -25,7 +29,7 @@ class JP_Controller extends MX_Controller{
          $this->user = ($this->session->userdata('user_id'))
                      ? ICTUser::find($this->session->userdata('user_id'))
                      : NULL;
-
+         create_image_symlink($this->template->get_theme_path(),['baby_kids','baby-kids']);
          if($this->user !== NULL)
          {
              $this->_assign_group();

@@ -1,5 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script core allowed');
 
+/**
+ * Class KanjiModel
+ * @property $db
+ */
 class KanjiModel extends MX_Model
 {
     var $table = 'kanji';
@@ -73,7 +77,7 @@ class KanjiModel extends MX_Model
         $item->remember = "";
         if( $item->id ){
             $img = $this->getRemembering($item->id);
-            if( !empty($img) ){
+            if( !empty($img) && strlen($img->image) > 0 ){
                 $item->remember = [
                     'img'=>$this->config->item("kanjiImageUrl").$img->image,
                     'text'=>$img->text

@@ -1,5 +1,9 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Class KanjiFrontend
+ * @property KanjiModel $KanjiModel
+ */
 class KanjiFrontend extends JP_Controller
 {
     function __construct()
@@ -22,11 +26,11 @@ class KanjiFrontend extends JP_Controller
 
 //        add_js(git_assets('raphael-min.js','raphael',"2.0.2",null,false));
 //        add_js(git_assets('kanjiviewer.js','svg',null,null,false));
-        //        add_module_asset("kanji.js",'kanji');
+//        add_module_asset("kanji.js",'kanji');
 
         $svnPath = env('ASSETS_GIT_PATH').'svg/kanji/';
         add_git_assets("kanji.min.js",'sites-template/nicdarkthemes/baby_kids');
-
+//dd($kanji);
         set_layout('full-content');
         temp_view('Kanji/character',compact('kanji','svnPath'));
     }

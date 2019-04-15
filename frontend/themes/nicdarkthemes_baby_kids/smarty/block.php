@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * Class Nicdarkthemes_baby_kidsBlock
+ * @property CI_Smarty $smarty
+ */
 class Nicdarkthemes_baby_kidsBlock extends CI_Smarty
 {
     static function block_archive($params = []){
@@ -8,9 +13,9 @@ class Nicdarkthemes_baby_kidsBlock extends CI_Smarty
 
     static function block_archive_button($params = []){
         $ci = get_instance();
-        $data = $params;
         if( is_array($params['content']) && !empty($params['content']) ){
             $buttons = "";
+
             foreach ($params['content'] AS $val){
                 $buttons .= Nicdarkthemes_baby_kidsButton::btn_text(['text'=>$val,'class'=>'border-1-w btn-shadow']);
             }
