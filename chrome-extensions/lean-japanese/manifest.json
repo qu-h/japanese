@@ -5,17 +5,27 @@
 
 	"icons": { 
 		"32": "img/torii-32.png"
+		
 	},
 	
+	"browser_action": {
+		"default_icon": {
+			"16": "images/torii-32.png",
+			"24": "images/torii-32.png",
+			"32": "images/torii-32.png"
+		},
+		"default_title": "Google Mail"
+	},
 	
 	"permissions": [
-	    "<all_urls>",
-	    "storage",
-	    "declarativeContent",
-			"contextMenus",
-	     "*://*/*",
-			"http://jp.giaiphapict.loc/api/kanjiword"
-	    
+		"background",
+		"tabs",
+		"<all_urls>",
+		"storage",
+		"declarativeContent",
+		"contextMenus",
+			"*://*/*",
+		"http://jp.giaiphapict.loc/api/kanjiword"
 	],
 
 	"commands": {
@@ -29,16 +39,24 @@
 	},
 
 	"background": {
-		"scripts": ["js/background.js","background/context-menu.js"],
+		"scripts": ["background/main.js","background/context-menu.js","background/icon.js"],
 		"persistent": false
 	},
 
 	"web_accessible_resources": ["style.css"]
 	,"content_scripts": [
-		
 		{
 			"all_frames": true,
-			"js": ["js/lib/jquery-3.3.1.min.js","js/lib/j-dict-func.js","js/kanji/com_j-dict.js"],
+			"run_at": "document_idle",
+			"matches": [
+				"*://j-dict.com/*"
+			],
+			"js": ["js/lib/jquery-3.3.1.min.js","js/common.js","js/j-dict/common.js"]			
+		},
+
+		{
+			"all_frames": true,
+			"js": ["js/lib/jquery-3.3.1.min.js","js/j-dict/common.js","js/j-dict/kanji.js"],
 			"matches": [
 				"*://j-dict.com/kanji.htm"
 			],
@@ -52,6 +70,16 @@
 				"*://j-dict.com/?keyword=*"
 			],
 			"run_at": "document_idle"
+		},
+
+		{
+			"all_frames": true,
+			"js": ["js/j-dict/grammar.js"],
+			"matches": [
+				"*://j-dict.com/grammar*"
+			],
+			"run_at": "document_idle"
 		}
+
 	]
 }
