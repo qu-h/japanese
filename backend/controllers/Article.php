@@ -16,7 +16,7 @@ class Article extends Admin_Controller
         modules::run('Backend/SystemArticle/items');
     }
 
-    public function edit($id){
+    public function edit($id=0){
         modules::run('Backend/SystemArticle/form',$id);
     }
 

@@ -27,13 +27,19 @@ class Grammar_Model extends CI_Model {
         'description'=>array(
 	        'type' => 'textarea'
 	    ),
+        'using'=>array(
+            'type' => 'textarea',
+            'title'=>'how to use'
+        ),
+        'note'=>array(
+            'type' => 'textarea'
+        ),
         'example'=>array(
 	        'type' => 'textarea'
 	    ),
 // 	    'content' => array(
 // 	        'type' => 'textarea'
 // 	    ),
-	    //'type'=>array('type' => 'hidden','value'=>'grammar')
 	);
 
 	function __construct(){

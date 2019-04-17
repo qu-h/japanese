@@ -143,4 +143,12 @@ class Admin_Controller extends MX_Controller
             }
         }
     }
+
+    public function edit($id=0){
+        return $this->form($id);
+    }
+
+    public function add(){
+        return $this->form(0);
+    }
 }

@@ -14,10 +14,10 @@ function getGrammarDetail(){
     let data = {
         level : currentLevel.dataset.value,
         grammar : jQuery('.gmw-wrap .gram',detail).html(),
-        description : jQuery('.gmw-wrap .mean',detail).html(),
+        title : jQuery('.gmw-wrap .mean',detail).html(),
         using : jQuery('.wpgam-det',detail).html(),
-        note : jQuery('.grd-div',detail).html(),
-        example:[]
+        description : jQuery('.grd-div',detail).html(),
+        examples:[]
     };
 
     let examples = $('.grd-ul li');
@@ -25,18 +25,18 @@ function getGrammarDetail(){
         examples.each(function(i,e){
             let phares = [];
             jQuery('.furigana_text',e).each(function(i,p){
-                console.log('deee',p);
                 let exp = {
-                    content : jQuery(this).html(),
-                    vi: jQuery('p',e).html(),
+                    content : p.innerHTML,
+                    vi: jQuery(p).parents('span').next('p').html(),
                 };
+                phares.push(exp);
             });
             
-            //data.example.push(exp);
+            data.examples.push(phares);
         });
     }
 
-    
+    $.ajax({url: ajaxJDict.uri("grammar/update"),data: data});
     console.log('save data',{data});
 
 }

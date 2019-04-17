@@ -99,11 +99,9 @@ class GrammarBackend extends Admin_Controller {
                 }
             }
         }
-        
-        $data = array(
-            'fields' => $this->fields
-        );
-        temp_view('backend/form',$data);
+
+        $fields = $this->fields;
+        temp_view('Grammar/form',compact('fields'));
 
     }
 
