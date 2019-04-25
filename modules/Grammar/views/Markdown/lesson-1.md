@@ -1,6 +1,7 @@
 
-# Vocabulary
-'''
+## Vocabulary
+
+~~~
 わたし		        tôi
 わたしたち	        chúng tôi, chúng ta
 あなた      
@@ -13,12 +14,11 @@
 ～じん      ～人
 せんせい    先生
 がくせい    学生    học sinh
+~~~
 
-'''
+## Grammar
 
-# Grammar
-
-## 1. [Noun] は　[Noun] です。
+### 1. [Noun] は　[Noun] です。
 
 Khẳng định và phủ định của một danh từ
 [Noun] です。
