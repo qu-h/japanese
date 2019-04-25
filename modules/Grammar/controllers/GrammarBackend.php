@@ -1,5 +1,10 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Class GrammarBackend
+ * @property REST $rest
+ * @property Curl $curl
+ */
 class GrammarBackend extends Admin_Controller {
 
     function __construct()
@@ -123,5 +128,46 @@ class GrammarBackend extends Admin_Controller {
     }
     private function MarkdownDataTable(){
 dd('show table');
+    }
+
+    public function getMinna($lesson_id=1){
+//        $this->load->library('rest', ['server'=>'http://mina.mazii.net/api']);
+//        $data = $this->rest->get("getKotoba.php","lessonid=$number");
+
+        $this->load->library('curl');
+        $api = sprintf('http://mina.mazii.net/api/getKotoba.php?lessonid=%d',$lesson_id);
+        $data = $this->curl->simple_get($api);
+        if( strlen($data) > 0 ){
+            $data = json_decode($data,true);
+        }
+
+        $storeDir = sprintf(APPPATH.'..%s/%d','/modules/Grammar/Markdown/minna',$lesson_id);
+
+        if( !is_dir($storeDir) ){
+            mkdir($storeDir,777);
+        }
+        $storeDir = realpath($storeDir);
+
+        if( !is_dir($storeDir) ){
+            return;
+        }
+
+        $vocabulary = $storeDir.DS."vocabulary.md";
+
+        if( file_exists($vocabulary) ){
+            die('file has exist');
+        }
+
+        write_file($vocabulary,'# Vocabulary'.PHP_EOL.PHP_EOL,'a+');
+        write_file($vocabulary,'|Hiragana   | Romaji | Kanji | Mean |'.PHP_EOL,'a+');
+        write_file($vocabulary,'|-----------|--------|:-----:|------|'.PHP_EOL,'a+');
+
+        if( count($data) > 0 ) foreach ($data AS $row){
+            $wordLine = sprintf('| %s| %s| %s| %s',$row['hiragana'],$row['roumaji'],$row['kanji'],$row['mean']);
+            write_file($vocabulary,$wordLine.PHP_EOL,'a+');
+        }
+        dd($data);die;
+
+
     }
 }

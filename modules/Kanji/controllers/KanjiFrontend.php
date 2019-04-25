@@ -9,7 +9,6 @@ class KanjiFrontend extends JP_Controller
     function __construct()
     {
         parent::__construct();
-
      }
 
     function index(){
@@ -30,8 +29,8 @@ class KanjiFrontend extends JP_Controller
 
         $svnPath = env('ASSETS_GIT_PATH').'svg/kanji/';
         add_git_assets("kanji.min.js",'sites-template/nicdarkthemes/baby_kids');
-//dd($kanji);
         set_layout('full-content');
+//        dd($kanji);
         temp_view('Kanji/character',compact('kanji','svnPath'));
     }
 }

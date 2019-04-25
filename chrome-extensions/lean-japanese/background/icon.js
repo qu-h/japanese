@@ -44,7 +44,8 @@ function checkSite(url){
     }
 
     var sites = [
-        'j-dict.com'
+        'j-dict.com',
+        'mina.mazii.net'
     ];
     
     if( sites.indexOf(location.host) > -1 ){

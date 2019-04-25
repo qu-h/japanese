@@ -8,24 +8,27 @@
                     </div>
                 </div>
                 <div class="row">
-
                     <div class="col-md-6">
                         {block_archive_button title="onyomi" content=$kanji->onyomi}
                     </div>
                     <div class="col-md-6">
                         {block_archive_button title="kunyomi" content=$kanji->kunyomi}
                     </div>
-
                 </div>
-                <script>
-                    var kanjiSvgPath = '{$svnPath}';
-                </script>
 
             </div>
 
             <div class="col-md-4 wpb_column vc_column_container">
                 <div class=" nicdark_archive1 nicdark_relative nicdark_shadow nicdark_bg_grey pa-10">
+                    <div class="form-horizontal">
+                        {$kanji->chinese|row_label      :'Han Viet':4:'red'}
+                        {$kanji->vietnamese|row_label   :'Meaning':4:'red'}
+                        {$kanji->level|row_label        :'Level':4:'red'}
+                        {$kanji->stroke|row_label       :'Stroke Total':4:'red'}
+                    </div>
+
                     <div class="nicdark_activity">
+
 
                         <h4 class="pa-b-20 f-upcase">
                             {btn_text text=$kanji->word  bg="red"}
@@ -52,8 +55,6 @@
                         </div>
                     </div>
                 {/if}
-
-
             </div>
             <div class="nicdark_space10"></div>
 
@@ -66,13 +67,11 @@
         {/if}
 
         <div class="row">
-
             {if $kanji->parts|count > 0}
                 <div class="col-md-4 ">
                     {block_archive_list title="bo phan cau thanh" content=$kanji->parts col=3}
                 </div>
             {/if}
-
             {if $kanji->example|count > 0}
                 <div class="col-md-8 ">
                     {include file=$tplPath|cat:"block/words.tpl" content=$kanji->example title="example"}
@@ -81,4 +80,7 @@
 
         </div>
     </div>
+    <script>
+        let kanjiSvgPath = '{$svnPath}';
+    </script>
 </section>
