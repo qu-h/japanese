@@ -9,7 +9,7 @@ class KanjiFrontend extends JP_Controller
     function __construct()
     {
         parent::__construct();
-     }
+    }
 
     function index(){
         $page = input_get('p',1);
