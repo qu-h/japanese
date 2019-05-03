@@ -12,8 +12,8 @@ var minifyCSS = require('gulp-minify-css');
 var autoprefixer = require('gulp-autoprefixer');
 
 
-
-var publicPath = "D:/WWW/sites-template-git/nicdarkthemes/baby_kids/";
+//var publicPath = "D:/WWW/sites-template-git/nicdarkthemes/baby_kids/";
+var publicPath = "/home/quannh/PHP-Development/quannh/sites-template/nicdarkthemes/baby_kids/";
 var gitAssetsPath = "D:/WWW/quanict.github.io";
 
 String.prototype.fileIsExist = function(){
@@ -90,51 +90,10 @@ var getGitResource = function(dir,version,file){
 };
 
 Array.prototype.addGitResource = function(dir,version,file) {
-
     var fileCheck = getGitResource(dir,version,file);
     if( typeof fileCheck === 'string' ){
         this.push(fileCheck);
     }
-    // var resource = gitAssetsPath;
-    //
-    // if( typeof dir !== 'undefined'){
-    //     resource += "/"+dir;
-    // }
-    // if( typeof version !== 'undefined' && version !== null){
-    //     resource += "/"+version;
-    // }
-    //
-    // if( typeof file !== 'undefined' && file !== null){
-    //     var fileCheck = resource+"/"+file;
-    //     var fileExist = fileCheck.fileIsExist();
-    //     // console.log("go debug here 48 file : %s | %s",fileCheck,fileExist);
-    //     if (fileExist) {
-    //         this.push(fileCheck);
-    //     } else {
-    //         var fileExt = fileExtension(file);
-    //         if( fileExt === 'js' ){
-    //             fileCheck = resource+"/js/"+file;
-    //             if( fileCheck.fileIsExist() ){
-    //                 this.push(fileCheck);
-    //             }
-    //         } else if ( fileExt === 'css' ){
-    //             fileCheck = resource+"/css/"+file;
-    //
-    //             if( fileCheck.fileIsExist() ){
-    //                 console.log("debug add file",fileCheck)
-    //                 this.push(fileCheck);
-    //             } else {
-    //                 console.log("file not exits",fileCheck)
-    //             }
-    //         }
-    //     }
-    //     // console.log("go debug here 69, fileExt : %s",fileExt,this);
-    // } else {
-    //     if (resource.fileIsExist()) {
-    //         this.push(resource);
-    //     }
-    // }
-
 };
 
 Object.prototype.addConcatCss = function(dir,version,file){
@@ -144,9 +103,8 @@ Object.prototype.addConcatCss = function(dir,version,file){
     }
 };
 
-gulp.task('sass', function() {
+gulp.task('sass', ()=>{
     var files = [];
-    // files.addGitResource('bootstrap/','4.0.0',"bootstrap.scss");
     files.push('scss/*.scss');
 
     var gulpTask = gulp.src(files)
@@ -210,10 +168,6 @@ gulp.task('copy-image', function () {
     return gulp.src(['images/*']).pipe(gulp.dest(publicPath+'images'));
 });
 
-gulp.task('default', function() {
-    gulp.start(['sass', 'js']);
-    // gulp.start('jquery-plugin');
-    //gulp.start('concatCss');
-    // gulp.start(['copy-fonts','copy-image']);
-});
+gulp.task("default", gulp.series(["sass","js"]), () => {
 
+});

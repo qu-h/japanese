@@ -1,0 +1,53 @@
+.jlpt-course {
+    h1,h2,h3,h4,h5 {
+        margin-bottom: .5rem;
+        font-family: inherit;
+        font-weight: 500;
+        line-height: 1.2;
+        color: inherit;
+    }
+    h3 {
+        font-size: 1.75rem;
+    }
+    h4 {
+        font-size: 1.5rem;
+    }
+
+    .showdown-out > p {
+        display: block;
+        margin: 0 1.25rem 1rem 1.25rem;
+        color: inherit;
+        font-size: inherit;
+    }
+
+    pre {
+        display: block;
+        font-size: 87.5%;
+        color: #212529;
+        float: unset;
+        overflow: unset;
+        position: relative;
+        margin: 1.25rem;
+
+        code {
+            display: block;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+            border: 1px solid #eee;
+            border-left-width: .5rem;
+            //border-radius: .25rem;
+        }
+
+        .language-examplate {
+            border-left-color: #059ff7;
+        }
+
+        .language-links {
+            border-left-color: #f0ad4e;
+        }
+
+        .language-note {
+            border-left-color: #155724;
+        }
+    }
+}
