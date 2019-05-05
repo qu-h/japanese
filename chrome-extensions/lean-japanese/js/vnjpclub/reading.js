@@ -1,17 +1,17 @@
 $( document ).ready(function() {
-    let tabs = jQuery(".tab_container .tabs");
+    let tabs = jQuery(".tab_container .tabs"), data = [];
     if( tabs.length > 0 ) jQuery('li a',tabs).each((i,tab)=>{
         let content_id = jQuery(tab).attr('rel')
         content = jQuery(content_id);
 
-        let data = {
+        let listen = {
             kanji:  $('ruby',tab).get(0).innerText,
             hira: $('ruby rt',tab).get(0).innerText,
             mp3: $('audio source',content).attr('src'),
             sentences:[]
         };
         
-        if( data.kanji == '練習' ){
+        if( listen.kanji == '練習' ){
             
             jQuery('> table',content).each((i,table)=>{
                 let sentence = [];
@@ -34,9 +34,8 @@ $( document ).ready(function() {
                     
 
                 });
-                data.sentences.push(sentence);
+                listen.sentences.push(sentence);
             });
-            console.log('get tab ',data.sentences);
         } else {
             jQuery('.tudich',content).each((i,se)=>{
                 let test = jQuery('.candich',se).clone().find('span').replaceWith(function() { return this.innerHTML; }).end();
@@ -45,10 +44,11 @@ $( document ).ready(function() {
                     'jp_debug' : test.text().replace(/ *\([^)]*\) */g, ""),
                     'vn' : jQuery('.kqdich',se).text()
                 };
-                data.sentences.push(sentence);
+                listen.sentences.push(sentence);
             });
         }
-        
+        data.push(listen);
     });
+    console.log(data);
     //console.warn('debug',{tabs});
 });
