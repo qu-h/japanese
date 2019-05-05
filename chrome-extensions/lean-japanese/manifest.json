@@ -48,12 +48,17 @@
 		{
 			"all_frames": true,
 			"run_at": "document_idle",
+			"matches": ["<all_urls>"],
+			"js": ["js/lib/jquery-3.3.1.min.js","js/common.js"]
+		},
+		{
+			"all_frames": true,
+			"run_at": "document_idle",
 			"matches": [
 				"*://j-dict.com/*"
 			],
 			"js": ["js/lib/jquery-3.3.1.min.js","js/common.js","js/j-dict/common.js"]			
 		},
-
 		{
 			"all_frames": true,
 			"js": ["js/lib/jquery-3.3.1.min.js","js/j-dict/common.js","js/j-dict/kanji.js"],
@@ -62,7 +67,6 @@
 			],
 			"run_at": "document_idle"
 		},
-
 		{
 			"all_frames": true,
 			"js": ["js/lib/jquery-3.3.1.min.js","js/kanji/com_j-dict.word.js"],
@@ -88,6 +92,12 @@
 				"*://mina.mazii.net/*"
 			],
 			"run_at": "document_idle"
+		},
+		{
+			"all_frames": true,
+			"run_at": "document_idle",
+			"js": ["js/vnjpclub/reading.js"],
+			"matches": ["*://www.vnjpclub.com/minna-no-nihongo/*-luyen-doc.html"]
 		}
 
 	]

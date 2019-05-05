@@ -45,7 +45,8 @@ function checkSite(url){
 
     var sites = [
         'j-dict.com',
-        'mina.mazii.net'
+        'mina.mazii.net',
+        'www.vnjpclub.com'
     ];
     
     if( sites.indexOf(location.host) > -1 ){
