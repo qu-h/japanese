@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script core allowed');
 
-class Grammar_Model extends CI_Model {
+class Grammar_Model_removed extends CI_Model {
 	var $table = 'grammar';
 
 	var $grammar_fields = array(

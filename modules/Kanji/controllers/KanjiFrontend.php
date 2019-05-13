@@ -13,9 +13,23 @@ class KanjiFrontend extends JP_Controller
 
     function index(){
         $page = input_get('p',1);
-        $level = input_get('level',5);
-        $items = $this->KanjiModel->where('level',$level)->pagination_get($page);
+        $level = input_get('level',0);
+        $where = [];
+        if( $level > 0 ){
+            $where['level'] = $level;
+            $this->KanjiModel->where($where);
+        }
+        if( $this->input->post() ){
 
+        } else {
+            $search = input_get('s');
+            if( strlen($search) > 0 ){
+                $this->KanjiModel->where_like('word',$search);
+            }
+        }
+
+        $items = $this->KanjiModel->pagination_get($page);
+//dd('debug');
         set_layout('full-content');
         temp_view('Kanji/index',compact('items'));
     }

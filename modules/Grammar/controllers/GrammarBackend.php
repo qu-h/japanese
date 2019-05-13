@@ -4,13 +4,13 @@
  * Class GrammarBackend
  * @property REST $rest
  * @property Curl $curl
+ * @property Grammar_Model $Grammar_Model
  */
 class GrammarBackend extends Admin_Controller {
 
     function __construct()
     {
         parent::__construct();
-
         $this->fields = $this->Grammar_Model->fields();
     }
 
@@ -74,7 +74,6 @@ class GrammarBackend extends Admin_Controller {
         }
         $data['columns_fields'] = substr($data['columns_fields'], 0,-1);
 
-
         temp_view('backend/datatables',$data);
     }
 
@@ -93,7 +92,7 @@ class GrammarBackend extends Admin_Controller {
             $add = $this->Grammar_Model->update($formdata);
             if( $add ){
                 set_error(lang('Success.'));
-                redirect('admin/grammar');
+                redirect('grammar');
             }
 
         } else {

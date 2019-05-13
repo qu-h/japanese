@@ -3,25 +3,22 @@
 
         <div class="container">
             <div class="nd_learning_section nd_learning_box_sizing_border_box">
-
-
                 <form class="" action="" method="POST">
-
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                                <label for="search-text" class="col-sm-2 col-form-label">Search</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control-plaintext" id="staticEmail" value="">
+                                    <input type="text" class="form-control-plaintext" id="search-text" value="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Level</label>
+                                <label for="search-level" class="col-sm-2 col-form-label">Level</label>
                                 <div class="col-sm-10">
                                     <select class="nicdark_bg_grey2 nicdark_radius nicdark_shadow grey medium"
-                                            name="post_tag">
+                                            name="level" id="search-level">
                                         <option value="">All Tags</option>
                                         <option value="baby">Baby</option>
                                         <option value="children">Children</option>
@@ -37,10 +34,8 @@
                     </div>
 
                 </form>
-
             </div>
             {moduleRun m='pagination'}
-
         </div>
         <div class="container">
             <div class="row">

@@ -28,8 +28,6 @@
                     </div>
 
                     <div class="nicdark_activity">
-
-
                         <h4 class="pa-b-20 f-upcase">
                             {btn_text text=$kanji->word  bg="red"}
                             : {$kanji->chinese}
@@ -45,7 +43,6 @@
                     <div class="nicdark_space10"></div>
                     <div class=" nicdark_archive1 nicdark_relative nicdark_shadow nicdark_bg_grey pa-10">
                         <div class="nicdark_activity">
-
                             <h4 class="pa-b-20 f-upcase">{"quick-remember"|trans}</h4>
                             <img src="{$kanji->remember['img']}">
                             <div class="nicdark_space5"></div>

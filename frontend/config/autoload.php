@@ -14,5 +14,7 @@ $autoload['helper'] = array(
 );
 $autoload['language'] = array("site",'format');
 //$autoload['libraries'] = array('layouts/Smarty','layouts/Template');
+$autoload['libraries'] = ["Parsedown"];
+
 
 //$autoload['config'] = array('characters');

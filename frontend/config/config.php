@@ -14,8 +14,8 @@ $config['site'] = array(
         "email"=>"hongquan2712@gmail.com",
         "facebook_id"=>"hongquan2712"
 );
-$config['kanjiImagePath'] = "E:/quanict.github.io/imageResource/kanji/";
-$config['kanjiImageUrl'] = "//github.giaiphapict.loc/imageResource/kanji/";
+$config['kanjiImagePath'] = "D:\WWW\quanict.github.io\kanji-look-learn/j-dict.com/";
+$config['kanjiImageUrl'] = "//github.giaiphapict.loc/kanji-look-learn/j-dict.com/";
 
 if( substr($_SERVER["REQUEST_URI"],0,5) === "/api/" ){
     $config['subclass_prefix'] = 'REST_';
