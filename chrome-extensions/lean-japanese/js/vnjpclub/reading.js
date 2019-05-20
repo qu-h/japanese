@@ -12,7 +12,6 @@ $( document ).ready(function() {
         };
         
         if( listen.kanji == '練習' ){
-            
             jQuery('> table',content).each((i,table)=>{
                 let sentence = [];
                 let vietnameses = jQuery(table).nextAll('.slide').first().find('.slide-content').clone();
@@ -29,7 +28,7 @@ $( document ).ready(function() {
                     if( typeof  trans.get(i2) !== 'undefined'){
                         sentence.push({'jp':row,'vi':trans.get(i2).innerText});
                     } else {
-                        console.log("debug error ",{trans,i2,row,vietnameses});
+                        console.warn("debug error ",{trans,i2,row,vietnameses,tr});
                     }
                     
 
