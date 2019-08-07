@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends Admin_Controller
+class Dashboard extends JPAdmin_Controller
 {
     function __construct()
     {

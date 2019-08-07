@@ -5,7 +5,7 @@
  * @property Template $template
  * @property ArrayObject $fields
  */
-class Admin_Controller extends MX_Controller
+class JPAdmin_Controller extends MX_Controller
 {
     //presumes you use hmvc
 
@@ -31,7 +31,7 @@ class Admin_Controller extends MX_Controller
         //check the session data and assign a user to the user var
 
         $this->load->module('backend');
-        $this->load->module('SystemLayouts');
+        $this->load->module('BaseLayouts');
         $this->template->set_theme('smartadmin')->set_layout('main');
         Modules::run('SystemUser/checkLogin','user/login');
 
@@ -54,8 +54,6 @@ class Admin_Controller extends MX_Controller
         set_temp_val("SignOutLink", "/user/logout");
         add_site_structure('',lang("Admin area") );
     }
-
-
 
     public function _assign_group()
     {

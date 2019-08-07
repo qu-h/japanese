@@ -22,7 +22,7 @@ class TopicBackend extends Admin_Controller {
         return $this->form();
     }
 
-    public function edit($id){
+    public function edit($id=0){
         return $this->form($id);
     }
 

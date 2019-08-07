@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $autoload['language'] = array();
-$autoload['model'] = ['SystemCategory/SystemCategoryModel'];
+$autoload['model'] = ['BaseCategory/BaseCategoryModel'];
 
 $autoload['helper'] = array(
     'html','file','ascii',

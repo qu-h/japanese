@@ -1,6 +1,6 @@
 <?php
 
-class Syllabary extends JP_Controller
+class SyllabaryFrontend extends JP_Controller
 {
     function __construct()
     {
@@ -32,7 +32,7 @@ class Syllabary extends JP_Controller
         $data = [
             'tips'=> Modules::run("Tip/items",['chu-cai-nhat,hiragana-text'])
         ];
-        temp_view('hiragana',$data);
+        temp_view('Syllabary/hiragana',$data);
     }
 
     function katakana($char=NULL)

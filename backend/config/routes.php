@@ -4,6 +4,7 @@ $route['default_controller'] = 'dashboard';
 $route['login'] = 'user/login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
+$route['svg/image/(:any)'] = 'SvgFile/Image/viewFile/$1';
 
 
 

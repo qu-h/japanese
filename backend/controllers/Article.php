@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Article extends Admin_Controller
+class Article extends JPAdmin_Controller
 {
     function __construct()
     {
@@ -13,19 +13,19 @@ class Article extends Admin_Controller
     }
 
     function index(){
-        modules::run('Backend/SystemArticle/items');
+        modules::run('BaseArticle/items');
     }
 
     public function edit($id=0){
-        modules::run('Backend/SystemArticle/form',$id);
+        modules::run('BaseArticle/form',$id);
     }
 
     public function add(){
-        modules::run('Backend/SystemArticle/form');
+        modules::run('BaseArticle/form');
     }
 
     public function __call($method,$arguments) {
-        $this->load->module('Backend/SystemArticle');
+        $this->load->module('BaseArticle');
         dd($method);
     }
 }

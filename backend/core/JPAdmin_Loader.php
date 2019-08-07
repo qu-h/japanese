@@ -3,7 +3,7 @@
 /* load the MX_Loader class */
 require BASEPATH."../application/third_party/MX/Loader.php";
 
-class Admin_Loader extends MX_Loader {
+class JPAdmin_Loader extends MX_Loader {
 
 //     /**
 //      * Load the Utilities Class

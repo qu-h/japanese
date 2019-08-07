@@ -23,7 +23,7 @@ class JP_Controller extends MX_Controller{
 
      public function __construct(){
          parent::__construct();
-         $this->load->module('SystemLayouts');
+         $this->load->module('BaseLayouts');
          $this->template->set_theme('nicdarkthemes_baby_kids')->set_layout('course');
          //check the session data and assign a user to the user var
          $this->user = ($this->session->userdata('user_id'))
