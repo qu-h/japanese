@@ -9,7 +9,7 @@ class Article extends JPAdmin_Controller
         add_site_structure('article',lang("Admin Article") );
 
         set_temp_val('uri_add',('article/add'));
-//        set_temp_val('uri_edit',('articleM/edit'));
+        set_temp_val('uri_edit',('article/edit/%s'));
     }
 
     function index(){

@@ -3,7 +3,7 @@
 /**
  * @property WordModel $model
  */
-class WordBackend extends Admin_Controller {
+class WordBackend extends JPAdmin_Controller {
 
     function __construct()
     {
@@ -11,7 +11,7 @@ class WordBackend extends Admin_Controller {
         $this->fields = $this->WordModel->fields();
         $this->config->set_item('word_img_dir', APPPATH."/images/");
         $this->config->set_item('word_img_url', base_url()."images");
-        $this->load->helper('backend/datatables');
+        // $this->load->helper('backend/datatables');
 
         add_site_structure('word',"Word Management");
         set_temp_val('form-uri','word/%s/%d');
@@ -95,7 +95,7 @@ class WordBackend extends Admin_Controller {
         return $this->form(0);
     }
 
-    public function edit($id){
+    public function edit($id=0){
         return $this->form($id);
     }
 

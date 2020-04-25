@@ -12,8 +12,8 @@ class ArticleMarkdown extends JPAdmin_Controller
         $this->load->module('BaseArticle');
         add_site_structure('articlemarkdown',lang("Admin Article") );
         set_temp_val('uri_add',('articlemarkdown/add'));
+        set_temp_val('uri_edit',('articlemarkdown/edit/%d'));
 
-//        dd($this->BaseArticle->model);
         $this->BaseArticle->model->fields['content']['editor'] = 'editor-md';
         $this->BaseArticle->model->fields['content']['id'] = 'editor-md';
     }

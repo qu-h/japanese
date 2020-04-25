@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script core allowed');
 
-class Grammar_Model extends CI_Model {
+class Grammar_Model extends MX_Model {
 	var $table = 'grammar';
 
 	var $grammar_fields = array(
@@ -49,7 +49,7 @@ class Grammar_Model extends CI_Model {
 
     function fields(){
 
-    	$this->grammar_fields["category"]['options'] = $this->SystemCategoryModel->load_options("grammar");
+    	$this->grammar_fields["category"]['options'] = $this->BaseCategoryModel->load_options("grammar");
         return $this->grammar_fields;
     }
 
@@ -118,13 +118,14 @@ class Grammar_Model extends CI_Model {
 	    $this->db->join("category AS c","c.id=gra.category","LEFT")->select("c.name AS category");
 // 	    $this->db->where('type','grammar');
 	    $this->db->order_by('id ASC');
-	    $query = $this->db->get();
-	    $items = array();
-	    foreach ($query->result() AS $ite){
-
-	        $ite->actions = "";
-	        $items[] = $ite;
-	    }
-	    return jsonData(array('data'=>$items));
+        $this->dataTableJson();
+//	    $query = $this->db->get();
+//	    $items = array();
+//	    foreach ($query->result() AS $ite){
+//
+//	        $ite->actions = "";
+//	        $items[] = $ite;
+//	    }
+//	    return jsonData(array('data'=>$items));
 	}
 }

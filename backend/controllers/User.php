@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends Admin_Controller
+class User extends JPAdmin_Controller
 {
     function __construct()
     {

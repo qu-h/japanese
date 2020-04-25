@@ -6,7 +6,7 @@
  * @property Curl $curl
  * @property Grammar_Model $Grammar_Model
  */
-class GrammarBackend extends Admin_Controller {
+class GrammarBackend extends JPAdmin_Controller {
 
     function __construct()
     {

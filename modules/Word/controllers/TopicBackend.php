@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class TopicBackend extends Admin_Controller {
+class TopicBackend extends JPAdmin_Controller {
 
     function __construct()
     {

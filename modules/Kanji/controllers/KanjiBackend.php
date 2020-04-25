@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class KanjiBackend extends Admin_Controller
+class KanjiBackend extends JPAdmin_Controller
 {
 
     function __construct()
